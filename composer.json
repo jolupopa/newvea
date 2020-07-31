@@ -15,7 +15,8 @@
         "laravel/socialite": "^4.4",
         "laravel/tinker": "^1.0",
         "nesbot/carbon": "^2.32",
-        "spatie/laravel-permission": "^3.3"
+        "spatie/laravel-permission": "^3.3",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

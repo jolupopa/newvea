@@ -53,20 +53,14 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 
-
-// Route::prefix('cuenta')->group(function(){
-// 	Route::get('/', 'Admin\DashboardController@index')->name('micuenta');
-	
-// });
-
 Route::prefix('admin')->middleware('verified')->namespace('Admin')->group(function(){
-	Route::get('cuenta', 'AccountController@account')->name('cuenta');	
-	Route::get('datos', 'AccountController@datos')->name('datos');	
-	Route::get('propiedades', 'AccountController@properties')->name('propiedades');
-	Route::get('perfil', 'AccountController@profile')->name('perfil');
-	Route::get('credito', 'AccountController@credit')->name('credito');
-	Route::get('tareas', 'AccountController@tasks')->name('tareas');
-	Route::get('contactos', 'AccountController@contacts')->name('contactos');
+	Route::get('cuenta', 'DashboardController@account')->name('cuenta');	
+	Route::get('datos', 'DashboardController@datos')->name('datos');	
+	Route::get('propiedades', 'DashboardController@properties')->name('propiedades');
+	Route::get('perfil', 'DashboardController@profile')->name('perfil');
+	Route::get('credito', 'DashboardController@credit')->name('credito');
+	Route::get('tareas', 'DashboardController@tasks')->name('tareas');
+	Route::get('contactos', 'DashboardController@contacts')->name('contactos');
 	//users
 	Route::get('user/{user}', 'UserController@edit')->name('admin.user.show');
 	Route::get('user/{user}/edit', 'UserController@edit')->name('admin.user.edit');

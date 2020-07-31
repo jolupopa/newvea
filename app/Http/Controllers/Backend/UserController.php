@@ -5,18 +5,24 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
-use DB;
+use DataTables;
 
 class UserController extends BaseBackendController
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        if( $request->ajax() ){
+            $users = User::with('profile')->get();
+            return DataTables::off($users)
+                ->addColumn('action', 'backend.users.sections.actions')
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+       
         return view('backend.users.index', [
-            'users' => $users,
             'administrator' => auth()->user()
         ]);
     }
 
-    
+   
 }

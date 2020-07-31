@@ -38,18 +38,26 @@
 @push('load-plugin')
 <script>
   $(function () {
-    $('#datatable-users').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "lengthMenu": [ 5, 10, 20, 50, 75, 100 ],
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
+    var table = $('#datatable-users').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: "{{ route('backend.users.index') }}",
+     // lengthMenu: [ 5, 10, 20, 50, 75, 100 ],
+      responsive: true,
       language: {
-        url: '{{ asset('json/datatables/spanish.json')}}'
+        url: "{{ asset('json/datatables/spanish.json')}}"
       },
+      columns:[
+        {data:"id", name:"id"},
+        {data: "name", name: "name"},
+        {data: "email", name: "email"},
+        {data: "active", name: "active"},
+        {data: "in_home", name: "in_home"},
+        {data: "num_regular", name: "num_regulars"},
+        {data: "num_featured", name: "num_featured"},
+        {data: "max_properties", name: "max_properties"},
+        {data: "action", name: "action", orderable: false, searchable: false}
+      ]
     });
   });
 </script>
