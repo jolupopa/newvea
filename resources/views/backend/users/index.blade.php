@@ -53,16 +53,22 @@
         {data: "email" , name: "email"},
         {data: "active" , 
           render: function( data, type, row ){
-              return ( data.active == "1" ) ? "Si" : "No" ;
+              return ( data == 1 ) ? "Si" : "No" ;
           },
           orderable: false,
           className : "text-center"
         },
-        {data: "in_home", name: "in_home"},
-        {data: "num_regulars", name: "num_regulars"},
-        {data: "num_featured", name: "num_featured"},
-        {data: "max_properties", name: "max_properties"},
-        {data: "action", name: "action"}
+        {data: "in_home", 
+           render: function( data, type, row ){
+              return ( data == 1 ) ? "Si" : "No" ;
+          },
+          orderable: false,
+          className : "text-center"
+        },
+        {data: "num_regulars", name: "num_regulars",  className : "text-center"},
+        {data: "num_featured", name: "num_featured",  className : "text-center"},
+        {data: "max_properties", name: "max_properties",  className : "text-center"},
+        {data: "action", name: "action", orderable: false, searchable: false,  className : "text-center"}
 
       ]
     });
