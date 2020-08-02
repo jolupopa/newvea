@@ -38,28 +38,36 @@
 @push('load-plugin')
 <script>
   $(function () {
-    var table = $('#datatable-users').DataTable({
+    var table = $('#users-datatable').DataTable({
       processing: true,
       serverSide: true,
       ajax: "{{ route('backend.users.index') }}",
-     // lengthMenu: [ 5, 10, 20, 50, 75, 100 ],
+      lengthMenu: [ 5, 10, 20, 50, 75, 100 ],
       responsive: true,
       language: {
         url: "{{ asset('json/datatables/spanish.json')}}"
       },
       columns:[
-        {data:"id", name:"id"},
-        {data: "name", name: "name"},
-        {data: "email", name: "email"},
-        {data: "active", name: "active"},
+        {data:"id" , name:"id"},
+        {data: "name" , name: "name"},
+        {data: "email" , name: "email"},
+        {data: "active" , 
+          render: function( data, type, row ){
+              return ( data.active == "1" ) ? "Si" : "No" ;
+          },
+          orderable: false,
+          className : "text-center"
+        },
         {data: "in_home", name: "in_home"},
-        {data: "num_regular", name: "num_regulars"},
+        {data: "num_regulars", name: "num_regulars"},
         {data: "num_featured", name: "num_featured"},
         {data: "max_properties", name: "max_properties"},
-        {data: "action", name: "action", orderable: false, searchable: false}
+        {data: "action", name: "action"}
+
       ]
     });
   });
+
 </script>
     
 @endpush

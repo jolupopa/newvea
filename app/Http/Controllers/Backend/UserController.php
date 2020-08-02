@@ -11,14 +11,17 @@ class UserController extends BaseBackendController
 {
     public function index(Request $request)
     {
+
+       
+
         if( $request->ajax() ){
-            $users = User::with('profile')->get();
-            return DataTables::off($users)
+            $users = User::all();
+            return DataTables::of($users)
                 ->addColumn('action', 'backend.users.sections.actions')
                 ->rawColumns(['action'])
                 ->make(true);
         }
-       
+        
         return view('backend.users.index', [
             'administrator' => auth()->user()
         ]);

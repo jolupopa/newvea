@@ -5,7 +5,7 @@
 
         <div class="card">
           <div class="card-body">
-            <table id="datatable-users" class="table table-bordered table-hover">
+            <table id="users-datatable" class="table table-bordered table-hover">
              
               <thead class="bg-primary">
                 <tr>
@@ -20,8 +20,6 @@
                   <th>Operaciones</th>
                 </tr>
               </thead>
-
-            
 
               <tfoot class="bg-primary">
                 <tr>
