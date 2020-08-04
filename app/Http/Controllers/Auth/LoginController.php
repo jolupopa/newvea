@@ -68,9 +68,14 @@ class LoginController extends Controller {
             $image = Image::make(file_get_contents($fbUrl))->encode('jpg', 75);
             Storage::disk('public')->put('avatars/'. $photoUrl, $image->stream());
             
+            $splitName = explode(' ',  $social_user->name, 2); 
+		    // Restricts it to only 2 values, for names like Billy Bob Jones
+            $username = $splitName[0];
+        
             $user = User::create([
                 
                 'name' => $social_user->name,
+                'nickname' => $username,
                 'email' => $social_user->email,
                 'avatar' => $photoUrl
             ]);

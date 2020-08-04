@@ -45,7 +45,7 @@
         
       
          <!--boton usuario-->
-        <a class="btn btn-primary order-md-2 ml-auto mr-2" href="{{ route('cuenta',5) }}">{{ Auth::user()->name }} 
+        <a class="btn btn-primary order-md-2 ml-auto mr-2" href="{{ route('cuenta',5) }}">{{ Auth::user()->nickname }} 
         <img class="img-fluid rounded-circle mr-2" src="{{ Auth::user()->avatar ? asset('storage/avatars/' . Auth::user()->avatar ) : '/img/users/avatars/default.png' }}" alt="avatar" height="20px" width="20px">
         </a>
 

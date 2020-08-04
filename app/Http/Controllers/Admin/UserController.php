@@ -21,7 +21,7 @@ class UserController extends BaseAdminController
     {
         
         $this->validate($request, [
-            'full_name' => 'required',
+            'name' => 'required',
             'nickname' => 'required',
             'num_doc' => 'required',
             'type_doc' => 'required',
@@ -34,8 +34,11 @@ class UserController extends BaseAdminController
             'email2' => 'nullable|email:rfc,dns'
             ]);
 
+        $success = true;
+
+        \DB::beginTransaction();
+    		try {
             $profile = Profile::find($user->id);
-            $profile->full_name = $request->get('full_name');
             $profile->type_doc = $request->get('type_doc');
             $profile->num_doc = $request->get('num_doc');
             $profile->distrito = $request->get('distrito');
@@ -47,10 +50,20 @@ class UserController extends BaseAdminController
             $profile->email2 = $request->get('email2');
             $profile->save();
             
-            $user->name = $request->get('nickname');
+            $user->name = $request->get('name');
+            $user->nickname = $request->get('nickname');
             $user->save();
+        } catch (\Exception $exception) {
+            $success = $exception->getMessage();
+            \DB::rollBack();
+        }
+        if($success === true) {
+            \DB::commit();
             return redirect()->route('datos')->withFlash('Se actulizo datos de usuario');
+        }
 
+		session()->flash('message', ['danger', $success]);
+    	return redirect('login'); 
 
     }
 

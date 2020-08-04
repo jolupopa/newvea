@@ -5,9 +5,9 @@
             <div class="row my-3">
               <div class="col-12 col-lg-7">
                 <div class="form-group">
-                  <label for="full_name">Nombres y Apellidos</label> 
-                  <input type="text" class="form-control form-control-lg shadow-soft @error('full_name') is-invalid @enderror" name="full_name" id="full_name" placeholder="Nombres y apellidos completos" value="{{ old('full_name', $user->profile->full_name ) }}">
-                    @error('full_name')
+                  <label for="name">Nombres y Apellidos</label> 
+                  <input type="text" class="form-control form-control-lg shadow-soft @error('name') is-invalid @enderror" name="name" placeholder="Nombres y apellidos completos" value="{{ old('name', $user->name ) }}">
+                    @error('name')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                       </span>
@@ -17,7 +17,7 @@
               <div class="col-12 col-lg-5">
                 <div class="form-group">
                   <label for="nickname">Nickname</label> 
-                  <input type="text" class="form-control form-control-lg shadow-soft @error('nickname') is-invalid @enderror" id="nickname" placeholder="Nombre de usuario" name="nickname" value="{{ old('nickname', $user->name ) }}">
+                  <input type="text" class="form-control form-control-lg shadow-soft @error('nickname') is-invalid @enderror" id="nickname" placeholder="Nombre de usuario" name="nickname" value="{{ old('nickname', $user->nickname ) }}">
                     @error('nickname')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

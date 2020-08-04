@@ -1,4 +1,4 @@
- <form method="POST" action="{{ route('admin.user.foto.update', $user) }}" class="card shadow-soft border p-4" enctype="multipart/form-data">
+ <form method="POST" action="{{ route('admin.user.foto.update', $user) }}" class="card shadow-soft border mb-5 p-4" enctype="multipart/form-data">
     {{ method_field('PUT') }}
     @csrf
 
@@ -13,5 +13,7 @@
         </div>
             
     </div>
-    <button class="btn btn-danger">Actualizar Foto de perfil</button>
+    <div class="align-self-end">
+        <button class="btn btn-danger">Actualizar Foto de perfil</button>
+    </div>
 </form>

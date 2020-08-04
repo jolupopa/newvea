@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
 use App\Profile;
@@ -53,18 +54,25 @@ class RegisterController extends Controller {
 		$this->validator($request->all())->validate();
 
 		$success = true;
+
+		$splitName = explode(' ', $request['name'], 2); 
+		// Restricts it to only 2 values, for names like Billy Bob Jones
+		$username = $splitName[0];
+		// $last_name = !empty($splitName[1]) ? $splitName[1] : ''; // If last name doesn't exist, make it empty
+
 		
 		\DB::beginTransaction();
     		try {
 				$user = User::create([
 					'name' => $request['name'],
+					'nickname'=> $username,
 					'email' => $request['email'],
 					'password' => Hash::make($request['password']),
 				]);
 		
 				Profile::create([
 					'user_id' => $user->id,
-					'nickname' => $user->name,
+					//'nickname' => $user->name,
 				]);
     			
 		    } catch (\Exception $exception) {
