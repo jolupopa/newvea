@@ -33,7 +33,7 @@ $( document ).ready(function() {
 
 	  // select city
 	  $("#ciudad").on('change', function(){
-        var ciu_id = $(this).val();
+        			var ciu_id = $(this).val();
         $.ajax({
             url: "zonas/"+ciu_id,
             type: "GET",
@@ -64,7 +64,7 @@ $( document ).ready(function() {
 			  dataType: 'json',
 			  success: function(data){
 				 // console.log(data);
-				  if(data.length !== 0 )
+				  if( data.length !== 0 )
 				  {
 					console.log('pinta');
 					data.forEach(element => {
