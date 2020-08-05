@@ -21,13 +21,13 @@ VeaInmuebles - perfil de usuario.
             <div class="row">
                 <div class="col-4">
                     <a href="">
-                        <img src="{{ 'storage/app/public/avatars/' . $user->profile->url_foto }}" class="img-fluid rounded-circle mt-5">
+                        <img src="{{asset('storage/avatars/' . $user->avatar) }}" class="img-fluid rounded-circle mt-5">
                     </a>
                 </div>
                 <div class="col-8 d-flex align-items-center">
                   <div>
                       <h3 class="text-muted pt-5">{{ $user->name}}</h3>
-                      <h5 class="text-muted">Agente Inmobiliario</h5> 
+                      <h5 class="text-muted">{{ $user->profile->title }}</h5> 
                   </div>
                    
                 </div>
@@ -39,9 +39,6 @@ VeaInmuebles - perfil de usuario.
                       <i class="fab fa-facebook fa-2x"></i>
                     </a>
                     <a target="_blank" href="">
-                      <i class="fab fa-whatsapp fa-2x"></i>
-                    </a>
-                    <a target="_blank" href="">
                       <i class="fab fa-linkedin fa-2x"></i>
                     </a> 
                     <a taraget="_blank" href="">
@@ -50,17 +47,23 @@ VeaInmuebles - perfil de usuario.
                   </div>
 
                 <div class="col-12 text-muted">
-                  <h5>
-                    <span class="mx-3"><i class="fas fa-map-marker-alt mr-1"></i></span>
-                    <span>Trujillo /</span><span> Trujillo / </span><span>La Libertad</span>
+                  <h5><span class="mx-3"><i class="far fa-envelope mr-2"></i></span>{{ $user->email }}</h4>
+                  <h5><span class="mx-3"><i class="fas fa-mobile-alt mr-2"></i></span>{{ $user->profile->movil}}</h4>
+                  <h5> <span class="mx-3"><i class="fas fa-map-marker-alt mr-2"></i></span>{{ $user->profile->address}}</h5>
+                   <h5>
+                    <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Distrito:</span>
+                    <span>{{ $distrito->name }}</span>
                   </h5>
-
-                  <h5> <span class="mx-3"><i class="fas fa-map-marker-alt mr-2"></i></span>Oficina :Calle paita 1123 Aranjuez</h5>
-
-                  <h5><span class="mx-3"><i class="far fa-envelope mr-2"></i></span>email@yourcompany.com</h4>
-                  <h5><span class="mx-3"><i class="fas fa-mobile-alt"></i></span>+1 908 967 5906</h4>
-                  <h4 class="text-mutet ml-3 mt-3">Acerca de mi:</h4>  
-                  <p class="pb-4 ml-5">Especialista en el rubro comercial mas de 15 años de experiencia</p>
+                   <h5>
+                    <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Provincia:</span>
+                    <span>{{ $distrito->provincia->name}}</span>
+                  </h5>
+                  <h5>
+                    <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Departamento:</span>
+                    <span class="text-uppercase">{{ $distrito->provincia->departamento->name}}</span>
+                  </h5>
+                  <h4 class="text-mutet ml-5 mt-3">Acerca de mi:</h4>  
+                  <p class="pb-4 ml-5">{{ $user->profile->about_me }}</p>
 
                 </div>
                 

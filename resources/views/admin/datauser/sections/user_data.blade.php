@@ -57,6 +57,8 @@
                         <strong>{{ $message }}</strong>
                       </span>
                     @enderror
+                    
+                     <input type="hidden" id="id_distrito" name="id_distrito"  value="">
 
                <!--direccion-->
               <div class="col-8">

@@ -140,9 +140,10 @@ $( document ).ready(function() {
 	});
 
 	$('#dist').on('change', function(){
-		//var dist_id = $(this).val();
+		var dist_id = $(this).val();
 		var dist_nam = $('#dist option:selected').text();
 		$('#distrito').val(dist_nam);
+		$('#id_distrito').val(dist_id);
 	});
 	
 	//++++++++++++++++++++++++++++++++++

@@ -18,6 +18,7 @@ class Profile extends Model
         'address',
         'email2',
         'distrito',
+        'id_distrito',
         'movil',
         'phone',
         'url_facebook',
