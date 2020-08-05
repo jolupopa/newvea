@@ -148,7 +148,14 @@ $( document ).ready(function() {
 	//++++++++++++++++++++++++++++++++++
 	// upload image user 
 	//++++++++++++++++++++++++++++++++++
-	
+
+	// Init
+		if ($("#foto").length){
+		uploadfoto();
+	}
+		
+
+	function uploadfoto() {
 		$('#foto').fileinput({
 					language: 'es',
 					allowedFileExtensions: ['jpg', 'jpeg', 'png'],
@@ -161,6 +168,7 @@ $( document ).ready(function() {
 					removeClass: 'btn btn-danger',
 					theme: "fas"
 		});
+	}
 	
 
 
