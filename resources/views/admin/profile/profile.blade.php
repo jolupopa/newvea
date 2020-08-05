@@ -21,12 +21,12 @@ VeaInmuebles - perfil de usuario.
             <div class="row">
                 <div class="col-4">
                     <a href="">
-                        <img src="/img/users/3.jpg" class="img-fluid rounded-circle mt-5">
+                        <img src="{{ 'storage/app/public/avatars/' . $user->profile->url_foto }}" class="img-fluid rounded-circle mt-5">
                     </a>
                 </div>
                 <div class="col-8 d-flex align-items-center">
                   <div>
-                      <h3 class="text-muted pt-5">Nathan James</h3>
+                      <h3 class="text-muted pt-5">{{ $user->name}}</h3>
                       <h5 class="text-muted">Agente Inmobiliario</h5> 
                   </div>
                    

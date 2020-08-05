@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use App\User;
+use App\Profile;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -56,12 +57,12 @@ class LoginController extends Controller {
         
         
         // Comprobamos si el usuario ya existe
-        if ($user = User::where('email', $social_user->email)->first()) { 
+        if ($user = User::where('email', $social_user->email)->first())
+        { 
             return $this->authAndRedirect($user); // Login y redirección
-        } else {  
-            // En caso de que no exista creamos un nuevo usuario con sus datos.
-
-            
+        } else
+        {  
+            // En caso de que no exista creamos un nuevo usuario con sus datos. 
             $id = $social_user->id;
             $fbUrl = $social_user->avatar;
             $photoUrl = 'profile_'.$id.'.jpg';
@@ -71,19 +72,35 @@ class LoginController extends Controller {
             $splitName = explode(' ',  $social_user->name, 2); 
 		    // Restricts it to only 2 values, for names like Billy Bob Jones
             $username = $splitName[0];
-        
-            $user = User::create([
-                
-                'name' => $social_user->name,
-                'nickname' => $username,
-                'email' => $social_user->email,
-                'avatar' => $photoUrl
-            ]);
 
-            $user->email_verified_at = now();
-            $user->save();
+            $success = true;
+            \DB::beginTransaction();
+                try {
+                $user = User::create([
+                    
+                    'name' => $social_user->name,
+                    'nickname' => $username,
+                    'email' => $social_user->email,
+                    'avatar' => $photoUrl
+                ]);
 
-            return $this->authAndRedirect($user); // Login y redirección
+                $user->email_verified_at = now();
+                $user->save();
+
+                Profile::create([
+                    'user_id' => $user->id,
+                ]);
+
+            } catch (\Exception $exception) {
+                $success = $exception->getMessage();
+                \DB::rollBack();
+            }
+            if($success === true) {
+                \DB::commit();
+                return $this->authAndRedirect($user); // Login y redirección
+            }
+            session()->flash('message', ['danger', $success]);
+            return redirect('login'); 
         }
     }
 

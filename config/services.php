@@ -31,6 +31,9 @@ return [
     ],
 
     //socialite
+    //  facebook app configuracion cliente de OAuth 
+    //> URL de redireccion de oauth valido 
+    //> https://veaweb.dev/login/facebook/callback
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),

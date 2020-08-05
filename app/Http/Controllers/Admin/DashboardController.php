@@ -23,7 +23,7 @@ class DashboardController extends BaseAdminController
     {
         $user = Auth::user();        
         $departamentos = Departamento::all();
-        return view('admin.data.data', [
+        return view('admin.datauser.data', [
             'departamentos' => $departamentos,
             'user'=> $user
         ]);
@@ -33,7 +33,10 @@ class DashboardController extends BaseAdminController
 
     public function profile()
     {
-        return view('admin.profile.profile');
+        $user = Auth::user(); 
+        return view('admin.profile.profile', [
+            "user" => $user
+        ]);
     }
 
     public function properties()
