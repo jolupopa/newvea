@@ -1,4 +1,4 @@
-<form action="{{ route('admin.user.datos.update', $user->id)}}" method="POST" class="card shadow-soft border p-4 mb-4">
+<form action="{{ route('admin.user.datos.update', $user)}}" method="POST" class="card shadow-soft border p-4 mb-4">
          {{ method_field('PUT')}}
             @csrf
             <!--full_name y nickname-->
@@ -58,7 +58,7 @@
                       </span>
                     @enderror
                     
-                     <input type="hidden" id="id_distrito" name="id_distrito"  value="">
+                     <input type="hidden" id="id_distrito" name="id_distrito"  value="0">
 
                <!--direccion-->
               <div class="col-8">

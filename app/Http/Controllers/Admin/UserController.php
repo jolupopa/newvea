@@ -27,17 +27,19 @@ class UserController extends BaseAdminController
             'type_doc' => 'required',
             'address' => 'required|max:60',
             'distrito' => 'required',
-            'id_distrito' => 'required',
-            'phone' => 'nullable|numeric',
-            'movil' =>'required|numeric',
-            'about_me' => 'required',
-            'title' => 'required|max:45',
-            'email2' => 'nullable|email:rfc,dns'
+             'id_distrito' => 'required',
+             'phone' => 'nullable|numeric',
+             'movil' =>'required|numeric',
+             'about_me' => 'required',
+             'title' => 'required|max:45',
+             'email2' => 'nullable|email:rfc,dns'
             ]);
 
-        $success = true;
+
+        
 
         \DB::beginTransaction();
+            $success = true;
     		try {
             $profile = Profile::find($user->id);
             $profile->type_doc = $request->get('type_doc');
