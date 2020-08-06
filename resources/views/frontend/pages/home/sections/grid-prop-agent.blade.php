@@ -47,7 +47,7 @@
 
                     <a href="{{ route('properties.promotor.index', $seller->id )}}">
                       <span class="w-100 h-100"></span>
-                      <img class="card-img-top" src="img/users/{{ $seller->profile->url_foto }}" alt="">
+                      <img class="card-img-top" src="storage/avatars/{{ $seller->avatar }}" alt="">
                     </a>
                   </div>
                 

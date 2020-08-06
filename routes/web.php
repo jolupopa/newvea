@@ -64,12 +64,13 @@ Route::prefix('admin')->middleware('verified')->namespace('Admin')->group(functi
 	//users
 	Route::get('user/{user}', 'UserController@show')->name('admin.user.show');
 	Route::get('user/{user}/edit', 'UserController@edit')->name('admin.user.edit');
-
 	Route::put('user/{user}', 'UserController@update_datos')->name('admin.user.datos.update');
 	Route::put('user/{user}/password', 'UserController@update_password')->name('admin.user.password.update');
 	Route::put('user/{user}/foto', 'UserController@update_foto')->name('admin.user.foto.update');
 	Route::put('user/{user}/redes', 'UserController@update_redes')->name('admin.user.redes.update');
-		
+	//properties
+	Route::resource('property', 'PropertyController', ['except' => 'destroy', 'as' => 'admin']);
+
 });
 
 
