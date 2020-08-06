@@ -1,4 +1,4 @@
-<form action="{{ route('admin.user.datos.update', $user)}}" method="POST" class="card shadow-soft border p-4 mb-4">
+<form action="{{ route('admin.user.datos.update', $user->id)}}" method="POST" class="card shadow-soft border p-4 mb-4">
          {{ method_field('PUT')}}
             @csrf
             <!--full_name y nickname-->

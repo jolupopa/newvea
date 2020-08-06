@@ -62,8 +62,9 @@ Route::prefix('admin')->middleware('verified')->namespace('Admin')->group(functi
 	Route::get('tareas', 'DashboardController@tasks')->name('tareas');
 	Route::get('contactos', 'DashboardController@contacts')->name('contactos');
 	//users
-	Route::get('user/{user}', 'UserController@edit')->name('admin.user.show');
+	Route::get('user/{user}', 'UserController@show')->name('admin.user.show');
 	Route::get('user/{user}/edit', 'UserController@edit')->name('admin.user.edit');
+
 	Route::put('user/{user}', 'UserController@update_datos')->name('admin.user.datos.update');
 	Route::put('user/{user}/password', 'UserController@update_password')->name('admin.user.password.update');
 	Route::put('user/{user}/foto', 'UserController@update_foto')->name('admin.user.foto.update');

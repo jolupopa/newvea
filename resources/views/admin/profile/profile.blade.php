@@ -47,23 +47,73 @@ VeaInmuebles - perfil de usuario.
                   </div>
 
                 <div class="col-12 text-muted">
-                  <h5><span class="mx-3"><i class="far fa-envelope mr-2"></i></span>{{ $user->email }}</h4>
-                  <h5><span class="mx-3"><i class="fas fa-mobile-alt mr-2"></i></span>{{ $user->profile->movil}}</h4>
+                  <h5><span class="mx-3"><i class="far fa-envelope mr-2"></i></span>{{ $user->email }}</h5>
+
+                  @isset( $user->profile->email2 )
+                  <h5><span class="mx-3"><i class="far fa-envelope mr-2"></i></span>
+                  {{ $user->profile->email2 }}</h5>
+                  @endisset
+
+                  @isset($user->profile->phone)
+                  <h5><span class="mx-3"><i class="fas fa-mobile-alt mr-2"></i></span>{{ $user->profile->phone}}</h5>
+                  @endisset
+
+                  @isset($user->profile->movil)
+                  <h5><span class="mx-3"><i class="fas fa-mobile-alt mr-2"></i></span>{{ $user->profile->movil}}</h5>
+                  @else
+                  <h5><span class="mx-3"><i class="fas fa-mobile-alt mr-2"></i></span>Celular sin definir</h5>
+                  @endisset
+
+                  @isset($user->profile->address )
                   <h5> <span class="mx-3"><i class="fas fa-map-marker-alt mr-2"></i></span>{{ $user->profile->address}}</h5>
+                  @else
+                  <h5> <span class="mx-3"><i class="fas fa-map-marker-alt mr-2"></i></span>Dirección sin definir</h5>
+                  @endisset
+                   @isset( $distrito->name )
                    <h5>
                     <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Distrito:</span>
                     <span>{{ $distrito->name }}</span>
                   </h5>
+                  @else
+                    <h5>
+                      <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Distrito:</span>
+                      <span>Sin definir</span>
+                    </h5>
+                  @endisset
+
+                  @isset( $distrito->provincia->name )
                    <h5>
                     <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Provincia:</span>
-                    <span>{{ $distrito->provincia->name}}</span>
+                    <span>{{$distrito->provincia->name}}</span>
                   </h5>
+                  @else
+                    <h5>
+                      <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Provincia:</span>
+                      <span>Sin definir</span>
+                    </h5>
+
+                  @endisset
+                  @isset( $distrito->provincia->departamento->name )
                   <h5>
                     <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Departamento:</span>
-                    <span class="text-uppercase">{{ $distrito->provincia->departamento->name}}</span>
+                    <span class="text-uppercase">departamento</span>
+                   
                   </h5>
-                  <h4 class="text-mutet ml-5 mt-3">Acerca de mi:</h4>  
+                   @else<h5>
+                    <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Departamento:</span>
+                    <span>Sin definir</span>
+                   
+                  </h5>
+
+                  @endisset
+
+                  <h4 class="text-mutet ml-5 mt-3">Acerca de mi:</h4> 
+
+                  @isset($user->profile->about_me ) 
                   <p class="pb-4 ml-5">{{ $user->profile->about_me }}</p>
+                  @else
+                  <h5 class="ml-5"> <span>Sin definir</span> </h5
+                  @endisset
 
                 </div>
                 

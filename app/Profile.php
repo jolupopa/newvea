@@ -29,7 +29,6 @@ class Profile extends Model
         'url_web',
         'w_messenger',
         'w_bussines',
-        'url_foto',
         'title',
         'about_me'
     ];

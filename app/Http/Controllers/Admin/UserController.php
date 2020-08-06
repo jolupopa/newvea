@@ -64,8 +64,7 @@ class UserController extends BaseAdminController
             return redirect()->route('datos')->withFlash('Se actulizo datos de usuario');
         }
 
-		session()->flash('message', ['danger', $success]);
-    	return redirect('login'); 
+		return redirect()->route('datos')->withFlash('Se produjo un error'); 
 
     }
 
