@@ -141,6 +141,7 @@ $( document ).ready(function() {
 
 	$('#dist').on('change', function(){
 		var dist_id = $(this).val();
+		console.log(dist_id);
 		var dist_nam = $('#dist option:selected').text();
 		$('#distrito').val(dist_nam);
 		$('#id_distrito').val(dist_id);

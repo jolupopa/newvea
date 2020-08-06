@@ -96,7 +96,7 @@ VeaInmuebles - perfil de usuario.
                   @isset( $distrito->provincia->departamento->name )
                   <h5>
                     <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Departamento:</span>
-                    <span class="text-uppercase">departamento</span>
+                    <span class="text-uppercase">{{ $distrito->provincia->departamento->name }}</span>
                    
                   </h5>
                    @else<h5>
