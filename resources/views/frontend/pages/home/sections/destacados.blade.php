@@ -3,19 +3,20 @@
 
   <div class="row mt-0 pt-0">
     <div class="col-12 text-center">
-      <h2 class="h1 text-muted">DESTACADOS</h2>
+      <h2 class="h1 text-muted">DESTACADOS</h2> 
     </div>
     <!-- selector de tipo de inmueble  -->
     <div class="col-6 col-md-3 mb-3">
-      <form>      
-        <label for="tipo_features" class="sr-only">Inmuebles detacados</label>
-        <select class="custom-select" id="tipo_features" name="tipo_features">
-            <option value="0">Tipo de inmueble</option>
+        <select class="custom-select" id="filter_selection">
+            <option value="*">Todos los destacados<span class="float-right"></span> </option>
             @foreach($types as $type)
-            <option  value="{{ $type->id }}">{{ $type->name}}</option>
+            <option  value="{{'.' . $type->slug }}">
+
+              <span class="mr-5">{{ $type->properties_count }} -</span> 
+               <span>{{ $type->name}}</span> 
+            </option>
             @endforeach
         </select>
-      </form>
     </div>
 
     <div class=" offset-3 offset-md-6 col-2 d-flex justify-content-around text-primary">  
@@ -28,11 +29,11 @@
     Tipo de inmueble no esta dentro de los destacados!
   </div>
 
-  <div id="owl-features" class="owl-carousel owl-theme owl-loaded mt-3">
-    <div class="owl-stage-outer">
-      <div class="owl-stage">
+  <div id="owl_destacados" class="owl-carousel owl-theme">
+    
         @foreach($properties as $property)
-        <div class="card owl-item" style="width: 370px;">
+        <div class="item {{ $property->type_property->slug}}">
+        <div class="card" style="width: 100%;">
           <div class="box-label">
             <span class="{{ $property->operation == 'venta' ? 'label-sale' : 'label-rent' }}">{{ $property->operation}}</span>
           </div>
@@ -60,9 +61,9 @@
             </div>
           </div>
         </div>
+        </div>
         @endforeach
 
-      </div>
-    </div>
+      
   </div>
 </section>

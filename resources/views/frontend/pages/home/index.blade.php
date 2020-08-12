@@ -37,9 +37,49 @@ VeaInmuebles es una pagiana de gestion inmobiliaria.
 
 @push('scripts')
 <script src="vendor/owl-carousel/owl.carousel.min.js"></script>
+<script src="js/owlcarousel2-filter.min.js"></script>
+
+
 @endpush
 
 @push('load-plugin')
+
 <script>
+	(function(){
+	
+		$('#filter_selection').on('change', function(){
+			var filter = $(this).val();
+			owl.owlcarousel2_filter( filter );
+		})
+
+		var owl = $('#owl_destacados').owlCarousel({
+					    loop: false,
+					    margin:25,
+					    nav: false,
+					    dots: false,
+					    responsive:{
+					        0:{
+					            items:1
+					        },
+					        768:{
+					            items:2
+					        },
+					        992:{
+					            items:3
+					        }
+					    }
+					})
+
+				$('.owl-next').on("click", function (e) {
+				e.preventDefault();
+				owl.trigger('next.owl.carousel');
+				});
+
+				$('.owl-prev').on("click", function (e) {
+				e.preventDefault();
+				owl.trigger('prev.owl.carousel', [300]);
+			  	});
+
+	})();
 </script>
 @endpush

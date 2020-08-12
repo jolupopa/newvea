@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TypeProperty extends Model
 {
     protected $fillable = [
-		'name'
+		'name','slug'
 	];
 
 	public function properties()

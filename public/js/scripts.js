@@ -55,39 +55,38 @@ $( document ).ready(function() {
 	  });
 	  
 	  // select tipo de inmueble destacado
-	  $('#tipo_features').on('change', function(e){
-		  var tipo = $(this).val();
-		  e.preventDefault(),
-		  $.ajax({
-			  url: 'typeproperty/'+ tipo,
-			  type: 'GET',
-			  dataType: 'json',
-			  success: function(data){
-				 // console.log(data);
-				  if( data.length !== 0 )
-				  {
-					console.log('pinta');
-					data.forEach(element => {
-						$('#owl-features').append('<option value='+element.id+'> '+element.name+' </option>')
-						});
-				  }else
-				  {
-					$('#divmsg').removeClass('d-none');
-					$('#divmsg').show(500);
-					$('#divmsg').hide(5000);
+	  // $('#tipo_features').on('change', function(e){
+		//   var tipo = $(this).val();
+		//   e.preventDefault(),
+		//   $.ajax({
+		// 	  url: 'typeproperty/'+ tipo,
+		// 	  type: 'GET',
+		// 	  dataType: 'json',
+		// 	  success: function(data){
+		// 		 // console.log(data);
+		// 		  if( data.length !== 0 )
+		// 		  {
+		// 			data.forEach(element => {
+		// 				$('#owl-features').append('<option value='+element.id+'> '+element.name+' </option>')
+		// 				});
+		// 		  }else
+		// 		  {
+		// 			$('#divmsg').removeClass('d-none');
+		// 			$('#divmsg').show(500);
+		// 			$('#divmsg').hide(5000);
 					
-				  }
+		// 		  }
 				
-			  },
-			  error: function(jqXHR, estatus, causa)
-			  {
-				  console.log(estatus);
-			  }
+		// 	  },
+		// 	  error: function(jqXHR, estatus, causa)
+		// 	  {
+		// 		  console.log(estatus);
+		// 	  }
 
-		  })
+		//   })
 
 
-	  });
+	  // });
 
 	 //++++++++++++++++++++++++++++++++++
 	// ubigeo - ubicacion geografica

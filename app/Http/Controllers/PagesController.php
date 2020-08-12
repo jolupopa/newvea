@@ -10,6 +10,7 @@ use App\City;
 use App\User;
 use App\Sponsor;
 use App\TypeProperty;
+use Illuminate\Database\Eloquent\Builder;
 
 
 
@@ -27,7 +28,10 @@ class PagesController extends Controller
 
         $sponsors = Sponsor::where('option', true)->get();
 
-        $types = TypeProperty::all();
+        $types = TypeProperty::withCount(['properties' => function(Builder $query){
+            $query->where('destacada', true)
+                    ->where('publicada', true);
+        }])->get();
 
        $properties = Property::with(['city', 'profile', 'type_property'])
         ->where('destacada', true)
@@ -36,6 +40,8 @@ class PagesController extends Controller
 
         $testimonies = Testimony::all();
 
+      
+        
         return view('frontend.pages.home.index', [
             'properties' => $properties,
             'testimonies' => $testimonies,

@@ -22,6 +22,8 @@ Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallba
 
  // inicio
 Route::get('/', 'PagesController@home')->name('home');
+Route::get('/owl', 'OwlfilterController@show')->name('owl');
+
 // Blog
 Route::get('/blog', 'BlogController@blog')->name('blog');
 Route::get('/blog/{post}', 'BlogController@post')->name('post');
