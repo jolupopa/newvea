@@ -71,7 +71,7 @@ Route::prefix('admin')->middleware('verified')->namespace('Admin')->group(functi
 	Route::put('user/{user}/foto', 'UserController@update_foto')->name('admin.user.foto.update');
 	Route::put('user/{user}/redes', 'UserController@update_redes')->name('admin.user.redes.update');
 	//properties
-	Route::resource('property', 'PropertyController', ['except' => 'destroy', 'as' => 'admin']);
+	Route::resource('property', 'UserPropertyController', ['except' => 'destroy', 'as' => 'admin']);
 
 });
 

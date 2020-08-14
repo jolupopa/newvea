@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Departamento;
-use App\Distrito;
-use App\Provincia;
 use App\User;
+use App\Distrito;
+use App\Property;
+use App\Provincia;
+use App\Departamento;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends BaseAdminController
 {
@@ -44,7 +45,15 @@ class DashboardController extends BaseAdminController
 
     public function properties()
     {
-        return view('admin.properties.properties');
+        $user = Auth::user();
+        $properties_user = Property::with(['type_property', 'distrito'])
+            ->where('seller_id', $user->id)
+            ->paginate();
+        
+        return view('admin.properties.index', [
+            'properties' => $properties_user,
+            'user' => $user
+        ]);
     }
 
     public function credit()

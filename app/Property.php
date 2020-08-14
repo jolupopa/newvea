@@ -2,10 +2,15 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 
 class Property extends Model {
+
+	protected $dates = [
+		'published_at', 'published_end'
+];
 
 
 	protected $fillable = [
@@ -43,6 +48,7 @@ class Property extends Model {
 		'en_provivienda',
 		'en_judicial',
 		'published_at',
+		'published_end',
 		'seller_id',
 		'city_id',
 		'distrito_id',
@@ -50,7 +56,20 @@ class Property extends Model {
 		
 	];
 
-	// uno a muchos
+	// accesor
+	public function getPublishedAtAttribute($value)
+	{
+				return Carbon::parse($value)->format('d/m/Y');
+	}
+
+	public function getPublishedEndAttribute($value)
+	{
+				return Carbon::parse($value)->format('d/m/Y');
+	}
+
+
+
+	// relations
 	
 	public function photos()
     {

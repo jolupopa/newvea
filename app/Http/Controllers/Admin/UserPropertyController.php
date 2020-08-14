@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Property;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class PropertyController extends BaseAdminController
+class UserPropertyController extends BaseAdminController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,10 @@ class PropertyController extends BaseAdminController
      */
     public function index()
     {
-        //
+        $user_properties = Property::all();
+        return view('admin.properties.index', [
+            'properties' => $User_properties
+        ]);
     }
 
     /**

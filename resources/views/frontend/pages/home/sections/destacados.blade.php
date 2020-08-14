@@ -10,11 +10,12 @@
         <select class="custom-select" id="filter_selection">
             <option value="*">Todos los destacados<span class="float-right"></span> </option>
             @foreach($types as $type)
-            <option  value="{{'.' . $type->slug }}">
-
-              <span class="mr-5">{{ $type->properties_count }} -</span> 
-               <span>{{ $type->name}}</span> 
-            </option>
+              @if($type->properties_count > 0)
+              <option  value="{{'.' . $type->slug }}">
+                <span class="mr-5">{{ $type->properties_count }} -</span> 
+                <span>{{ $type->name}}</span> 
+              </option>
+              @endif
             @endforeach
         </select>
     </div>
