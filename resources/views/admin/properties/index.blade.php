@@ -16,7 +16,7 @@ VeaInmuebles - propiedades de usuario
         <div class="row">
             <div class="col-12">
                 <div class="card shadow-soft border p-4">
-                  <div class="d-flex justify-content-between"><span class="bg-warning pt-3 px-2">Credito: {{ $user->num_regulars}} regular y {{ $user->num_featured }} destacado  </span> <button class="btn btn-success">Crear Nueva +</button></div>
+                  <div class="d-flex justify-content-between"><span class="bg-warning pt-3 px-2">Credito: {{ $user->num_regulars}} regular y {{ $user->num_featured }} destacado  </span> <button  class="btn btn-success" data-toggle="modal" data-target="#createPropertyModal">Crear Nueva +</button></div>
                     <table class="table table-responsive font-small">
                         
                         <thead class="thead-inverse">
@@ -44,15 +44,29 @@ VeaInmuebles - propiedades de usuario
                                 <td><a href="#">{{ $property->title }}</a></td>
 
                                 <td> {{ number_format($property->precio, 2 ) }}</td>
-                                <td class="text-lowercase">{{ $property->distrito->provincia->name }} - {{ $property->distrito->name }}</td>
-                                <td>{{ $property->type_property->name }}</td>
+                                <td class="text-lowercase">
+
+                                @isset( $property->distrito->name )
+                                {{ $property->distrito->provincia->name }} - 
+                                {{ $property->distrito->name }}</td>
+                                @endisset
+
+                                @isset($property->type_property->name)
+                                  <td>{{ $property->type_property->name }}</td>
+                                @endisset
+                                
                                 <td>{{ $property->operation }}</td>
-                                <td>{{  $property->published_at }}</td>
-                                <td>{{ $property->published_end }}</td>
+
+                               
+                                  <td>{{  $property->published_at <> null ? $property->published_at : ' #-#-#'}}</td>
+                                  <td>{{ $property->published_end <> null ? $property->published_end : ' #-#-#'}}</td>
+                               
+                                
                                 <td>{{ ($property->destacada == 1) ? 'Destacado' : 'Regular'}}</td>
                                 <td>
-                                  <button class="btn btn-sm btn-primary px-1" href="#">Editar</button>
-                                  <button class="btn btn-sm btn-primary px-1 ml-3" href="#">Publicar</button>
+                                  <button class="btn btn-sm btn-primary px-1 mb-4 mb-md-0" href="#">Editar</button>
+                                  <br class="d-md-none" />
+                                  <button class="btn btn-sm btn-primary px-1 ml-md-3" href="#">Publicar</button>
                                 </td>
                             </tr>
                             @endforeach
@@ -68,6 +82,84 @@ VeaInmuebles - propiedades de usuario
      
     </div>
   </section>
+  <!-- Modal Create Post -->
+<div class="modal fade" id="createPropertyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<form method="POST" id="formCreateProperty" action="{{ route('admin.propiedad.store')}}">
+    @csrf
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Crear Propiedad</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <!--titulo  required -->
+            <div class="form-group">
+              <label for="title">Titulo</label>
+              <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"  value="{{ old('title') }}" placeholder="Titulo"  >
+              @error('title')
+                <span class="invalid-feedback" role="alert">
+                    <strong class="text-white">{{ $message }}</strong>
+                </span>
+              @enderror
+            </div>            
+            <div class="row">
+              <div class="form-group col-6">
+                
+                <select class="form-control form-control-lg @error('operation') is-invalid @enderror" name="operation">
+                <option value="">Tipo de operación</option>
+                  <option value="venta">Venta</option>
+                  <option value="alquiler">Alquiler</option>
+                </select>
+                 @error('operation')
+                <span class="invalid-feedback" role="alert">
+                    <strong class="text-white">{{ $message }}</strong>
+                </span>
+                 @enderror
+              </div>
+              <div class="form-group col-6">
+                
+                <select class="form-control form-control-lg @error('type_property_id') is-invalid @enderror" name="type_property_id">
+                <option value="">Clase de inmueble</option>
+                @foreach($type_properties as $type_property)
+                  <option value="{{ $type_property->id }}">{{ $type_property->name }}</option>
+                @endforeach  
+                </select>
+                 @error('type_property_id')
+                <span class="invalid-feedback" role="alert">
+                    <strong class="text-white">{{ $message }}</strong>
+                </span>
+                 @enderror
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-6">
+                
+                <select class="form-control form-control-lg @error('destacada') is-invalid @enderror" name="destacada">
+                <option value="">Tipo de Anuncio</option>
+                  <option value="0">Regular</option>
+                  <option value="1">Destacado</option>
+                </select>
+                 @error('destacada')
+                <span class="invalid-feedback" role="alert">
+                    <strong class="text-white">{{ $message }}</strong>
+                </span>
+                 @enderror
+              </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button  type="submit" class="btn btn-primary">Crear</button>
+        </div>
+      </div>
+    </div>
+   </form> 
+</div>
+
 @endsection
 
 
@@ -78,6 +170,7 @@ VeaInmuebles - propiedades de usuario
 @endpush
 
 @push('scripts')
+
 @endpush
 
 @push('load-plugin')

@@ -59,12 +59,18 @@ class Property extends Model {
 	// accesor
 	public function getPublishedAtAttribute($value)
 	{
+				if($value !== null){
 				return Carbon::parse($value)->format('d/m/Y');
+				}
+				return null;
 	}
 
 	public function getPublishedEndAttribute($value)
 	{
+			if($value !== null){
 				return Carbon::parse($value)->format('d/m/Y');
+			}
+			return null;
 	}
 
 

@@ -58,7 +58,6 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::prefix('admin')->middleware('verified')->namespace('Admin')->group(function(){
 	Route::get('cuenta', 'DashboardController@account')->name('cuenta');	
 	Route::get('datos', 'DashboardController@datos')->name('datos');	
-	Route::get('propiedades', 'DashboardController@properties')->name('propiedades');
 	Route::get('perfil', 'DashboardController@profile')->name('perfil');
 	Route::get('credito', 'DashboardController@credit')->name('credito');
 	Route::get('tareas', 'DashboardController@tasks')->name('tareas');
@@ -71,7 +70,7 @@ Route::prefix('admin')->middleware('verified')->namespace('Admin')->group(functi
 	Route::put('user/{user}/foto', 'UserController@update_foto')->name('admin.user.foto.update');
 	Route::put('user/{user}/redes', 'UserController@update_redes')->name('admin.user.redes.update');
 	//properties
-	Route::resource('property', 'UserPropertyController', ['except' => 'destroy', 'as' => 'admin']);
+	Route::resource('propiedad', 'PropertyController', ['except' => 'destroy', 'as' => 'admin']);
 
 });
 

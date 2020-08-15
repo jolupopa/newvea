@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Property;
+use App\TypeProperty;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\BaseAdminController;
 
-class UserPropertyController extends BaseAdminController
+
+class PropertyController extends BaseAdminController
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +20,16 @@ class UserPropertyController extends BaseAdminController
      */
     public function index()
     {
-        $user_properties = Property::all();
+        $user = Auth::user();
+        $type_properties = TypeProperty::all();
+        $properties_user = Property::with(['type_property', 'distrito'])
+            ->where('seller_id', $user->id)
+            ->paginate();
+        
         return view('admin.properties.index', [
-            'properties' => $User_properties
+            'properties' => $properties_user,
+            'user' => $user,
+            'type_properties' => $type_properties
         ]);
     }
 
@@ -39,7 +51,26 @@ class UserPropertyController extends BaseAdminController
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        $this->validate($request, [
+            'title'=> 'required',
+            'operation' => 'required',
+            'type_property_id' => 'required',
+            'destacada' => 'required'
+            ]);
+        
+       
+      
+        $property =   Property::create([
+            'codigo' => $user->id . Str::random(5),
+            'title' => $request->get('title'),
+            'operation'=> $request->get('operation'),
+            'type_property_id' => $request->get('type_property_id'),
+            'destacada' => $request->get('destacada'),
+            'seller_id' =>  Auth::user()->id
+        ]);   
+
+        return redirect()->route('admin.propiedad.edit', $property->id );
     }
 
     /**
@@ -61,7 +92,8 @@ class UserPropertyController extends BaseAdminController
      */
     public function edit($id)
     {
-        //
+        $property = Property::findOrFail($id);
+        return $property;
     }
 
     /**

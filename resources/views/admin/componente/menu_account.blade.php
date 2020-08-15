@@ -12,7 +12,7 @@
         <a class="nav-link {{ request()->is('admin/perfil*') ? 'active' : '' }} " href="{{ route('perfil') }}">Perfil</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ request()->is('admin/propiedades*') ? 'active' : '' }} " href="{{ route('propiedades') }}">Propiedades</a>
+        <a class="nav-link {{ request()->is('admin/propieda*') ? 'active' : '' }} " href="{{ route('admin.propiedad.index') }}">Propiedades</a>
       </li>
       <li class="nav-item">
         <a class="nav-link {{ request()->is('admin/credito*') ? 'active' : '' }} " href="{{ route('credito') }}">Credito</a>

@@ -43,19 +43,6 @@ class DashboardController extends BaseAdminController
         ]);
     }
 
-    public function properties()
-    {
-        $user = Auth::user();
-        $properties_user = Property::with(['type_property', 'distrito'])
-            ->where('seller_id', $user->id)
-            ->paginate();
-        
-        return view('admin.properties.index', [
-            'properties' => $properties_user,
-            'user' => $user
-        ]);
-    }
-
     public function credit()
     {
         return view('admin.credit.credits');
