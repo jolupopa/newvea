@@ -27,7 +27,7 @@ class UserController extends BaseAdminController
             'type_doc' => 'required',
             'address' => 'required|max:60',
             'distrito' => 'required',
-             'distrito_id' => 'required',
+             'id_distrito' => 'required',
              'phone' => 'nullable|numeric',
              'movil' =>'required|numeric',
              'about_me' => 'required',
@@ -45,7 +45,7 @@ class UserController extends BaseAdminController
             $profile->type_doc = $request->get('type_doc');
             $profile->num_doc = $request->get('num_doc');
             $profile->distrito = $request->get('distrito');
-            $profile->distrito_id = $request->get('distrito_id');
+            $profile->id_distrito = $request->get('id_distrito');
             $profile->address = $request->get('address');
             $profile->phone = $request->get('phone');
             $profile->movil = $request->get('movil');

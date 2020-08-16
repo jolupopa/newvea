@@ -58,7 +58,7 @@
                       </span>
                     @enderror
                     
-                     <input type="hidden" id="distrito_id" name="distrito_id"  value="0">
+                     <input type="hidden" id="id_distrito" name="id_distrito"  value="0">
 
                <!--direccion-->
               <div class="col-8">

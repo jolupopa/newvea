@@ -111,9 +111,9 @@ class PropertyController extends BaseAdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Property $property)
     {
-        //
+        return $request;
     }
 
     /**

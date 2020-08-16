@@ -142,7 +142,7 @@ $( document ).ready(function() {
 		var dist_id = $(this).val();
 		var dist_nam = $('#dist option:selected').text();
 		$('#distrito').val(dist_nam);
-		$('#distrito_id').val(dist_id);
+		$('#id_distrito').val(dist_id);
 		console.log(dist_id);
 	});
 	

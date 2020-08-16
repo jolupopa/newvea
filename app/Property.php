@@ -51,7 +51,7 @@ class Property extends Model {
 		'seller_id',
 		'city_id',
 		'distrito',
-		'distrito_id',
+		'id_distrito',
 		'type_property_id'
 		
 	];
@@ -99,10 +99,10 @@ class Property extends Model {
         return $this->belongsTo(Seller::class);
 	}
 	
-	// public function distrito2()
-  //   {
-  //       return $this->belongsTo(Distrito::class);
-  //   }
+	public function distrito()
+    {
+        return $this->belongsTo(Distrito::class);
+    }
 	
 
 	// para obtener la informacion del usuario desde perfil del vendedor
