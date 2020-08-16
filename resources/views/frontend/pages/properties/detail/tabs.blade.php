@@ -34,20 +34,17 @@
                         <div class="col-12 col-md-6">
                             <h6 class="text-left">
                               <span class="text-dark-50">Departamento:</span>  
-                              <span class="text-muted ml-2 text-uppercase">{{ $property->distrito->provincia->departamento->name }}</span>
+                              <span class="text-muted ml-2 text-uppercase">departamento</span>
                             </h6>
                             <h6 class="text-left">
                               <span class="text-dark-50">Provincia:</span>  
-                              <span class="text-muted ml-2 ">{{ $property->distrito->provincia->name }}</span>
+                              <span class="text-muted ml-2 ">nombre provincia</span>
                             </h6>
                             <h6 class="text-left">
                               <span class="text-dark-50">Distrito:</span>  
-                              <span class="text-muted ml-2 ">{{ $property->distrito->name }}</span>
+                              <span class="text-muted ml-2 ">nombre distrito</span>
                             </h6>
-                            <h6 class="text-left">
-                              <span class="text-dark-50">Zona:</span>  
-                              <span class="text-muted ml-2 ">{{ $property->zona}}</span>
-                            </h6>
+                            
 
                             <h6 class="text-left">
                               <span class="text-dark-50">Tipo de inmueble :</span>

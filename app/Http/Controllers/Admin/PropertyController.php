@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\BaseAdminController;
+use App\Departamento;
 
 
 class PropertyController extends BaseAdminController
@@ -93,7 +94,14 @@ class PropertyController extends BaseAdminController
     public function edit($id)
     {
         $property = Property::findOrFail($id);
-        return $property;
+        $type_properties = TypeProperty::all();
+        $departamentos = Departamento::all();
+       
+        return view('admin.properties.edit',[
+            'property' => $property,
+            'type_properties'=> $type_properties,
+            'departamentos' => $departamentos
+        ]);
     }
 
     /**

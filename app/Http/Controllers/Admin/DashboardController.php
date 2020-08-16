@@ -35,7 +35,7 @@ class DashboardController extends BaseAdminController
     public function profile()
     {
         $user = Auth::user(); 
-        $distrito = Distrito::find($user->profile->id_distrito);
+        $distrito = Distrito::find($user->profile->distrito_id);
        
         return view('admin.profile.profile', [
             "user" => $user,
