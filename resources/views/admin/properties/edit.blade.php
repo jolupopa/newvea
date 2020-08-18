@@ -46,6 +46,7 @@ VeaInmuebles - edición de propiedades de usuario
                     
               <div class="card-body" style="border-top: 2px solid blue;">
                 <!--titulo-->
+               
                 <div class="form-group">
                   <label for="title">Titulo</label>
                   <input type="text" class="form-control @error('title') is-invalid @enderror"  name="title"  value="{{ old('title', $property->title) }}" placeholder="Titulo">
@@ -55,6 +56,7 @@ VeaInmuebles - edición de propiedades de usuario
                     </span>
                   @enderror
                 </div>
+                
                 <!--resumen--->
                 <div class="form-group">
                   <label for="resumen">Resumen</label>
@@ -77,7 +79,7 @@ VeaInmuebles - edición de propiedades de usuario
                 </div>
                 
               </div>
-              <!-- /.card-body -->
+              <!-- /.card-body ubicacion -->
         
             </div>
             <!-- /.card -->
@@ -86,10 +88,8 @@ VeaInmuebles - edición de propiedades de usuario
                 <h5>Ubicación</h5>  
                   <!--ubigeo-->
                 <div class="row">
-                  @include('frontend.pages.includes.ubi_geo')
-                      
-                        
-                  <input type="hidden" id="id_distrito" name="id_distrito"  value="0">
+                  @include('frontend.pages.includes.ubi_geo')                  
+                  <input type="hidden" id="id_distrito" name="id_distrito"  value="{{ $property->id_distrito}}">
 
                   <!--direccion-->
                   <div class="col-8">
@@ -107,9 +107,9 @@ VeaInmuebles - edición de propiedades de usuario
 
                   <div class="col-4">
                     <div class="form-group">
-                      <label for="distrito">Distrito Seleccionado</label>
-                      <input type="text" id="distrito" name="distrito" class="form-control shadow-soft form-control-lg @error('distrito') is-invalid @enderror" value="{{ old('distrito', $property->distrito ) }}" readonly>
-                        @error('distrito')
+                      <label for="name_distrito">Distrito Seleccionado</label>
+                      <input type="text" id="name_distrito" name="name_distrito" class="form-control shadow-soft form-control-lg @error('name_distrito') is-invalid @enderror" value="{{ old('name_distrito', $property->name_distrito ) }}" readonly>
+                        @error('name_distrito')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                           </span>
@@ -119,40 +119,40 @@ VeaInmuebles - edición de propiedades de usuario
                 </div>
               </div>
             </div>
-            <!-- /.card -->
+            <!-- /.card  opciones de busqueda-->
             <div class="card mb-5" style="width:100%">
               <div class="card-body" style="border-top: 2px solid blue;">
                     <h5 class="mb-4">Opciones de busqueda avanzada:</h5>  
                     <div class="form-group form-check ml-4">
-                      <input type="checkbox" class="form-check-input " id="en_estreno" name="en_estreno">
-                      <label class="form-check-label mx-2" for="en_estreno">Inmueble para estrenar</label>
+                      <input type="checkbox" class="form-check-input" id="en_estreno" name="en_estreno" {{ $property->en_estreno == 1 ? 'checked' : "" }} >
+                      <label class="form-check-label mx-2" for="en_estreno" >Inmueble para estrenar</label>
                     </div>
                      <div class="form-group form-check ml-4">
-                      <input type="checkbox" class="form-check-input" id="en_amoblado" name="en_amoblado">
+                      <input type="checkbox" class="form-check-input" id="en_amoblado" name="en_amoblado"{{ $property->en_amoblado == 1 ? 'checked' : "" }} >
                       <label class="form-check-label mx-2" for="en_amoblado">Inmueble amoblado</label>
                     </div>
                      <div class="form-group form-check ml-4">
-                      <input type="checkbox" class="form-check-input" id="en_condominio" name="en_condominio">
+                      <input type="checkbox" class="form-check-input" id="en_condominio" name="en_condominio" {{ $property->en_condominio == 1 ? 'checked' : "" }} >
                       <label class="form-check-label mx-2" for="en_condominio">Inmueble ubicado dentro de condominio</label>
                     </div>
                      <div class="form-group form-check ml-4">
-                      <input type="checkbox" class="form-check-input" id="en_parque" name="en_parque">
+                      <input type="checkbox" class="form-check-input" id="en_parque" name="en_parque" {{ $property->en_parque == 1 ? 'checked' : "" }} >
                       <label class="form-check-label mx-2" for="en_parque">Inmueble ubicado frente a un parque</label>
                     </div>
                      <div class="form-group form-check ml-4">
-                      <input type="checkbox" class="form-check-input" id="en_esquina" name="en_esquina">
+                      <input type="checkbox" class="form-check-input" id="en_esquina" name="en_esquina" {{ $property->en_esquina == 1 ? 'checked' : "" }} >
                       <label class="form-check-label mx-2" for="en_esquina">Inmueble ubicado en esquina</label>
                     </div>
                      <div class="form-group form-check ml-4">
-                      <input type="checkbox" class="form-check-input" id="en_avenida" name="en_avenida">
+                      <input type="checkbox" class="form-check-input" id="en_avenida" name="en_avenida" {{ $property->en_avenida == 1 ? 'checked' : "" }} >
                       <label class="form-check-label mx-2" for="en_avenida">Inmueble ubicado frente  avenida principal</label>
                     </div>
                      <div class="form-group form-check ml-4">
-                      <input type="checkbox" class="form-check-input" id="en_provivienda" name="en_provivienda">
+                      <input type="checkbox" class="form-check-input" id="en_provivienda" name="en_provivienda" {{ $property->en_provivienda == 1 ? 'checked' : "" }} >
                       <label class="form-check-label mx-2" for="en_provivienda">Inmueble ofrecido por programa pro vivienda</label>
                     </div>
                      <div class="form-group form-check ml-4">
-                      <input type="checkbox" class="form-check-input" id="en_judicial" name="en_judicial">
+                      <input type="checkbox" class="form-check-input" id="en_judicial" name="en_judicial" {{ $property->en_judicial == 1 ? 'checked' : "" }} >
                       <label class="form-check-label mx-2" for="en_judicial">Inmueble ofrecido por proceso judicial</label>
                     </div>
               </div>
@@ -202,7 +202,7 @@ VeaInmuebles - edición de propiedades de usuario
                   </div>
                   <div class="form-group col-4">
                     <label for="precio">Precio Ofrecido</label>
-                    <input type="number" class="form-control @error('precio') is-invalid @enderror"  name="precio"  value="{{ old('precio', $property->precio) }}" placeholder="Precio ">
+                    <input type="number" class="form-control @error('precio') is-invalid @enderror"  name="precio" min="0" max="10000000" value="{{ old('precio', $property->precio) }}" placeholder="Precio ">
                     @error('precio')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -248,33 +248,33 @@ VeaInmuebles - edición de propiedades de usuario
                   </div>
 
                   <div class="form-group col-3">
-                    <label for="bathroom"># baños</label>
-                    <select class="form-control select2bs4  @error('bathroom') is-invalid @enderror" id="bathroom" name="bathroom" style="width: 100%;">
+                    <label for="bathroon"># baños</label>
+                    <select class="form-control select2bs4  @error('bathroon') is-invalid @enderror" id="bathroon" name="bathroon" style="width: 100%;">
                       <option value="">Selección</option>
                      
                       <option value="1"
-                      {{ old('bathroom', $property->bathroom) == 1 ? 'selected' : '' }} >
+                      {{ old('bathroon', $property->bathroon) == 1 ? 'selected' : '' }} >
                       1
                       </option>
                        <option value="2"
-                      {{ old('bathroom', $property->bathroom) == 2 ? 'selected' : '' }} >
+                      {{ old('bathroon', $property->bathroon) == 2 ? 'selected' : '' }} >
                       2
                       </option>
                        <option value="3"
-                      {{ old('bathroom', $property->bathroom) == 3 ? 'selected' : '' }} >
+                      {{ old('bathroon', $property->bathroon) == 3 ? 'selected' : '' }} >
                       3
                       </option>
                        <option value="4"
-                      {{ old('bathroom', $property->bathroom) == 4 ? 'selected' : '' }} >
+                      {{ old('bathroon', $property->bathroon) == 4 ? 'selected' : '' }} >
                       4
                       </option>
                        <option value="5"
-                      {{ old('bathroom', $property->bathroom) == 5 ? 'selected' : '' }} >
+                      {{ old('bathroon', $property->bathroon) == 5 ? 'selected' : '' }} >
                       5 o más
                       </option>
                      
                     </select>
-                    @error('bathroom')
+                    @error('bathroon')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                       </span>
@@ -282,33 +282,33 @@ VeaInmuebles - edición de propiedades de usuario
                   </div>
 
                   <div class="form-group col-3">
-                    <label for="midle_bathroom"># medio baño</label>
-                    <select class="form-control select2bs4  @error('midle_bathroom') is-invalid @enderror" id="midle_bathroom" name="midle_bathroom" style="width: 100%;">
+                    <label for="midle_bathroon"># medio baño</label>
+                    <select class="form-control select2bs4  @error('midle_bathroon') is-invalid @enderror" id="midle_bathroon" name="midle_bathroon" style="width: 100%;">
                       <option value="">Selección</option>
                      
                       <option value="1"
-                      {{ old('midle_bathroom', $property->midle_bathroom) == 1 ? 'selected' : '' }} >
+                      {{ old('midle_bathroon', $property->midle_bathroon) == 1 ? 'selected' : '' }} >
                       1
                       </option>
                        <option value="2"
-                      {{ old('midle_bathroom', $property->midle_bathroom) == 2 ? 'selected' : '' }} >
+                      {{ old('midle_bathroon', $property->midle_bathroon) == 2 ? 'selected' : '' }} >
                       2
                       </option>
                        <option value="3"
-                      {{ old('midle_bathroom', $property->midle_bathroom) == 3 ? 'selected' : '' }} >
+                      {{ old('midle_bathroon', $property->midle_bathroon) == 3 ? 'selected' : '' }} >
                       3
                       </option>
                        <option value="4"
-                      {{ old('midle_bathroom', $property->midle_bathroom) == 4 ? 'selected' : '' }} >
+                      {{ old('midle_bathroon', $property->midle_bathroon) == 4 ? 'selected' : '' }} >
                       4
                       </option>
                        <option value="5"
-                      {{ old('midle_bathroom', $property->midle_bathroom) == 5 ? 'selected' : '' }} >
+                      {{ old('midle_bathroon', $property->midle_bathroon) == 5 ? 'selected' : '' }} >
                       5 o más
                       </option>
                      
                     </select>
-                    @error('midle_bathroom')
+                    @error('midle_bathroon')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                       </span>
@@ -355,7 +355,7 @@ VeaInmuebles - edición de propiedades de usuario
                    
                   <div class="form-group col-3">
                     <label for="num_pisos"># pisos</label>
-                    <input type="number" class="form-control" name="num_pisos">
+                    <input type="number" class="form-control" min="1" max="20" name="num_pisos" value="{{ old('num_pisos', $property->num_pisos) }}" >
                     @error('num_pisos')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -365,7 +365,7 @@ VeaInmuebles - edición de propiedades de usuario
 
                   <div class="form-group col-3">
                     <label for="area">area  (m2)</label>
-                    <input type="number" class="form-control"  name="area">
+                    <input type="number" class="form-control" min="0" max="10000000" name="area" value="{{ old('area', $property->area) }}" >
                     @error('area')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -375,7 +375,7 @@ VeaInmuebles - edición de propiedades de usuario
 
                   <div class="form-group col-3">
                     <label for="area_construida">a. construida</label>
-                    <input type="number" class="form-control" name="area_construida">
+                    <input type="number" class="form-control" min="0" max="10000000" name="area_construida" value="{{ old('area_construida', $property->area_construida) }}" >
                     @error('area_construida')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -385,7 +385,7 @@ VeaInmuebles - edición de propiedades de usuario
 
                   <div class="form-group col-3">
                     <label for="year_build">año construc.</label>
-                    <input type="number" class="form-control" name="year_build">
+                    <input type="number" class="form-control" min="1950" max="3000" name="year_build" value="{{ old('year_build', $property->year_build) }}" >
                     @error('year_build')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -394,12 +394,6 @@ VeaInmuebles - edición de propiedades de usuario
                   </div>
 
                 </div>
-
-               
-              
-                
-
-                
                 
               </div>
               <!-- /.card-body -->
@@ -495,10 +489,7 @@ VeaInmuebles - edición de propiedades de usuario
               </div>
               <!-- /.card-body -->
         
-            </div>
-
-            
-            
+            </div>  
           </div>
           <!-- /.col-12 col-md-6 -->
       </div>

@@ -52,13 +52,8 @@
              <!--ubigeo-->
             <div class="row">
               @include('frontend.pages.includes.ubi_geo')
-                    @error('dist')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                    @enderror
                     
-                     <input type="hidden" id="id_distrito" name="id_distrito"  value="0">
+                     <input type="hidden" id="id_distrito" name="id_distrito"  value="{{ $user->profile->id_distrito ? $user->profile->id_distrito : '0' }}">
 
                <!--direccion-->
               <div class="col-8">
@@ -76,9 +71,10 @@
 
               <div class="col-4">
                 <div class="form-group">
-                  <label for="distrito">Distrito Seleccionado</label>
-                  <input type="text" id="distrito" name="distrito" class="form-control shadow-soft form-control-lg @error('distrito') is-invalid @enderror" value="{{ old('distrito', $user->profile->distrito ) }}" readonly>
-                    @error('distrito')
+                  <label for="name_distrito">Distrito Seleccionado</label>
+                  <input type="text" id="name_distrito" name="name_distrito" class="form-control shadow-soft form-control-lg @error("name_distrito") is-invalid @enderror" 
+                  value = "{{ old( "name_distrito", $user->profile->name_distrito ) }}" readonly>
+                    @error( "name_distrito" )
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                       </span>

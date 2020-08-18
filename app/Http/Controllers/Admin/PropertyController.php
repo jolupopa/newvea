@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\BaseAdminController;
 use App\Departamento;
+use Illuminate\Validation\Rule;
 
 
 class PropertyController extends BaseAdminController
@@ -26,8 +27,8 @@ class PropertyController extends BaseAdminController
         $properties_user = Property::with(['type_property', 'distrito'])
             ->where('seller_id', $user->id)
             ->paginate();
-        
-        return view('admin.properties.index', [
+        return $properties_user;
+         return view('admin.properties.index', [
             'properties' => $properties_user,
             'user' => $user,
             'type_properties' => $type_properties
@@ -93,7 +94,7 @@ class PropertyController extends BaseAdminController
      */
     public function edit($id)
     {
-        $property = Property::findOrFail($id);
+        $property = Property::find($id);
         $type_properties = TypeProperty::all();
         $departamentos = Departamento::all();
        
@@ -111,9 +112,85 @@ class PropertyController extends BaseAdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Property $property)
+    public function update(Request $request, $id)
     {
-        return $request;
+        $property = Property::find($id);
+
+        $this->validate($request,
+         [  
+             'title'=> 'required',
+            'resumen'=> 'required',
+            'detalle'=> 'required',
+            'direccion'=> 'required',
+            'precio' => 'required',
+            'operation' => 'required',
+            'name_distrito' => 'required',
+            'id_distrito' => 'required',
+            'type_property_id' => 'required',
+            'num_cuartos' => 'nullable|between:1,5',
+            'bathroon' => 'nullable|between:1,5',
+            'midle_bathroon' => 'nullable|between:1,5',
+            'num_cars' => 'nullable|between:1,5',
+            'num_pisos' => 'nullable|integer',
+            'area' => 'nullable|integer',
+            'area_contruida' => 'nullable|integer',
+            'year_build' => 'nullable|integer',
+            'url_video' => 'nullable|url',
+            'url_plano1' => 'nullable|string',
+            'url_plano2' => 'nullable|string',
+            'url_google_maps' => 'nullable|url',
+            'longitud' => 'nullable|string',
+            'latitud' => 'nullable|string', 
+            'en_estreno' => 'nullable',
+            'en_parque' => 'nullable',
+            'en_esquina' => 'nullable',
+            'en_condominio' => 'nullable',
+            'en_amoblado' => 'nullable',
+            'en_avenida' => 'nullable',
+            'en_provivienda' => 'nullable',
+            'en_judicial' => 'nullable' 
+            
+        ]);
+       
+        $property->title = $request->get('title');
+        $property->resumen = $request->get('resumen');
+        $property->detalle = $request->get('detalle');
+        $property->direccion = $request->get('direccion');
+        $property->precio = $request->get('precio');
+        $property->operation = $request->get('operation');
+        $property->name_distrito = $request->get('name_distrito');
+        $property->id_distrito = $request->get('id_distrito');
+        $property->type_property_id = $request->get('type_property_id');
+       
+        $property->num_cuartos = $request->get('num_cuartos');
+        $property->bathroon = $request->get('bathroon');
+        $property->midle_bathroon = $request->get('midle_bathroon');
+        $property->num_cars = $request->get('num_cars');
+        $property->num_pisos = $request->get('num_pisos');
+        $property->area = $request->get('area');
+        $property->area_construida = $request->get('area_construida');
+        $property->year_build = $request->get('year_build');
+        $property->url_video = $request->get('url_video');
+        $property->url_plano1 = $request->get('url_plano1');
+        $property->url_plano2 = $request->get('url_plano2');
+        $property->url_google_maps = $request->get('url_google_maps');
+        $property->longitud = $request->get('longitud');
+        $property->latitud = $request->get('latitud');
+        $property->en_estreno = $request->get('en_estreno') == true ?  true : false;
+        $property->en_parque = $request->get('en_parque') == true ?  true : false;
+        $property->en_esquina = $request->get('en_esquina') == true ?  true : false;
+        $property->en_condominio = $request->get('en_condominio') == true ?  true : false;
+        $property->en_amoblado = $request->get('en_amoblado') == true ?  true : false;
+        $property->en_avenida = $request->get('en_avenida') == true ?  true : false;
+        $property->en_provivienda = $request->get('en_provivienda') == true ?  true : false;
+        $property->en_judicial = $request->get('en_judicial') == true ?  true : false;
+        $property->save();
+
+        return redirect()->route('admin.propiedad.index')->withFlash('Se actulizo datos de la propiedad');
+
+         
+
+        
     }
 
     /**

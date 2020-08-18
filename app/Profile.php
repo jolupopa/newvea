@@ -17,7 +17,7 @@ class Profile extends Model
         'num_doc',
         'address',
         'email2',
-        'distrito',
+        'name_distrito',
         'id_distrito',
         'movil',
         'phone',

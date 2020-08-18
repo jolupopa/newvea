@@ -54,39 +54,7 @@ $( document ).ready(function() {
 
 	  });
 	  
-	  // select tipo de inmueble destacado
-	  // $('#tipo_features').on('change', function(e){
-		//   var tipo = $(this).val();
-		//   e.preventDefault(),
-		//   $.ajax({
-		// 	  url: 'typeproperty/'+ tipo,
-		// 	  type: 'GET',
-		// 	  dataType: 'json',
-		// 	  success: function(data){
-		// 		 // console.log(data);
-		// 		  if( data.length !== 0 )
-		// 		  {
-		// 			data.forEach(element => {
-		// 				$('#owl-features').append('<option value='+element.id+'> '+element.name+' </option>')
-		// 				});
-		// 		  }else
-		// 		  {
-		// 			$('#divmsg').removeClass('d-none');
-		// 			$('#divmsg').show(500);
-		// 			$('#divmsg').hide(5000);
-					
-		// 		  }
-				
-		// 	  },
-		// 	  error: function(jqXHR, estatus, causa)
-		// 	  {
-		// 		  console.log(estatus);
-		// 	  }
 
-		//   })
-
-
-	  // });
 
 	 //++++++++++++++++++++++++++++++++++
 	// ubigeo - ubicacion geografica
@@ -99,18 +67,18 @@ $( document ).ready(function() {
             dataType: "json",
 
             success: function(respuesta){
-				//console.log(respuesta);
-					$('#distrito').val('');
-                    $("#prov").html('<option value="" selected="true"> Seleccione...</option>');
-                    $("#dist").html('<option value="" selected="true"> Seleccione...</option>');
-                         respuesta.forEach(element => {
-                            $('#prov').append('<option value='+element.id+'> '+element.name+' </option>')
-                            });
-                },
+							//console.log(respuesta);
+							$("#name_distrito").val('');
+							$("#prov").html('<option value="" selected="true"> Seleccione...</option>');
+							$("#dist").html('<option value="" selected="true"> Seleccione...</option>');
+                  respuesta.forEach(element => {
+                  $('#prov').append('<option value='+element.id+'> '+element.name+' </option>')
+                  });
+            },
 
             error: function(element){
                 console.log('error');
-                }
+            }
         });
 
     });
@@ -123,13 +91,13 @@ $( document ).ready(function() {
             dataType: "json",
 
             success: function(respuesta){
-				//console.log(respuesta);
-					$('#distrito').val('');
-                    $("#dist").html('<option value="" selected="true"> Seleccione...</option>');
-                         respuesta.forEach(element => {
-                            $('#dist').append('<option value='+element.id+'> '+element.name+' </option>')
-                            });
-                },
+						//console.log(respuesta);
+							$("#name_distrito").val('');
+              $("#dist").html('<option value="" selected="true"> Seleccione...</option>');
+                respuesta.forEach(element => {
+                  $('#dist').append('<option value='+element.id+'> '+element.name+' </option>')
+                  });
+            },
 
             error: function(element){
                 console.log('error');
@@ -140,10 +108,12 @@ $( document ).ready(function() {
 
 	$('#dist').on('change', function(){
 		var dist_id = $(this).val();
-		var dist_nam = $('#dist option:selected').text();
-		$('#distrito').val(dist_nam);
-		$('#id_distrito').val(dist_id);
+		var dist_nam = $("#dist option:selected").text();
+		console.log(dist_nam);
+		$("#name_distrito").val(dist_nam);
+		$("#id_distrito").val(dist_id);
 		console.log(dist_id);
+		
 	});
 	
 	//++++++++++++++++++++++++++++++++++

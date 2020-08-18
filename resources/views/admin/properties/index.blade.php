@@ -48,10 +48,11 @@ VeaInmuebles - propiedades de usuario
                               <td> {{ number_format($property->precio, 2 ) }}</td>
                               <td class="text-lowercase">
 
-                              @isset( $property->distrito->name )
+                             @isset($property->distrito->name)
                               {{ $property->distrito->provincia->name }} - 
                               {{ $property->distrito->name }}</td>
                               @endisset
+                              
 
                               @isset($property->type_property->name)
                                 <td>{{ $property->type_property->name }}</td>

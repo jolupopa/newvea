@@ -50,7 +50,7 @@ class Property extends Model {
 		'published_end',
 		'seller_id',
 		'city_id',
-		'distrito',
+		'name_distrito',
 		'id_distrito',
 		'type_property_id'
 		
