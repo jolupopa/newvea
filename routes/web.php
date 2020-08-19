@@ -74,6 +74,8 @@ Route::prefix('admin')->middleware('verified')->namespace('Admin')->group(functi
 	
 	Route::post('propiedad/{id}/photos', 'PropertyPhotoController@store')->name('admin.propiedad.photo.store');
 	Route::delete('propiedad/{photo}', 'PropertyPhotoController@destroy')->name('admin.propiedad.photo.destroy');
+	Route::get('caratula/{photo}/{propiedad}', 'PropertyPhotoController@caratula')->name('admin.propiedad.caratula');
+
 
 });
 

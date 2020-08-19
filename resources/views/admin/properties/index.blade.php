@@ -25,8 +25,8 @@ VeaInmuebles - propiedades de usuario
                               <th class="h6 py-4 border-0">Imagen</th>
                               <th class="h6 py-4 border-0">Titulo</th>
                               <th class="h6 py-4 border-0">Precio $</th>
-                              <th class="h6 py-4 border-0">Prov.- Distrito</th>
-                              <th class="h6 py-4 border-0">Tipo prop.</th>
+                              <th class="h6 py-4 border-0">Distrito</th>
+                              <th class="h6 py-4 border-0">Inmueble</th>
                               <th class="h6 py-4 border-0">Operación</th>
                               <th class="h6 py-4 border-0">Publicado</th>
                               <th class="h6 py-4 border-0">Fin Public.</th>
@@ -39,18 +39,17 @@ VeaInmuebles - propiedades de usuario
                           <tr>
                               <td class="option h6 font-weight-light">{{ $property->codigo }}</td>
                               <td>
-                              @isset( $property->url_caratula )
-                                <img src="/img/properties/{{ $property->url_caratula}}" alt="" width="75px;" class="img-fluid">
-                              @endisset
+                              
+                                <img src="/storage/properties/{{$property->url_caratula }}" alt="" width="75px;" class="img-fluid">
+                              
                               </td>
                               <td><a href="#">{{ $property->title }}</a></td>
 
                               <td> {{ number_format($property->precio, 2 ) }}</td>
                               <td class="text-lowercase">
 
-                             @isset($property->distrito->name)
-                              {{ $property->distrito->provincia->name }} - 
-                              {{ $property->distrito->name }}</td>
+                             @isset($property->name_distrito)
+                              {{ $property->name_distrito }}</td>
                               @endisset
                               
 

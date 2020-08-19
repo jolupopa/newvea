@@ -14,7 +14,7 @@ VeaInmuebles - edición de propiedades de usuario
     <div class="row">
       <div class="col-12">
         <div class="card" style="width:100%">
-          <div class="card-head d-flex justify-content-end"><a href="{{ route('admin.propiedad.index') }}" class="btn btn-primary">Ir a Listado de propiedades</a> </div>
+          <div class="card-head d-flex justify-content-end"><a href="{{ route('admin.propiedad.index') }}" class="btn btn-primary">Listar propiedades</a> </div>
           <div class="card-body d-flex" style="border-top: 2px solid blue;">
             @foreach ( $property->photos as $photo )
               <form method="POST" action="{{ route('admin.propiedad.photo.destroy', $photo) }}">
@@ -24,7 +24,9 @@ VeaInmuebles - edición de propiedades de usuario
                   <button class="btn btn-danger btn-sm px-1 py-0" style="position:absolute;">
                     <i class="fas fa-times" ></i>
                   </button>
-                  <img src="{{ asset('storage/properties/' . $photo->url) }}" class="img-fluid" width="100px;" />
+                  
+                  <img src="{{ asset('storage/properties/' . $photo->url) }}" class="img-fluid" width="100px;" /><br/>
+                  <a href="{{ route('admin.propiedad.caratula', [$photo, $property] ) }}" class="btn {{ $photo->featured == 1 ? 'btn-primary' : 'btn-secundary'}} mt-2">Caratula</a>
                 </div> 
               
               </form>

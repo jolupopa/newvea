@@ -63,4 +63,35 @@ class PropertyPhotoController extends BaseAdminController
         
         return back()->with('flash', 'Foto eliminada');
     }
+
+
+    public function caratula(Photo $photo, $id)
+    {
+        $fotos = Photo::where('photoable_id', $id)
+                        ->where('photoable_type' , 'App\Property')
+                        ->get();
+        $property = Property::find($id);              
+       
+        if( $fotos->count() >= 1)
+        {
+            foreach($fotos as $foto)
+            {
+               if( $foto->id == $photo->id )
+               {
+                   $foto->featured = 1 ;
+                   $foto->save();
+               }else{
+                    $foto->featured = 0;
+                    $foto->save();
+            }
+              
+            }
+
+            $property->url_caratula = $photo->url;
+            $property->save();
+
+        }
+        
+        return redirect()->route('admin.propiedad.edit', $id );
+    }
 }

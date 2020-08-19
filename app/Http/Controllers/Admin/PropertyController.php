@@ -24,14 +24,15 @@ class PropertyController extends BaseAdminController
     {
         $user = Auth::user();
         $type_properties = TypeProperty::all();
-        $properties_user = Property::with(['type_property', 'distrito'])
+        $properties_user = Property::with(['type_property'])
             ->where('seller_id', $user->id)
             ->paginate();
        
          return view('admin.properties.index', [
             'properties' => $properties_user,
             'user' => $user,
-            'type_properties' => $type_properties
+            'type_properties' => $type_properties // uso en modal create
+
         ]);
     }
 
@@ -186,7 +187,7 @@ class PropertyController extends BaseAdminController
         $property->en_judicial = $request->get('en_judicial') == true ?  true : false;
         $property->save();
 
-        return redirect()->route('admin.propiedad.index')->withFlash('Se actulizo datos de la propiedad');
+        return redirect()->route('admin.propiedad.edit', $property->id )->withFlash('Se actulizo datos de la propiedad');
 
          
 

@@ -111,9 +111,7 @@ $( document ).ready(function() {
 		var dist_nam = $("#dist option:selected").text();
 		console.log(dist_nam);
 		$("#name_distrito").val(dist_nam);
-		$("#id_distrito").val(dist_id);
-		console.log(dist_id);
-		
+		$("#id_distrito").val(dist_id);	
 	});
 	
 	//++++++++++++++++++++++++++++++++++
