@@ -27,7 +27,7 @@ class PropertyController extends BaseAdminController
         $properties_user = Property::with(['type_property', 'distrito'])
             ->where('seller_id', $user->id)
             ->paginate();
-        return $properties_user;
+       
          return view('admin.properties.index', [
             'properties' => $properties_user,
             'user' => $user,

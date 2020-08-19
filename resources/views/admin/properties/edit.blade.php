@@ -15,7 +15,7 @@ VeaInmuebles - edición de propiedades de usuario
       <div class="col-12">
         <div class="card" style="width:100%">
           <div class="card-body d-flex" style="border-top: 2px solid blue;">
-            {{-- @foreach ( post->photos as $photo )
+            @foreach ( $property->photos as $photo )
               <form method="POST" action="#">
                 {{ method_field('DELETE') }}
                 @csrf
@@ -23,10 +23,10 @@ VeaInmuebles - edición de propiedades de usuario
                   <button class="btn btn-danger btn-sm px-1 py-0" style="position:absolute;">
                     <i class="fas fa-times" ></i>
                   </button>
-                  <img src="{{ asset('storage/blog/' . $photo->url) }}" class="img-fluid" width="100px;" />
+                  <img src="{{ asset('storage/properties/' . $photo->url) }}" class="img-fluid" width="100px;" />
                 </div> 
               </form>
-            @endforeach --}}
+            @endforeach
           </div>
         </div>
       </div>        
@@ -535,13 +535,13 @@ VeaInmuebles - edición de propiedades de usuario
     $(function () {
 
         //Initialize Select2 Elements
-        $('.select2').select2();
+       // $('.select2').select2();
 
         //Timepicker
-        $('#published_at').datetimepicker({
-            format: 'L',
-            locale: 'es'
-        });
+        //$('#published_at').datetimepicker({
+        //    format: 'L',
+        //  locale: 'es'
+        // });
 
          // Summernote
         $('.editor').summernote();    
@@ -549,6 +549,30 @@ VeaInmuebles - edición de propiedades de usuario
         
         
     });
+
+        var myDropzone = new Dropzone(".dropzone", {
+        url: "/admin/propiedad/{{ $property->id }}/photos",
+        headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+        paramName: "photo", // The name that will be used to transfer the file
+        maxFilesize: 1, // MB
+        acceptedFiles: 'image/*',
+        addRemoveLinks: true,
+        dictDefaultMessage: "Arrastra las fotos aca para subirlas",
+        dictFileTooBig: "Tamaño máx 1Mg.",
+        dictInvalidFileType: "Solo tipo jpg, jpeg, png.",
+        dictRemoveFile: "Remover",
+        dictCancelUpload: "Cancelar",
+        dictMaxFilesExceeded: "No puedes subir mas archivos."
+        });
+  
+       myDropzone.on('error', function(file, res){
+        //console.log(res.errors.photo[0]); desde el servidor 
+        // $('.dz-remove').addClass('btn btn-danger')
+        var msg = res.errors.photo[0];
+        $('.dz-error-message:last > span').text(msg);
+    })
+
+     Dropzone.autoDiscover = false;
 
 
 

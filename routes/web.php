@@ -71,6 +71,9 @@ Route::prefix('admin')->middleware('verified')->namespace('Admin')->group(functi
 	Route::put('user/{user}/redes', 'UserController@update_redes')->name('admin.user.redes.update');
 	//properties
 	Route::resource('propiedad', 'PropertyController', ['except' => 'destroy', 'as' => 'admin']);
+	
+	Route::post('propiedad/{id}/photos', 'PropertyPhotoController@store')->name('admin.propiedad.photo.store');
+	Route::delete('propiedad/{photo}', 'PropertyPhotoController@destroy')->name('admin.propiedad.photo.destroy');
 
 });
 
