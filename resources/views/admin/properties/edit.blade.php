@@ -14,9 +14,10 @@ VeaInmuebles - edición de propiedades de usuario
     <div class="row">
       <div class="col-12">
         <div class="card" style="width:100%">
+          <div class="card-head d-flex justify-content-end"><a href="{{ route('admin.propiedad.index') }}" class="btn btn-primary">Ir a Listado de propiedades</a> </div>
           <div class="card-body d-flex" style="border-top: 2px solid blue;">
             @foreach ( $property->photos as $photo )
-              <form method="POST" action="#">
+              <form method="POST" action="{{ route('admin.propiedad.photo.destroy', $photo) }}">
                 {{ method_field('DELETE') }}
                 @csrf
                 <div class="mx-2">
@@ -25,6 +26,7 @@ VeaInmuebles - edición de propiedades de usuario
                   </button>
                   <img src="{{ asset('storage/properties/' . $photo->url) }}" class="img-fluid" width="100px;" />
                 </div> 
+              
               </form>
             @endforeach
           </div>

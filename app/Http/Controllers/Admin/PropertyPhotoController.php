@@ -55,10 +55,11 @@ class PropertyPhotoController extends BaseAdminController
     public function destroy(Photo $photo)
     {
         
+        
         $photo->delete(); // elimina de BD
 
       
-        Storage::disk('public')->delete($photo->url);
+        Storage::disk('public')->delete('properties/'. $photo->url);
         
         return back()->with('flash', 'Foto eliminada');
     }
