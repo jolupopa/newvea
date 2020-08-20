@@ -51,7 +51,7 @@ class Property extends Model {
 		'seller_id',
 		'city_id',
 		'name_distrito',
-		'id_distrito',
+		'distrito_id',
 		'type_property_id'
 		
 	];
@@ -82,11 +82,6 @@ class Property extends Model {
         return $this->morphMany('App\Photo', 'photoable');
 	}
 	
-	public function city()
-	{
-		return $this->belongsTo(City::class);
-	}
-
 
 	public function type_property()
 	{
@@ -102,7 +97,13 @@ class Property extends Model {
 	public function distrito()
     {
         return $this->belongsTo(Distrito::class);
-    }
+		}
+		
+		public function city()
+	{
+		return $this->belongsTo(City::class);
+	}
+
 	
 
 	// para obtener la informacion del usuario desde perfil del vendedor

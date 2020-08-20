@@ -27,8 +27,8 @@ VeaInmuebles - perfil de usuario.
 
               <div class="col-8 d-flex align-items-center">
                 <div>
-                  <h3 class="text-muted pt-5">{{ $user->name}}</h3>
-                  <h5 class="text-muted">{{ $user->profile->title }}</h5> 
+                  <h3 class="text-muted text-capitalize pt-5">{{ $user->name}}</h3>
+                  <h5 class="text-muted text-capitalize">{{ $user->profile->title }}</h5> 
                 </div>
                   
               </div>
@@ -71,7 +71,7 @@ VeaInmuebles - perfil de usuario.
                   @endisset
 
                   @isset($user->profile->address )
-                    <h5> <span class="mx-3"><i class="fas fa-map-marker-alt mr-2"></i></span>{{ $user->profile->address}}
+                    <h5 class="text-capitalize"> <span class="mx-3"><i class="fas fa-map-marker-alt mr-2"></i></span>{{ $user->profile->address}}
                     </h5>
                   @else
                     <h5> <span class="mx-3"><i class="fas fa-map-marker-alt mr-2"></i></span>Dirección sin definir
@@ -81,7 +81,7 @@ VeaInmuebles - perfil de usuario.
                   @isset( $distrito->name )
                     <h5>
                       <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Distrito:</span>
-                      <span class="text-lowercase">{{ $distrito->name }}</span>
+                      <span class="text-capitalize">{{ $distrito->name }}</span>
                     </h5>
                   @else
                     <h5>
@@ -93,7 +93,7 @@ VeaInmuebles - perfil de usuario.
                   @isset( $distrito->provincia->name )
                     <h5>
                       <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Provincia:</span>
-                      <span class="text-lowercase">{{$distrito->provincia->name}}</span>
+                      <span class="text-capitalize">{{$distrito->provincia->name}}</span>
                     </h5>
                   @else
                     <h5>
@@ -105,7 +105,7 @@ VeaInmuebles - perfil de usuario.
                   @isset( $distrito->provincia->departamento->name )
                     <h5>
                       <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Departamento:</span>
-                      <span class="text-lowercase">{{ $distrito->provincia->departamento->name }}</span>
+                      <span class="text-capitalize">{{ $distrito->provincia->departamento->name }}</span>
                     </h5>
                   @else
                     <h5>
@@ -132,7 +132,7 @@ VeaInmuebles - perfil de usuario.
           <h2 class="text-muted text-center my-5">Lista de propiedades</h2>
           <!-- listado de propiedades -->
           <div class="row" id="list-type" class="property-th-list">
-            @foreach($properties as $property)
+            @forelse($properties as $property)
               <div class="card shadow-soft col-12 my-2 list active" >
                 <div class="row no-gutters ">
                 
@@ -148,21 +148,32 @@ VeaInmuebles - perfil de usuario.
 
                   <div class="col-8  c-body d-flex flex-column justify-content-around">
                     <div class="card-body ">
-                      <h5 class="card-title">{{ $property->title }}</h5>
+                      <h5 class="card-title text-capitalize">{{ $property->title }}</h5>
                       <p class="card-text d-none d-lg-block">{{ $property->resumen }}</p>
                     </div>
-                    <div class="location text-center mb-2">
-                      <span>Distrito: </span>  <span>{{ $property->name_distrito }} </span> 
+                   
+                     <div class="location text-center mb-2">
+                        <span class="text-capitalize">{{ $property->distrito->provincia->departamento->name }} </span> -
+                        <span class="text-capitalize">{{ $property->distrito->provincia->name }} </span> -
+                        <span class="text-capitalize">{{ $property->distrito->name }} </span> 
                     </div>
 
                   
 
                     <div class="border-top py-2  d-flex justify-content-around align-items-end">
-                      <span class=""><i class="fas fa-dollar-sign"></i> {{ $property->precio }}</span>
-                      <span>{{ $property->area }} <span class="font-weight-bold">m2</span></span>
-                      <span>{{ $property->num_cuartos}} <i class="fas fa-bed  "></i></span>
-                      <span>{{$property->bathroon }} <i class="fas fa-bath "></i></span>
-                      <span>{{$property->num_cars }} <i class="fas fa-car "></i></span>
+                      <span class=""><i > S/. </i>{{ number_format($property->precio, 2 ) }}</span>
+                      @isset( $property->area )
+                      <span>{{ $property->area }} <span><i>m2-Area total</i></span></span>
+                      @endisset
+                      @isset( $property->num_cuartos )
+                      <span>{{ $property->num_cuartos }} <i>Dormitorios</i></span>
+                      @endisset
+                      @isset( $property->bathroon )
+                      <span>{{ $property->bathroon }} <i>Baños</i></span>
+                      @endisset
+                      @isset( $property->num_cars )
+                      <span>{{ $property->num_cars }} <i>Estacionamientos</i></span>
+                      @endisset
                     </div>
                   </div>
 
@@ -180,7 +191,12 @@ VeaInmuebles - perfil de usuario.
                   </div>
                 </div>
               </div>
-            @endforeach
+            @empty
+              <div class="jumbotron w-100 text-center">
+                <h1 class="display-4">Sin publicaciones!</h1>
+                <a class="btn btn-primary btn-lg my-5" href="#" role="button">Crear Publicación</a>
+              </div>  
+            @endforelse
 
           </div>
           

@@ -126,7 +126,7 @@ class PropertyController extends BaseAdminController
             'precio' => 'required',
             'operation' => 'required',
             'name_distrito' => 'required',
-            'id_distrito' => 'required',
+            'distrito_id' => 'required',
             'type_property_id' => 'required',
             'num_cuartos' => 'nullable|between:1,5',
             'bathroon' => 'nullable|between:1,5',
@@ -160,7 +160,7 @@ class PropertyController extends BaseAdminController
         $property->precio = $request->get('precio');
         $property->operation = $request->get('operation');
         $property->name_distrito = $request->get('name_distrito');
-        $property->id_distrito = $request->get('id_distrito');
+        $property->distrito_id = $request->get('distrito_id');
         $property->type_property_id = $request->get('type_property_id');
        
         $property->num_cuartos = $request->get('num_cuartos');

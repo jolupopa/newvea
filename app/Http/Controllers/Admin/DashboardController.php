@@ -36,7 +36,7 @@ class DashboardController extends BaseAdminController
     {
         $user = Auth::user(); 
         $distrito = Distrito::find($user->profile->id_distrito);
-        $properties = Property::where('seller_id', $user->id )->paginate(1);
+        $properties = Property::where('seller_id', $user->id )->paginate(10);
        ;
         return view('admin.profile.profile', [
             "user" => $user,

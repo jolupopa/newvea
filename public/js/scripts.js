@@ -111,7 +111,16 @@ $( document ).ready(function() {
 		var dist_nam = $("#dist option:selected").text();
 		console.log(dist_nam);
 		$("#name_distrito").val(dist_nam);
-		$("#id_distrito").val(dist_id);	
+		//user
+		if( $('#id_distrito').length)
+		{
+			$("#id_distrito").val(dist_id);	
+		}
+		//property
+		if( $('#distrito_id').length)
+		{
+			$("#distrito_id").val(dist_id);	
+		}
 	});
 	
 	//++++++++++++++++++++++++++++++++++

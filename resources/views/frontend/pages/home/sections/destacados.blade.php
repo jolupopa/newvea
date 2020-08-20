@@ -45,7 +45,7 @@
               <p class="text-muted h4">{{ $property->title }}</p>
             </a> 
             <h5 class="d-flex ">  
-              <span class="text-muted"><i class="fa fa-map-marker"></i>  {{ $property->city->name }}</span>
+              <span class="text-muted"><i class="fa fa-map-marker"></i>nombre de la ciudad  </span>
               <span class="ml-auto badge badge-secondary">{{ $property->type_property->name}}</span>
             </h5>
             <div class="py-3 border-top d-flex justify-content-around align-items-end">

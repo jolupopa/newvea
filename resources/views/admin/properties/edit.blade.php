@@ -93,7 +93,7 @@ VeaInmuebles - edición de propiedades de usuario
                   <!--ubigeo-->
                 <div class="row">
                   @include('frontend.pages.includes.ubi_geo')                  
-                  <input type="hidden" id="id_distrito" name="id_distrito"  value="{{ $property->id_distrito}}">
+                  <input type="hidden" id="distrito_id" name="distrito_id"  value="{{ $property->distrito_id ? $property->distrito_id : "0"  }}">
 
                   <!--direccion-->
                   <div class="col-8">
