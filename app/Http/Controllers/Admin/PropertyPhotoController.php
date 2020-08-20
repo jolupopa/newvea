@@ -54,9 +54,11 @@ class PropertyPhotoController extends BaseAdminController
 
     public function destroy(Photo $photo)
     {
+        $property = Property::find($photo->photoable_id);
+        $property->url_caratula = null;
+        $property->save(); // elimina caratula
         
-        
-        $photo->delete(); // elimina de BD
+        $photo->delete(); // elimina foto de BD
 
       
         Storage::disk('public')->delete('properties/'. $photo->url);

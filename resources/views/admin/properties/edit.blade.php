@@ -561,7 +561,7 @@ VeaInmuebles - edición de propiedades de usuario
         maxFilesize: 1, // MB
         acceptedFiles: 'image/*',
         addRemoveLinks: true,
-        dictDefaultMessage: "Arrastra las fotos aca para subirlas",
+        dictDefaultMessage: "Arrastre las fotos aca para subirlas , guarde y seleccione una caratula ",
         dictFileTooBig: "Tamaño máx 1Mg.",
         dictInvalidFileType: "Solo tipo jpg, jpeg, png.",
         dictRemoveFile: "Remover",
