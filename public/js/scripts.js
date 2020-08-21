@@ -69,6 +69,7 @@ $( document ).ready(function() {
             success: function(respuesta){
 							//console.log(respuesta);
 							$("#name_distrito").val('');
+							$("provincia_id").val('0');
 							$("#prov").html('<option value="" selected="true"> Seleccione...</option>');
 							$("#dist").html('<option value="" selected="true"> Seleccione...</option>');
                   respuesta.forEach(element => {
@@ -93,6 +94,7 @@ $( document ).ready(function() {
             success: function(respuesta){
 						//console.log(respuesta);
 							$("#name_distrito").val('');
+							$("provincia_id").val('0');
               $("#dist").html('<option value="" selected="true"> Seleccione...</option>');
                 respuesta.forEach(element => {
                   $('#dist').append('<option value='+element.id+'> '+element.name+' </option>')
@@ -109,6 +111,8 @@ $( document ).ready(function() {
 	$('#dist').on('change', function(){
 		var dist_id = $(this).val();
 		var dist_nam = $("#dist option:selected").text();
+		var prov_id = $("#prov").val();
+
 		console.log(dist_nam);
 		$("#name_distrito").val(dist_nam);
 		//user
@@ -119,7 +123,9 @@ $( document ).ready(function() {
 		//property
 		if( $('#distrito_id').length)
 		{
-			$("#distrito_id").val(dist_id);	
+			$("#distrito_id").val(dist_id);
+			$("#provincia_id").val(prov_id);
+
 		}
 	});
 	

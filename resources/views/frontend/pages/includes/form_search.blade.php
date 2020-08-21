@@ -11,18 +11,15 @@
 
         <div class="form-row ">
             <div class="col-6 mb-5">
-                <label for="ciudad" class="sr-only">Ciudad</label>
-                <select class="custom-select" id="ciudad" name="ciudad">
-                    <option value="0">Selecciona una Ciudad</option>
-                    @foreach($cities as $city)
-                    <option value="{{ $city->id}}">{{$city->name}}</option>
-                    @endforeach
+                <label for="prov" class="sr-only">Provincia</label>
+                <select class="custom-select" id="prov">
+                    <option value="0">Selecciona una Provincia</option>
                 </select>
             </div>
             <div class="col-6 mb-5">
-                <label for="zona" class="sr-only">Zona</label>
-                <select class="custom-select" id="zona" name="zona">
-                    <option value="0">Selecciona una Zona</option>
+                <label for="dist" class="sr-only">Distrito</label>
+                <select class="custom-select" id="dist">
+                    <option value="0">Selecciona un Distrito</option>
                 </select>
             </div>
             <div class="col-6 mb-5">

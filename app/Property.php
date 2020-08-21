@@ -51,6 +51,7 @@ class Property extends Model {
 		'seller_id',
 		'city_id',
 		'name_distrito',
+		'provincia_id',
 		'distrito_id',
 		'type_property_id'
 		

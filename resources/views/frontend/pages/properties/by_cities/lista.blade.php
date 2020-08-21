@@ -1,6 +1,6 @@
 <section id="listado" class="container  text-center">
 @if($properties->count() > 0)
-  <h2 class="text-muted mt-5">Inmuebles disponibles en: {{ $city->name }}</h2>
+  <h2 class="text-muted mt-5">Inmuebles disponibles: </h2>
   <!-- botones para ordenar y layout  -->
   <div class="personal-select ml-5 mb-3" style="width: 250px;">
     <select>
@@ -24,7 +24,7 @@
             <div class="box-label">
               <span class="{{ $property->operation == 'venta' ? 'label-sale' : 'label-rent' }}">{{ $property->operation}}</span>
             </div>
-            <img src="/img/properties/{{ $property->url_caratula }}" class="img-fluid"  width="640px" alt="Foto de inmueble">
+            <img src="/storage/properties/{{ $property->url_caratula }}" class="img-fluid"  width="640px" alt="Foto de inmueble">
            </a>
 
         </div>
@@ -71,7 +71,7 @@
   <div class="container mt-5">
     <div class="jumbotron text-left">
       <h1 class="display-4">Lo Sentimos!</h1>
-      <p class="lead">En este momento no hay propiedades disponibles en la ciudad de {{ $city->name}}.</p>
+      <p class="lead">En este momento no hay propiedades disponibles en esta categoria.</p>
       <hr class="my-4">
       <p class=" text-right" >
       <a class="btn btn-primary btn-lg mr-5" href="{{ route('home')}}" role="button">Regresar</a>

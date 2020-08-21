@@ -16,7 +16,7 @@
                     <div class="child">
                       <a href="{{ route('properties.city.index', $city->id) }}">
                         <span class="w-100 h-100">{{ $city->name }}</span>
-                        <img class="card-img-top" src="img/locations/{{ $city->urlFoto }}" alt=" foto de {{ $city->name }}">
+                        <img class="card-img-top" src="/images/cities/{{ $city->urlFoto }}" alt=" foto de {{ $city->name }}">
                       </a>
                     </div>
                 </div>

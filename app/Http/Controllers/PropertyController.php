@@ -2,26 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Property;
-use App\Profile;
 use App\City;
+use App\Profile;
+use App\Distrito;
+use App\Property;
 use App\TypeProperty;
+use Illuminate\Http\Request;
 
 class PropertyController extends Controller
 {
-    public function by_city(City $city)
+    public function by_city($id)
     {
-      $cities = City::select()->orderBy('name')->get();
-      $types = TypeProperty::all(); 
-      $properties = Property::where('city_id', $city->id)
-        ->where('publicada', true)
-        ->where('activa', true)->paginate();
+        $types = TypeProperty::all(); 
+
+        $properties = Property::with('type_property')->where('provincia_id', $id)->paginate();
 
         return view('frontend.pages.properties.by_cities',[
-            'city' => $city,
             'properties'=> $properties,
-            'cities' => $cities,
             'types' => $types
         ]);
     }

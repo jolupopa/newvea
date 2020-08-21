@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Property;
-use App\Testimony;
-use App\Seller;
 use App\City;
 use App\User;
+use App\Seller;
 use App\Sponsor;
+use App\Property;
+use App\Provincia;
+use App\Testimony;
 use App\TypeProperty;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 
 
@@ -23,8 +24,9 @@ class PagesController extends Controller
        // return Seller::with('properties', 'profile')->get();
        // $sellers = Seller::has('properties')->get();
       $user_destacados = User::with('profile')->where('in_home', true)->get();
-
-        $cities = City::select()->orderBy('name')->get();
+        $cities = Provincia::where('selection', true)
+        ->orderBy('name', 'asc')->get();
+      
 
         $sponsors = Sponsor::where('option', true)->get();
 
