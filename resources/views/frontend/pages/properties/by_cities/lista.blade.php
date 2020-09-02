@@ -24,7 +24,9 @@
             <div class="box-label">
               <span class="{{ $property->operation == 'venta' ? 'label-sale' : 'label-rent' }}">{{ $property->operation}}</span>
             </div>
-            <img src="/storage/properties/{{ $property->url_caratula }}" class="img-fluid"  width="640px" alt="Foto de inmueble">
+            @foreach( $property->photos as $foto)
+            <img src="/storage/properties/{{ $foto->url}}" class="img-fluid"  width="640px" alt="Foto de inmueble">
+            @endforeach
            </a>
 
         </div>
@@ -40,16 +42,28 @@
             <span class="font-weight-bolder"> Cod= {{ $property->codigo }} </span>
             <span class="badge badge-dark ml-auto">{{ $property->type_property->name}}</span>
             </h6>
+            <div class="text-left font-weight-bolder"><i class="fa fa-map-marker mr-2"></i> {{ $property->distrito->name }} - {{ $property->distrito->provincia->name }}</div>
           </div>
 
         
 
           <div class="border-top py-2 bg-contenedor d-flex justify-content-around align-items-end">
-            <span class=""><i class="fas fa-dollar-sign"></i>{{ $property->precio }}</span>
+            <span class=""><span>S/.</span>{{number_format( $property->precio,2) }}</span>
+            @isset(  $property->area )
             <span>{{ $property->area }} <span class="font-weight-bold">m2</span></span>
+            @endisset
+
+            @isset( $property->num_cuartos )
             <span>{{ $property->num_cuartos }}  <i class="fas fa-bed  "></i></span>
+            @endisset
+
+            @isset( $property->bathroon )
             <span>{{ $property->bathroon }} <i class="fas fa-bath "></i></span>
-            <span>{{ $property->num_cars}}<i class="fas fa-car "></i></span>
+            @endisset
+
+            @isset( $property->num_cars )
+            <span>{{ $property->num_cars }}<i class="fas fa-car "></i></span>
+            @endisset
           </div>
         </div>
 
@@ -58,7 +72,7 @@
             <div class="text-primary text">
               <a href="">
                 <i class="fas fa-user-edit"></i> 
-                <span class="text-muted">{{ $property->profile->nickname }}</span>
+                <span class="text-muted">{{ $property->profile->user->name}}</span>
             </a>
             </div>
 

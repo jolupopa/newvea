@@ -14,8 +14,7 @@ class PropertyPhotoController extends BaseAdminController
 {
     public function store($id)
     {
-
-       $property = Property::find($id);
+       
 
         $this->validate(request(), [
             'photo' => 'file|image|max:1024'
@@ -27,6 +26,8 @@ class PropertyPhotoController extends BaseAdminController
        
         // retorna la url imagen temporal
         $photo = request()->file('photo');
+
+       
         
         // Guarda en servidor dir:blog disk('public) 
 
@@ -46,24 +47,23 @@ class PropertyPhotoController extends BaseAdminController
         // gurdada en BD
         Photo::create([
             'url' => $photoUrl,
-            'photoable_id' => $property->id,
+            'photoable_id' => $id,
             'photoable_type'=> 'App\Property'
         ]);
         
     }
 
-    public function destroy(Photo $photo)
+    public function destroy( Photo $photo)
     {
-        $property = Property::find($photo->photoable_id);
-        $property->url_caratula = null;
-        $property->save(); // elimina caratula
         
-        $photo->delete(); // elimina foto de BD
+        // elimina foto de BD
+        $photo->delete(); 
 
-      
+        // elimina de storage
         Storage::disk('public')->delete('properties/'. $photo->url);
         
         return back()->with('flash', 'Foto eliminada');
+    
     }
 
 
@@ -72,7 +72,7 @@ class PropertyPhotoController extends BaseAdminController
         $fotos = Photo::where('photoable_id', $id)
                         ->where('photoable_type' , 'App\Property')
                         ->get();
-        $property = Property::find($id);              
+        //$property = Property::find($id);              
        
         if( $fotos->count() >= 1)
         {
@@ -89,8 +89,8 @@ class PropertyPhotoController extends BaseAdminController
               
             }
 
-            $property->url_caratula = $photo->url;
-            $property->save();
+           // $property->url_caratula = $photo->url;
+           // $property->save();
 
         }
         

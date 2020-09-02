@@ -58,7 +58,7 @@
                <!--direccion-->
               <div class="col-8">
                 <div class="form-group">
-                  <label for="address">Dirección</label>
+                  <label for="address">Dirección [ <span class="text-info">Calle y Urb. ó Centro Poblado para busqueda </span>]</label>
                   <input type="text" id="address" name="address" class="form-control shadow-soft form-control-lg @error('address') is-invalid @enderror" value="{{ old('address', $user->profile->address ) }}">
                     @error('address')
                       <span class="invalid-feedback" role="alert">

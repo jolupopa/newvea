@@ -24,9 +24,13 @@ class PropertyController extends BaseAdminController
     {
         $user = Auth::user();
         $type_properties = TypeProperty::all();
-        $properties_user = Property::with(['type_property'])
+        $properties_user = Property::with(['type_property', 'photos' => function($query){
+            $query = $query->where('featured' , 1);
+        }])
             ->where('seller_id', $user->id)
             ->paginate();
+
+      
        
          return view('admin.properties.index', [
             'properties' => $properties_user,

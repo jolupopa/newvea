@@ -1,11 +1,10 @@
 <div class="col-12 col-md-4  d-flex align-items-center">
-          <div class="bg-contenedor">
-            <div class="pt-5 d-flex justify-content-between">
-              <span class="h4 ml-3">En {{$property->operation}}</span>
-              <span class="h5 text-muted mr-3">Precio: $ {{ $property->precio}}.00</span>
-            </div>
-            <h4 class="text-muted ml-5">Resumen</h4>
-              <p class="text-muted mx-5 extracto">{{ $property->resumen}}.
+          <div class="bg-contenedor w-100 mt-5">
+           
+            <h2 class="ml-3 text-muted text-center mt-5 text-uppercase">En {{$property->operation}}</h2>
+            
+            <h4 class="text-muted ml-5">Precio:</h4>
+              <p class="text-muted mx-5 extracto">{{ number_format($property->precio,2) }}
               </p>
             <div class=" mx-5 py-2 d-flex justify-content-between">
               <span class="d-block d-md-none d-lg-block">{{ $property->area}} <span class="font-weight-bold ">m2</span></span>

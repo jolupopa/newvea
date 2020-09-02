@@ -39,17 +39,24 @@
             <span class="{{ $property->operation == 'venta' ? 'label-sale' : 'label-rent' }}">{{ $property->operation}}</span>
           </div>
           <a href="#" class="favorite"> <i class="far fa-heart text-white"></i> </a>
-            <img src="img/properties/{{ $property->url_caratula }}" class="img-fluid"  width="640px" alt="Foto de inmueble">
+          @foreach( $property->photos as $foto )
+            <img src="img/properties/{{ $foto->url}}" class="img-fluid"  width="640px" alt="Foto de inmueble">
+          @endforeach  
           <div class="card-body bg-contenedor">
             <a href="{{ route('properties.show', $property->id )}}">
-              <p class="text-muted h4">{{ $property->title }}</p>
+              <p class="text-info h4">{{ $property->title }}</p>
             </a> 
-            <h5 class="d-flex ">  
-              <span class="text-muted"><i class="fa fa-map-marker"></i>nombre de la ciudad  </span>
-              <span class="ml-auto badge badge-secondary">{{ $property->type_property->name}}</span>
+
+            <h5 class="text-right">  
+              <span class="badge badge-secondary">{{ $property->type_property->name}}</span>
             </h5>
+
+            <h6>  
+              <span class=""><i class="fa fa-map-marker mr-2"></i>{{ $property->distrito->provincia->name}} > {{ $property->distrito->name}} </span>
+            </h6>
+            
             <div class="py-3 border-top d-flex justify-content-around align-items-end">
-              <span class=""><i class="fas fa-dollar-sign mr-1"></i>{{ $property->precio }}</span>
+              <span> <span class="">S/.</span> {{ number_format($property->precio, 2 ) }}</span>
               <span>{{ $property->area }} <span class="font-weight-bold">m2</span></span>
               <span>{{ $property->num_cuartos }} <i class="fas fa-bed  "></i></span>
               <span>{{ $property->bathroon }} <i class="fas fa-bath "></i></span>
@@ -57,7 +64,7 @@
             </div>
             <div class="pt-3 border-top d-flex justify-content-between">
               <a href="#" class="card-link"><i class="fas fa-user-edit"></i>
-                <span class="text-muted">{{ $property->profile->nickname }}</span></a>
+                <span class="text-muted">{{ $property->profile->user->name}}</span></a>
               <span class=""><i class="far fa-clock mr-2"></i>{{ $property->published_at }}</span>
             </div>
           </div>

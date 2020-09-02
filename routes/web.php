@@ -22,7 +22,7 @@ Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallba
 
  // inicio
 Route::get('/', 'PagesController@home')->name('home');
-Route::get('/owl', 'OwlfilterController@show')->name('owl');
+
 
 // Blog
 Route::get('/blog', 'BlogController@blog')->name('blog');
@@ -73,7 +73,7 @@ Route::prefix('admin')->middleware('verified')->namespace('Admin')->group(functi
 	Route::resource('propiedad', 'PropertyController', ['except' => 'destroy', 'as' => 'admin']);
 	
 	Route::post('propiedad/{id}/photos', 'PropertyPhotoController@store')->name('admin.propiedad.photo.store');
-	Route::delete('propiedad/{photo}', 'PropertyPhotoController@destroy')->name('admin.propiedad.photo.destroy');
+	Route::delete('photo-propiedad/{photo}', 'PropertyPhotoController@destroy')->name('admin.propiedad.photo.destroy');
 	Route::get('caratula/{photo}/{propiedad}', 'PropertyPhotoController@caratula')->name('admin.propiedad.caratula');
 
 

@@ -14,19 +14,17 @@ class DashboardController extends BaseAdminController
 {
     public function account()
     {
-        $user = Auth::user();
         return view('admin.account.account',[
-            'user' => $user
+            'user' => Auth::user()
         ]);
     }
 
     public function datos()
-    {
-        $user = Auth::user();        
+    {       
         $departamentos = Departamento::all();
         return view('admin.datauser.data', [
             'departamentos' => $departamentos,
-            'user'=> $user
+            'user'=> Auth::user()
         ]);
     }
 
@@ -34,14 +32,18 @@ class DashboardController extends BaseAdminController
 
     public function profile()
     {
+        
         $user = Auth::user(); 
-        $distrito = Distrito::find($user->profile->id_distrito);
-        $properties = Property::where('seller_id', $user->id )->paginate(10);
-       ;
+        $distrito_user = Distrito::find($user->profile->id_distrito);
+        $properties = Property::with( [ 'photos' => function($query){
+            $query = $query->where('featured', 1);
+        }])->where('seller_id', $user->id )->paginate(10);
+    
         return view('admin.profile.profile', [
             "user" => $user,
-            'distrito' => $distrito,
-            'properties' => $properties
+            'properties' => $properties,
+            'distrito' => $distrito_user,
+            'nav_menu' => 'admin.componente.menu_account'
         ]);
     }
 

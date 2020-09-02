@@ -14,12 +14,9 @@ VeaInmuebles - edición de propiedades de usuario
     <div class="row">
       <div class="col-12">
         <div class="card" style="width:100%">
-          <div class="card-head d-flex justify-content-between"><span class="ml-5 pt-3">Seleccione imagen de portada</span><a href="{{ route('admin.propiedad.index') }}" class="btn btn-primary">Listar propiedades</a> </div>
+          <div class="card-head d-flex justify-content-end"><a href="{{ route('admin.propiedad.index') }}" class="btn btn-primary">Listar propiedades</a> </div>
           <div class="card-body d-flex" style="border-top: 2px solid blue;">
             @foreach ( $property->photos as $photo )
-
-
-
               <form method="POST" action="{{ route('admin.propiedad.photo.destroy', $photo) }}">
                 {{ method_field('DELETE') }}
                 @csrf
@@ -29,7 +26,7 @@ VeaInmuebles - edición de propiedades de usuario
                   </button>
                   
                   <img src="{{ asset('storage/properties/' . $photo->url) }}" class="img-fluid" width="100px;" /><br/>
-                  <a href="{{ route('admin.propiedad.caratula', [$photo, $property] ) }}" class="btn {{ $photo->featured == 1 ? 'btn-primary' : 'btn-secundary'}} mt-2">Portada</a>
+                  <a href="{{ route('admin.propiedad.caratula', [$photo, $property] ) }}" class="btn {{ $photo->featured == 1 ? 'btn-primary' : 'btn-secundary'}} mt-2">Caratula</a>
                 </div> 
               
               </form>
@@ -38,9 +35,6 @@ VeaInmuebles - edición de propiedades de usuario
         </div>
       </div>        
     </div>
-
-
-
     <form method="POST" action="{{ route('admin.propiedad.update', $property)  }} " >
       @csrf
       {{ method_field('PUT') }}
@@ -483,18 +477,12 @@ VeaInmuebles - edición de propiedades de usuario
         
             </div>
 
-            <div>
-              @foreach ( $property->photos as $photo )
-              <input type="hidden" id="{{ $photo->id }}" class="galeria" value="{{ 'storage/properties/' . $photo->url }}">
-              @endforeach
-            </div>
-
             {{-- fotos --}}
             <div class="card" style="width:100%">
               <div class="card-body" style="border-top: 2px solid blue;">   
                 <!--fotos--->
                 <div class="form-group">
-                  <label class="h5 ml-5">Galeria de imagenes</label>
+                  <label>Fotos </label>
                   <div class="dropzone">
                   </div>
                 </div>
@@ -530,12 +518,6 @@ VeaInmuebles - edición de propiedades de usuario
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/summernote/summernote-bs4.css') }}">
-    <style>
-    .dropzone .dz-preview .dz-image img {
-
-      width: 150px;
-    }
-    </style>
  
 @endpush
 
@@ -565,7 +547,6 @@ VeaInmuebles - edición de propiedades de usuario
         
         
     });
-        Dropzone.autoDiscover = false;
 
         var myDropzone = new Dropzone(".dropzone", {
         url: "/admin/propiedad/{{ $property->id }}/photos",
@@ -573,68 +554,22 @@ VeaInmuebles - edición de propiedades de usuario
         paramName: "photo", // The name that will be used to transfer the file
         maxFilesize: 1, // MB
         acceptedFiles: 'image/*',
-        addRemoveLinks: false,
-        maxFiles: 3,
-        maxfilesexceeded: function(file) {
-            alert('maximo 3 archivos');
-        },
+        addRemoveLinks: true,
         dictDefaultMessage: "Arrastre las fotos aca para subirlas , guarde y seleccione una caratula ",
         dictFileTooBig: "Tamaño máx 1Mg.",
         dictInvalidFileType: "Solo tipo jpg, jpeg, png.",
         dictRemoveFile: "Remover",
-
-        dictMaxFilesExceeded: "No puedes subir mas archivos.",
-        
-          
-          init: function() {
-
-             
-       
-            const galeria = document.querySelectorAll('.galeria');
-           
-           
-            //console.log(galeria);
-            if(galeria.length > 0) {
-                galeria.forEach( imagen => {
-                  const imagenPublicada = {};
-                  imagenPublicada.size = 1;
-                  //console.log(imagen.value )
-                  //== storage/properties/qykGvy6tT7vWAIeT00B3ZmhX5I6XK6DCH9Z0ft7m.jpeg
-                  imagenPublicada.name = imagen.value;
-                  this.options.addedfile.call(this, imagenPublicada);
-                  this.options.thumbnail.call(this, imagenPublicada, `/${imagenPublicada.name}`);
-                  imagenPublicada.previewElement.classList.add('dz-success');
-                  imagenPublicada.previewElement.classList.add('dz-complete');
-                })
-            }
-          },
-         
-          removedfile: function(file) {
-              // photo con url seleccionado
-              const photo = document.querySelector("input[value='" + file.name + "']" );
-              // console.log(photo.id);
-              // var url =  "admin/photo-propiedad/" + photo.id;
-              console.log(file);   
-          }
-
-
+        dictCancelUpload: "Cancelar",
+        dictMaxFilesExceeded: "No puedes subir mas archivos."
         });
   
-        myDropzone.on('error', function(file, res){
+       myDropzone.on('error', function(file, res){
         //console.log(res.errors.photo[0]); desde el servidor 
         // $('.dz-remove').addClass('btn btn-danger')
         var msg = res.errors.photo[0];
         $('.dz-error-message:last > span').text(msg);
     })
 
-    
-
-    
-     //acceptedFiles. ".jpg,.png,.jpeg",
-
-     //dictCancelUpload: "Cancelar",
-
-
-
+     Dropzone.autoDiscover = false;
 </script>   
 @endpush

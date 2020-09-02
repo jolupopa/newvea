@@ -10,7 +10,10 @@ VeaInmuebles - perfil de usuario.
     <div class="container">
 
       <!--menu-user-->
-      @include('admin.componente.menu_account')
+     @isset($nav_menu )
+      @include( $nav_menu  )
+     @endisset
+      
 
       
       <div class="row">
@@ -49,10 +52,10 @@ VeaInmuebles - perfil de usuario.
               </div>
 
                 <div class="col-12 text-muted">
-                  <h5><span class="mx-3"><i class="far fa-envelope mr-2"></i></span>{{ $user->email }}</h5>
+                  <h5><span class="mx-3"><i class="far fa-envelope"></i></span>{{ $user->email }}</h5>
 
                   @isset( $user->profile->email2 )
-                    <h5><span class="mx-3"><i class="far fa-envelope mr-2"></i></span>
+                    <h5><span class="mx-3"><i class="far fa-envelope"></i></span>
                     {{ $user->profile->email2 }}
                     </h5>
                   @endisset
@@ -71,53 +74,54 @@ VeaInmuebles - perfil de usuario.
                   @endisset
 
                   @isset($user->profile->address )
-                    <h5 class="text-capitalize"> <span class="mx-3"><i class="fas fa-map-marker-alt mr-2"></i></span>{{ $user->profile->address}}
-                    </h5>
+                    <h6 class="text-capitalize"> <span class="mx-3"><i class="fas fa-map-marker-alt mr-2"></i></span>{{ $user->profile->address}}
+                    </h6>
                   @else
                     <h5> <span class="mx-3"><i class="fas fa-map-marker-alt mr-2"></i></span>Dirección sin definir
                     </h5>
                   @endisset
+                  
 
                   @isset( $distrito->name )
                     <h5>
-                      <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Distrito:</span>
+                      <span class="mx-3"><i class="fas fa-angle-right mr-4"></i>Distrito:</span>
                       <span class="text-capitalize">{{ $distrito->name }}</span>
                     </h5>
                   @else
                     <h5>
-                      <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Distrito:</span>
+                      <span class="mx-3"><i class="fas fa-angle-right mr-4"></i>Distrito:</span>
                       <span>Sin definir</span>
                     </h5>
                   @endisset
 
                   @isset( $distrito->provincia->name )
                     <h5>
-                      <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Provincia:</span>
+                      <span class="mx-3"><i class="fas fa-angle-right mr-4"></i>Provincia:</span>
                       <span class="text-capitalize">{{$distrito->provincia->name}}</span>
                     </h5>
                   @else
                     <h5>
-                      <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Provincia:</span>
+                      <span class="mx-3"><i class="fas fa-angle-right mr-4"></i>Provincia:</span>
                       <span>Sin definir</span>
                     </h5>
                   @endisset
 
                   @isset( $distrito->provincia->departamento->name )
                     <h5>
-                      <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Departamento:</span>
+                      <span class="mx-3"><i class="fas fa-angle-right mr-4"></i>Departamento:</span>
                       <span class="text-capitalize">{{ $distrito->provincia->departamento->name }}</span>
                     </h5>
                   @else
                     <h5>
-                      <span class="mx-3"><i class="fas fa-map-marker-alt mr-4"></i>Departamento:</span>
+                      <span class="mx-3"><i class="fas fa-angle-right mr-4"></i>Departamento:</span>
                       <span>Sin definir</span>
                     </h5>
                   @endisset
                   <h4 class="text-mutet ml-5 mt-3">Acerca de mi:</h4> 
                   @isset($user->profile->about_me ) 
-                    <p class="pb-4 ml-5">{{ $user->profile->about_me }}</p>
+                    <p class="pb-4 ml-5 mb-5">{{ $user->profile->about_me }}</p>
                   @else
-                    <h5 class="ml-5"> <span>Sin definir</span> </h5>
+                    <h5 class="ml-5 mb-5"> <span>Sin definir</span> </h5>
                   @endisset
 
                 </div>
@@ -141,7 +145,9 @@ VeaInmuebles - perfil de usuario.
                       <div class="box-label">
                         <span class="label-sale">{{ $property->operation }}</span>
                       </div>
-                      <img src="{{'/storage/properties/' . $property->url_caratula }}"  class="img-fluid" alt="foto de propiedad" width="210px;">
+                      @foreach( $property->photos as $foto )
+                      <img src="{{'/storage/properties/' . $foto->url }}"  class="img-fluid" alt="foto de propiedad" width="210px;">
+                      @endforeach
                   </a>
 
                   </div>
@@ -153,8 +159,8 @@ VeaInmuebles - perfil de usuario.
                     </div>
                    
                      <div class="location text-center mb-2">
-                        <span class="text-capitalize">{{ $property->distrito->provincia->departamento->name }} </span> -
-                        <span class="text-capitalize">{{ $property->distrito->provincia->name }} </span> -
+                        <span class="text-capitalize">{{ $property->distrito->provincia->departamento->name }} </span> >
+                        <span class="text-capitalize">{{ $property->distrito->provincia->name }} </span> >
                         <span class="text-capitalize">{{ $property->distrito->name }} </span> 
                     </div>
 

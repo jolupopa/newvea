@@ -23,15 +23,15 @@ VeaInmuebles - propiedades de usuario
                           <tr>
                               <th class="h6 py-4 border-0">ID</th>
                               <th class="h6 py-4 border-0">Imagen</th>
-                              <th class="h6 py-4 border-0">Titulo</th>
-                              <th class="h6 py-4 border-0">Precio $</th>
+                              <th class="h6 py-4 border-0 text-center">Titulo</th>
+                              <th class="h6 py-4 border-0 text-center">S/.</th>
                               <th class="h6 py-4 border-0">Distrito</th>
                               <th class="h6 py-4 border-0">Inmueble</th>
                               <th class="h6 py-4 border-0">Operación</th>
                               <th class="h6 py-4 border-0">Publicado</th>
-                              <th class="h6 py-4 border-0">Fin Public.</th>
+                              <th class="h6 py-4 border-0">Vence</th>
                               <th class="h6 py-4 border-0">Anuncio</th>
-                              <th class="h6 py-4 border-0" style="width: 140px;">Acciones</th>
+                              <th class="h6 py-4 border-0 text-center" style="width: 140px;">Acciones</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -39,8 +39,10 @@ VeaInmuebles - propiedades de usuario
                           <tr>
                               <td class="option h6 font-weight-light">{{ $property->codigo }}</td>
                               <td>
-                              
-                                <img src="/storage/properties/{{$property->url_caratula }}" alt="" width="75px;" class="img-fluid">
+                              @foreach( $property->photos as $photo)
+                                <img src="/storage/properties/{{ $photo->url }}" alt="" width="75px;" class="img-fluid">
+                              @endforeach  
+                             
                               
                               </td>
                               <td><a href="#">{{ $property->title }}</a></td>

@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\City;
-use App\Profile;
+use App\User;
 use App\Distrito;
 use App\Property;
 use App\TypeProperty;
@@ -15,8 +14,10 @@ class PropertyController extends Controller
     {
         $types = TypeProperty::all(); 
 
-        $properties = Property::with('type_property')->where('provincia_id', $id)->paginate();
-
+        $properties = Property::with(['type_property', 'photos' => function($query){
+            $query = $query->where('featured', 1);
+        }])->where('provincia_id', $id)->paginate();
+      
         return view('frontend.pages.properties.by_cities',[
             'properties'=> $properties,
             'types' => $types
@@ -27,37 +28,43 @@ class PropertyController extends Controller
     {
         $properties = Property::with(['photos', 'features', 'profile'])
         ->where('id', $property->id)->get();
+       
         return view('frontend.pages.properties.detail',[
             'properties' => $properties
         ]);
     }
 
-    public function by_promotor(Property $promotor)
+    public function by_promotor($id_promotor)
     {
-        $profile = Profile::findOrFail($promotor->id);
-        $properties = Property::with('city')->where('seller_id', $promotor->id)
+        
+        $user = User::find($id_promotor);
+        $distrito_user = Distrito::find($user->profile->id_distrito);
+        $properties = Property::with( [ 'photos' => function($query){
+            $query = $query->where('featured', 1);
+        }] )->where('seller_id', $user->id)
         ->where('publicada', true)
         ->where('activa', true)->paginate();
-        return view('frontend.pages.properties.by_promotor',[
+
+        return view('admin.profile.profile', [
+            "user" => $user,
             'properties' => $properties,
-            'profile' => $profile
+            'distrito'=> $distrito_user
         ]);
     }
+   
 
     public function by_type(Request $request, $id)
     {
         if( $request->ajax())
         {
-       $properties = Property::with(['city', 'profile'])
-        ->where('destacada', true)
-        ->where('publicada', true)
-        ->where('type_property_id', $id)
-        ->get();
+            $properties = Property::with(['profile', 'photos'])
+                ->where('destacada', true)
+                ->where('publicada', true)
+                ->where('type_property_id', $id)
+                ->get();
 
-        return response()->json($properties);
-        
-        
-
+                return response()->json($properties);
+                
         }
     }
 }

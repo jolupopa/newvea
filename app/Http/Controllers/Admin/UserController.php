@@ -25,7 +25,7 @@ class UserController extends BaseAdminController
             'nickname' => 'required',
             'num_doc' => 'required',
             'type_doc' => 'required',
-            'address' => 'required|max:60',
+            'address' => 'required|max:45',
             'name_distrito' => 'required',
              'id_distrito' => 'required',
              'phone' => 'nullable|numeric',

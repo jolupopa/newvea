@@ -4,7 +4,7 @@
       <div class="col-md-6">
         <div class="card card-box">
           <div class="card-header text-center bg-white">
-            <h4>CIUDADES</h4>
+            <h4>CIUDADES MAS BUSCADAS</h4>
           </div>
 
           <div class="card-body py-0">
@@ -33,7 +33,7 @@
       <div class="col-md-6 mt-5 mt-md-0">
         <div class="card card-box">
           <div class="card-header bg-white header text-center">
-            <h4>AGENTES Y PROMOTORES</h4>
+            <h4>AGENTES Y PROMOTORES DESTACADOS</h4>
           </div>
 
           <div class="card-body py-0">

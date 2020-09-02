@@ -30,16 +30,20 @@ class PagesController extends Controller
 
         $sponsors = Sponsor::where('option', true)->get();
 
+        //filtra tipo inmueble destacados
         $types = TypeProperty::withCount(['properties' => function(Builder $query){
             $query->where('destacada', true)
                     ->where('publicada', true);
         }])->get();
 
-       $properties = Property::with(['city', 'profile', 'type_property'])
+       $properties = Property::with(['city', 'profile', 'type_property', 'photos' => function($query){
+           $query = $query->where('featured', 1);
+
+       }])
         ->where('destacada', true)
         ->where('publicada', true)
         ->get();
-
+       
         $testimonies = Testimony::all();
 
       

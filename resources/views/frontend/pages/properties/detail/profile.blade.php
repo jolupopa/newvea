@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-4">
             <a href="">
-                <img src="/img/users/{{ $property->profile->url_foto }}" class="img-fluid rounded-circle mt-5">
+                <img src="storage/users/{{ $property->profile->url_foto }}" class="img-fluid rounded-circle mt-5">
             </a>
         </div>
         <div class="col-8 d-flex align-items-center">
