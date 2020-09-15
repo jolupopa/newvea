@@ -34,7 +34,8 @@ Detalle de un inmueble especifico.
       <div class="row">
         <!--profile-->
         <div class="col-12 col-md-4 bg-contenedor">
-          @include('frontend.pages.properties.detail.profile') 
+
+          @include('admin.profile.includes.data_user') 
         </div>
         <!--info de atencion-->
         <div class="col-12 col-md-4  bg-contenedor d-flex al align-items-center">

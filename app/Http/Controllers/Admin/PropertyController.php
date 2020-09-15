@@ -124,7 +124,6 @@ class PropertyController extends BaseAdminController
         $this->validate($request,
          [  
              'title'=> 'required',
-            'resumen'=> 'required',
             'detalle'=> 'required',
             'direccion'=> 'required',
             'precio' => 'required',
@@ -144,7 +143,6 @@ class PropertyController extends BaseAdminController
             'url_video' => 'nullable|url',
             'url_plano1' => 'nullable|string',
             'url_plano2' => 'nullable|string',
-            'url_google_maps' => 'nullable|url',
             'longitud' => 'nullable|string',
             'latitud' => 'nullable|string', 
             'en_estreno' => 'nullable',
@@ -159,7 +157,7 @@ class PropertyController extends BaseAdminController
         ]);
        
         $property->title = $request->get('title');
-        $property->resumen = $request->get('resumen');
+        $property->resumen = Str::limit( $request->get('detalle'), 200, ' (...)');
         $property->detalle = $request->get('detalle');
         $property->direccion = $request->get('direccion');
         $property->precio = $request->get('precio');
@@ -180,7 +178,6 @@ class PropertyController extends BaseAdminController
         $property->url_video = $request->get('url_video');
         $property->url_plano1 = $request->get('url_plano1');
         $property->url_plano2 = $request->get('url_plano2');
-        $property->url_google_maps = $request->get('url_google_maps');
         $property->longitud = $request->get('longitud');
         $property->latitud = $request->get('latitud');
         $property->en_estreno = $request->get('en_estreno') == true ?  true : false;
@@ -191,6 +188,7 @@ class PropertyController extends BaseAdminController
         $property->en_avenida = $request->get('en_avenida') == true ?  true : false;
         $property->en_provivienda = $request->get('en_provivienda') == true ?  true : false;
         $property->en_judicial = $request->get('en_judicial') == true ?  true : false;
+        
         $property->save();
 
         return redirect()->route('admin.propiedad.edit', $property->id )->withFlash('Se actulizo datos de la propiedad');

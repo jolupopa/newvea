@@ -20,7 +20,6 @@ class Property extends Model {
 		'detalle',
 		'direccion',
 		'precio',
-		'url_google_maps',
 		'longitud',
 		'latitud',
 		'url_video',

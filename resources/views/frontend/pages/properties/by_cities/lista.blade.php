@@ -1,6 +1,6 @@
 <section id="listado" class="container  text-center">
 @if($properties->count() > 0)
-  <h2 class="text-muted mt-5">Inmuebles disponibles: </h2>
+  <h2 class="text-muted mt-5">Inmuebles Disponibles: {{ $city }} </h2>
   <!-- botones para ordenar y layout  -->
   <div class="personal-select ml-5 mb-3" style="width: 250px;">
     <select>
@@ -24,9 +24,12 @@
             <div class="box-label">
               <span class="{{ $property->operation == 'venta' ? 'label-sale' : 'label-rent' }}">{{ $property->operation}}</span>
             </div>
-            @foreach( $property->photos as $foto)
+            @forelse( $property->photos as $foto)
             <img src="/storage/properties/{{ $foto->url}}" class="img-fluid"  width="640px" alt="Foto de inmueble">
-            @endforeach
+            @empty
+            <img src="/images/property_default.jpg" class="img-fluid"  width="640px" alt="Foto de inmueble">
+
+            @endforelse
            </a>
 
         </div>
@@ -70,7 +73,7 @@
         <div class="col-12">
           <div class="card-footer border-top d-flex flex-row justify-content-between">
             <div class="text-primary text">
-              <a href="">
+              <a href="{{ route('properties.promotor.index', $property->seller_id ) }}">
                 <i class="fas fa-user-edit"></i> 
                 <span class="text-muted">{{ $property->profile->user->name}}</span>
             </a>

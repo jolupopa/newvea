@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Distrito;
+use App\Provincia;
 use App\Property;
 use App\TypeProperty;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ class PropertyController extends Controller
 {
     public function by_city($id)
     {
+        $city = Provincia::find($id);
         $types = TypeProperty::all(); 
 
         $properties = Property::with(['type_property', 'photos' => function($query){
@@ -20,17 +22,21 @@ class PropertyController extends Controller
       
         return view('frontend.pages.properties.by_cities',[
             'properties'=> $properties,
-            'types' => $types
+            'types' => $types,
+            'city' => $city->name
         ]);
     }
 
+    // detalle de inmueble
     public function show(Property $property)
     {
+        $user = User::find( $property->seller_id);
         $properties = Property::with(['photos', 'features', 'profile'])
         ->where('id', $property->id)->get();
        
         return view('frontend.pages.properties.detail',[
-            'properties' => $properties
+            'properties' => $properties,
+            'user' => $user
         ]);
     }
 

@@ -14,7 +14,7 @@ VeaInmuebles - edición de propiedades de usuario
     <div class="row">
       <div class="col-12">
         <div class="card" style="width:100%">
-          <div class="card-head d-flex justify-content-between"><span class="ml-5 pt-3">Seleccione imagen de portada</span><a href="{{ route('admin.propiedad.index') }}" class="btn btn-primary">Listar propiedades</a> </div>
+          <div class="card-head d-flex justify-content-between"><span class="ml-5 pt-3">{{ $property->photos->count() >= 1 ? 'Seleccione imagen de portada' : ''}}</span><a href="{{ route('admin.propiedad.index') }}" class="btn btn-primary">Listar propiedades</a> </div>
           <div class="card-body d-flex" style="border-top: 2px solid blue;">
             @foreach ( $property->photos as $photo )
 
@@ -68,19 +68,11 @@ VeaInmuebles - edición de propiedades de usuario
                 </div>
                 
                 <!--resumen--->
-                <div class="form-group">
-                  <label for="resumen">Resumen</label>
-                  <textarea class="form-control @error('resumen') is-invalid @enderror" rows="3" name="resumen"  placeholder="Breve Resumen ...">{{ old('resumen', $property->resumen) }}</textarea>
-                  @error('resumen')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-                </div>
+               
                 <!---detalle--->
                 <div class="form-group">
                   <label for="detalle">Detalle</label>
-                  <textarea class="form-control editor  @error('detalle') is-invalid @enderror" rows="7" name="detalle" placeholder="Ingresa el detalle ...">{{ old('detalle', $property->detalle) }}</textarea>
+                  <textarea class="form-control @error('detalle') is-invalid @enderror" rows="7" name="detalle" placeholder="Ingresa el detalle ...">{{ old('detalle', $property->detalle) }}</textarea>
                   @error('detalle')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -99,8 +91,8 @@ VeaInmuebles - edición de propiedades de usuario
                   <!--ubigeo-->
                 <div class="row">
                   @include('frontend.pages.includes.ubi_geo')                  
-                  <input type="hidden" id="distrito_id" name="distrito_id"  value="{{ $property->distrito_id ? $property->distrito_id : "0"  }}">
-                   <input type="hidden" id="provincia_id" name="provincia_id"  value="{{ $property->provincia_id ? $property->provincia_id : "0"  }}">
+                  <input type="hidden" id="distrito_id" name="distrito_id"  value="{{ old('distrito_id', $property->distrito_id )}}">
+                   <input type="hidden" id="provincia_id" name="provincia_id"  value="{{ old('provincia_id', $property->provincia_id) }}">
 
                   <!--direccion-->
                   <div class="col-8">
@@ -415,19 +407,13 @@ VeaInmuebles - edición de propiedades de usuario
             <div class="card mb-3" style="width:100%">
               <div class="card-body" style="border-top: 2px solid blue;">   
                  <!--google-maps-->
-                <div class="form-group">
-                  <label for="url_google_maps">URL google maps</label>
-                  <input type="text" class="form-control @error('url_google_maps') is-invalid @enderror"  name="url_google_maps"  value="{{ old('url_google_maps', $property->url_google_maps) }}" placeholder="url google maps">
-                  @error('url_google_maps')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
+                <div id="myMap"  style="border-bottom: 2px solid blue;" class="mb-4">
+                
                 </div>
                 <div class="row">
                   <div class="form-group col-6">
-                    <label for="longitud">coordenada longitud google maps</label>
-                    <input type="text" class="form-control @error('longitud') is-invalid @enderror"  name="longitud"  value="{{ old('longitud', $property->longitud) }}" placeholder="longitud google maps">
+                    <label for="longitud">Cordenada de Longitud</label>
+                    <input type="text" class="form-control @error('longitud') is-invalid @enderror"  name="longitud"  value="{{ old('longitud', $property->longitud) }}" placeholder="longitud maps" readonly>
                     @error('longitud')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -435,8 +421,8 @@ VeaInmuebles - edición de propiedades de usuario
                     @enderror
                   </div>
                   <div class="form-group col-6">
-                    <label for="latitud">coordenada latitud google maps</label>
-                    <input type="text" class="form-control @error('latitud') is-invalid @enderror"  name="latitud"  value="{{ old('latitud', $property->latitud) }}" placeholder="latitud google maps">
+                    <label for="latitud">Cordenada de Latitud</label>
+                    <input type="text" class="form-control @error('latitud') is-invalid @enderror"  name="latitud"  value="{{ old('latitud', $property->latitud) }}" placeholder="latitud maps" readonly>
                     @error('latitud')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -528,13 +514,21 @@ VeaInmuebles - edición de propiedades de usuario
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.min.css') }}">
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-    <!-- summernote -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/summernote/summernote-bs4.css') }}">
+    <!--leaflet-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+   <link rel="stylesheet" href="/vendor/plugins_maps/esri-leaflet-geocoder/src/esri-leaflet-geocoder.css"/>
+
     <style>
     .dropzone .dz-preview .dz-image img {
 
       width: 150px;
     }
+     #myMap {
+	    height: 400px;
+	    width: 100%;
+	}
     </style>
  
 @endpush
@@ -549,22 +543,24 @@ VeaInmuebles - edición de propiedades de usuario
 <script src="{{ asset('adminlte/plugins/moment/moment.min.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/moment/locales.min.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<!--leaflet-->
+ 
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+  crossorigin=""></script>
+  <!-- Load Esri Leaflet from CDN -->
+<script src="/vendor/plugins_maps/esri-leaflet/dist/esri-leaflet.js"></script>
+    <!-- Esri Leaflet Geocoder -->
+<script src="/vendor/plugins_maps/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.js"></script>
 
-<!-- Summernote -->
-<script src="{{ asset('adminlte/plugins/summernote/summernote-bs4.min.js') }}"></script>
+
+
 
 @endpush
 
 @push('load-plugin')
 <script>
-    $(function () {
-
-     
-        $('.editor').summernote();    
-        //
-        
-        
-    });
+   
         Dropzone.autoDiscover = false;
 
         var myDropzone = new Dropzone(".dropzone", {
@@ -637,4 +633,49 @@ VeaInmuebles - edición de propiedades de usuario
 
 
 </script>   
+
+<script>
+	// ubicacion plaza de armas trujillo
+	const lat = -8.111851918254834;
+	const lng = -79.0287019135900;
+	const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
+
+
+	let myMap = L.map('myMap').setView([lat, lng], 6);
+	L.tileLayer(tilesProvider, {
+		maxZoon: 18
+	}).addTo(myMap);
+
+	let marker = L.marker([lat, lng], {
+		draggable: true,
+		autoPan: true
+	}).addTo(myMap);
+
+	// Geocode Service
+	const geocodeService = L.esri.Geocoding.geocodeService();
+	// coordenadas con doble click
+	//myMap.doubleClickZoom.disable();
+	myMap.on('dblclick', function(e){
+		let LatLng = myMap.mouseEventToLatLng(e.originalEvent);
+		console.log(LatLng);
+	})
+
+	// coordenadas con movimiento
+	marker.on('moveend', function(e){
+		marker = e.target;
+		const position = marker.getLatLng();
+		// centrar automatico
+		myMap.panTo( new L.LatLng( position.lat, position.lng ) );
+
+		// Reverse Geocoding cuando el usuario reubica el marker
+		geocodeService.reverse().latlng(position, 6).run(function(error, resultado){
+			console.log(error);
+			console.log(resultado);
+			marker.bindPopup(resultado.address.LongLabel);
+			marker.openPopup();
+		})
+	})
+
+</script>
 @endpush
