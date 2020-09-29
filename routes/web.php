@@ -60,6 +60,7 @@ Route::prefix('admin')->middleware('verified')->namespace('Admin')->group(functi
 	Route::get('datos', 'DashboardController@datos')->name('datos');	
 	Route::get('perfil', 'DashboardController@profile')->name('perfil');
 	Route::get('credito', 'DashboardController@credit')->name('credito');
+	Route::get('orderxx', 'DashboardController@ordenxx')->name('ordenxx');
 	Route::get('tareas', 'DashboardController@tasks')->name('tareas');
 	Route::get('contactos', 'DashboardController@contacts')->name('contactos');
 	//users
@@ -75,6 +76,12 @@ Route::prefix('admin')->middleware('verified')->namespace('Admin')->group(functi
 	Route::post('propiedad/{id}/photos', 'PropertyPhotoController@store')->name('admin.propiedad.photo.store');
 	Route::delete('photo-propiedad/{photo}', 'PropertyPhotoController@destroy')->name('admin.propiedad.photo.destroy');
 	Route::get('caratula/{photo}/{propiedad}', 'PropertyPhotoController@caratula')->name('admin.propiedad.caratula');
+
+	//order
+	Route::resource('order', 'OrderController');
+
+	//add
+	Route::resource('add', 'AddController');
 
 
 });

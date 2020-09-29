@@ -11,59 +11,60 @@ VeaInmuebles - creditos de usuario
 
         <!--menu-user-->
         @include('admin.componente.menu_account')
+         <h2 class="text-center">Ordenes de compra</h2>
         
         <!--listado-->
         <div class="row">
             <div class="col-12">
+               
                 <div class="card shadow-soft border p-4">
 
-                  <div class="d-flex justify-content-between">
-                    <span><span>Anuncios Simples : 2</span> <br> <span>Anuncios Destacados : 1</span></span>
-                    <button class="btn btn-success">Comprar +</button>
+                  <div class="d-flex justify-content-end">
+                 
+                    
+                    <a href="{{ route('add.index') }}" class="btn btn-success text-white">Comprar Anuncios
+                    <img src="/images/carrito.png" alt="">
+                    </a>
                   </div>
                   <table class="table table-responsive font-small">
                       
                       <thead class="thead-inverse">
                           <tr>
                               <th class="h6 py-4 border-0">ID</th>
-                              <th class="h6 py-4 border-0">Anuncio</th>
-                              <th class="h6 py-4 border-0">Precio</th>
-                              <th class="h6 py-4 border-0">Cantidad</th>
-                              <th class="h6 py-4 border-0">IGV</th>
-                              <th class="h6 py-4 border-0">Total</th>
-                              <th class="h6 py-4 border-0">Doc</th>
-                              <th class="h6 py-4 border-0">Num-doc</th>
-                              <th class="h6 py-4 border-0">Fecha</th>
-                              <th class="h6 py-4 border-0">Acción</th>
+                              <th class="h6 py-4 border-0 text-center">Fecha</th>
+                              <th class="h6 py-4 border-0 text-center">Doc</th>
+                              <th class="h6 py-4 border-0 text-center">N°</th>
+                              <th class="h6 py-4 border-0">Total S/.</th>
+                              <th class="h6 py-4 border-0 text-center">Status</th>  
+                              <th class="h6 py-4 border-0 text-center">Acciones</th>
+                              
                           </tr>
                       </thead>
                       <tbody>
                           <tr>
                               <td class="option h6 font-weight-light">#12</td>
-                              <td><a href="./edit-space.html">Simple</a></td>
-                              <td>50.00</td>
-                              <td>2</td>
-                              <td>18.00</td>
-                              <td>180.00</td>
-                              <td>Factura</td>
-                              <td>001-0000001</td>
                               <td>05-12-2020</td>
+                              <td>Boleta</td>
+                              <td>001-0000001</td>
+                              <td>180.00</td>
+                              <td>Entregada</td>
                               <td>
-                                <a href="#" data-toggle="modal" data-target="#modal-confirm-delete" class="text-danger "><i class="far fa-trash-alt ml-3" data-toggle="tooltip" title="" data-original-title="Delete space"></i>
+                                <a href="#" data-toggle="modal" data-target="#modal-confirm-delete" class="text-danger mr-5"><i class="far fa-trash-alt ml-3" data-toggle="tooltip" title="" data-original-title="Delete space"></i>
                                 </a>
+                                <a href="" >Detalle</a>
                               </td>
                           </tr>
                           <tr>
                             <td class="option h6 font-weight-light">#13</td>
-                              <td><a href="./edit-space.html">Destacado</a></td>
-                              <td>100.00</td>
-                              <td>1</td>
-                              <td>18.00</td>
-                              <td>180.00</td>
-                              <td>Factura</td>
-                              <td>005-000234</td>
                               <td>15-10-2020</td>
-                            <td> <a href="#" data-toggle="modal" data-target="#modal-confirm-delete" class="text-danger "><i class="far fa-trash-alt ml-3" data-toggle="tooltip" title="" data-original-title="Delete space"></i></a></td>
+                              <td>Factura</td>
+                              <td>001-0000002</td>
+                              <td>280.00</td>
+                              <td>Pendiente</td>
+                            <td> 
+                              <a href="#" data-toggle="modal" data-target="#modal-confirm-delete" class="text-danger mr-5"><i class="far fa-trash-alt ml-3" data-toggle="tooltip" title="" data-original-title="Delete space"></i></a>
+                              <a href="" >Detalle</a>
+                            </td>
                         </tr>
                       </tbody>
                   </table>

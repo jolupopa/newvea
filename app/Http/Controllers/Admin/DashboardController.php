@@ -6,6 +6,7 @@ use App\Distrito;
 use App\Property;
 use App\Provincia;
 use App\Departamento;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +50,16 @@ class DashboardController extends BaseAdminController
 
     public function credit()
     {
+        
         return view('admin.credit.credits');
+    }
+
+   
+
+    public function ordenback()
+    {
+        $products = Product::all();
+        return view('admin.credit.orden' , [ 'products' => $products]);
     }
 
     public function tasks()

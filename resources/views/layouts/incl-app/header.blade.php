@@ -9,23 +9,16 @@
 <section id="big-bar" class="d-none d-md-block bg-white">
     <div class="container">
         <div class="row justify-content-md-between align-items-center">
-        <div class="col-auto">
-            <a href="{{ route('home')}}">
-            <h1 class="logo text-primary py-2">VeaInmuebles</h1>
-            </a>
-        </div>
-        <div class="col-auto ml-auto text-primary">
-            <a href="https://web.whatsapp.com/" target="_blank">
-            <i class="fab fa-whatsapp fa-2x"></i>
-            <span class="font-weight-bold h5 ml-2">+51-044-916245396</span>
-            </a>
-        </div>
-        <div class="col-auto text-primary">
-            <a href="" data-toggle="modal" data-target="#modalContacto"> <i class="far fa-envelope fa-2x"></i>
-            <span class="font-weight-bold ml-2 h5 ">jlportilla76@gmail.com</span>
-            </a>
-
-        </div>
+            <div class="col-auto">
+                <a href="{{ route('home')}}">
+                <h1 class="logo text-primary py-2">VeaInmuebles</h1>
+                </a>
+            </div>
+            <div class="col-auto ml-auto text-primary">
+               
+                <span class="logo h4 ml-2">Si deseas publicar unete a nuestra red</span>
+               
+            </div>
         </div>
     </div>
 </section>
@@ -39,21 +32,28 @@
         <span class="icon-menu"></span>
         </button>
         @guest
-        <a href="{{ route('login') }}" class="btn btn-primary btn-login order-md-2 ml-auto mr-2 {{ request()->is('/login') ? 'active' : '' }}">Ingresar</a>
-        <a href="{{ route('register') }}" class="btn btn-primary  btn-login order-md-3">Registrar</a>
+     
+                <a href="{{ route('login') }}" class="btn btn-primary btn-login order-md-2 ml-auto mr-2 {{ request()->is('/login') ? 'active' : '' }}">Ingresar</a>
+
+                <a href="{{ route('register') }}" class="btn btn-primary  btn-login order-md-3">Registrar</a>
+
         @else
         
       
          <!--boton usuario-->
-        <a class="btn btn-primary order-md-2 ml-auto mr-2" href="{{ route('cuenta',5) }}">{{ Auth::user()->nickname }} 
-        <img class="img-fluid rounded-circle mr-2" src="{{ Auth::user()->avatar ? asset('storage/avatars/' . Auth::user()->avatar ) : '/img/users/avatars/default.png' }}" alt="avatar" height="20px" width="20px">
+        
+        <a class="btn btn-primary order-md-2 ml-auto mr-2" href="{{ route('cuenta') }}">{{ Auth::user()->nickname }} <img class="img-fluid rounded-circle mr-2" src="{{ Auth::user()->avatar ? asset('storage/avatars/' . Auth::user()->avatar ) : '/img/users/avatars/default.png' }}" alt="avatar" height="20px" width="20px">
         </a>
 
-         <!--boton salir-->
+
+
+
+        <!--boton salir-->
         <a class="btn btn-primary order-md-3" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">Salir
         </a>
+        
 
 
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

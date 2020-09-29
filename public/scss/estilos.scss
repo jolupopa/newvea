@@ -134,8 +134,9 @@ a:hover{
 
 
 .btn-primary:active{
-    background-color: $color-boton-active !important;
-    border-color: $color-boton-active;
+    background-color: $color-principal !important;
+   
+    border-color: $color-principal;
 }
 .btn-danger:active{
     background-color: $color-danger !important;
@@ -243,8 +244,8 @@ a:hover{
  }
  
  #nav-main .navbar-nav .nav-link.active {
-    color: white;
-    background-color: $color-principal;
+    color: $color-principal;
+    background-color: #fff;
 
  }
 
