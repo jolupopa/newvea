@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Product;
+use App\Profile;
+use App\User;
 
 class OrderController extends BaseAdminController
 {
@@ -14,7 +18,7 @@ class OrderController extends BaseAdminController
      */
     public function index()
     {
-        //
+        // listado de ordenes
     }
 
     /**
@@ -22,9 +26,25 @@ class OrderController extends BaseAdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.order.create');
+        $products = Product::all();
+         // obtengo el arrar del localstorage
+        $locStorage = $request->get('ls');
+        $anunciosLS = json_decode($locStorage);
+        // datos de usuario
+        $user_id =  Auth::user()->id;
+        $profile =  Profile::findOrFail($user_id);
+        $total = 0;
+
+        return view('admin.order.create', [
+                'user' => Auth::user(),
+                'profile'=> $profile,
+                'products' => $products,
+                'anuncios' => $anunciosLS,
+                'total' => $total
+                
+            ]);
     }
 
     /**

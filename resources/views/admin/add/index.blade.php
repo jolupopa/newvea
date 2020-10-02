@@ -10,13 +10,14 @@ VeaInmuebles - creditos de usuario
 	
 			<h2 class="text-center mt-5">Agrega el tipo de Anuncio deseado</h2>
 				<p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Adquiere creditos para publicar tus anuncios.</p>
-	
+		<form action="{{ route('order.create') }}" method="GET">
 		<div class="row" id="lista-anuncios">
+			
 			<div class="col-12 col-xl-8">
 				<div class="row my-3">
 					@foreach($products as $product)
 					<div class="col-md-4">
-					  <div class="card my-4">
+						<div class="card my-4">
 							<div class="card-header">
 								<h5 class="card-title text-center">{{ $product->name }}</h5>
 							</div>
@@ -43,6 +44,7 @@ VeaInmuebles - creditos de usuario
 
 								<p class="mb-2 text-muted text-uppercase small">{{ $product->visibilidad }}</p>
 								<p class="mb-2 text-muted text-uppercase small">{{ $product->sugerencia }}</p>
+							
 							</div>
 							<div class="card-footer">
 								<div class="text-center">
@@ -58,50 +60,52 @@ VeaInmuebles - creditos de usuario
 				
 				
 			</div>
-				<div class="col-xl-4 align-self-center">
-					
-					<div class="card my-5">
-						<div class="card-header">
-							<h5 class="card-title text-center py-4">Carrito de compras
-								<span>
-									<img src="/images/cart.png" alt="cart">
-								</span>
-							</h5>
-						</div>
+			<div class="col-xl-4 align-self-center">
+				
+				<div class="card my-5">
+					<div class="card-header">
+						<h5 class="card-title text-center py-4">Carrito de compras
+							<span>
+								<img src="/images/cart.png" alt="cart">
+							</span>
+						</h5>
+					</div>
 
-						<div class="card-body">
-							<a href="#" id="vaciar-carrito" class="btn btn-danger btn-block mb-4">Vaciar Carrito</a>
-							<div id="carrito">
-								<table id="lista-carrito" class="table table-hover responsive">
-										<thead>
-												<tr>
-														<th width="30%">Anuncio</th>
-														<th width="15%" class="text-right">Precio</th>
-														<th width="20%" class="text-xl-center"> &nbsp;&nbsp;&nbsp;&nbsp; Und</th>
-														<th width="15%" class="text-right">Subtotal</th>
-														<th width="5%"></th>
-												</tr>
-										</thead>
-										
-										<tbody id="lista-items">			
-										</tbody>
-
-										<tfoot>
+					<div class="card-body">
+						<a href="#" id="vaciar-carrito" class="btn btn-danger btn-block mb-4">Vaciar Carrito</a>
+						<div id="carrito">
+							<table id="lista-carrito" class="table table-hover responsive">
+									<thead>
 											<tr>
-												<th width="35%"></th>
-												<th width="10%" class="text-right"></th>
-												<th width="30%" class="text-right">Total S/</th>
-												<th width="10%" class="text-right" id="total">0.00</th>
-												<th width="5%"></th>
+													<th width="30%">Anuncio</th>
+													<th width="15%" class="text-right">Precio</th>
+													<th width="20%" class="text-xl-center"> &nbsp;&nbsp;&nbsp;&nbsp; Und</th>
+													<th width="15%" class="text-right">Subtotal</th>
+													<th width="5%"></th>
 											</tr>
-										</tfoot>
-								</table>
-							</div>
+									</thead>
+									
+									<tbody id="lista-items">			
+									</tbody>
 
-							<p class="text-right">Monto incluye IGV.</p>
+									<tfoot>
+										<tr>
+											<th width="35%"></th>
+											<th width="10%" class="text-right"></th>
+											<th width="30%" class="text-right">Total S/</th>
+											<th width="10%" class="text-right" id="total">0.00</th>
+											<th width="5%"></th>
+										</tr>
+									</tfoot>
+							</table>
 						</div>
+
+						<p class="text-right">Monto incluye IGV.</p>
 					</div>
 				</div>
+			</div>
+			<input id="ls" type="hidden" name="ls" value="aa">
+			
 		</div>
 		<div class="d-flex justify-content-end">
 			<div class="card mb-3 col-12 col-xl-4">
@@ -121,13 +125,15 @@ VeaInmuebles - creditos de usuario
 						</div>
 					</div>
 					<div class="d-flex justify-content-between">
-						<a href="{{ route('order.create') }}" class="btn btn-danger mt-4">Salir</a>
+						<a href="{{ route('credito') }}" class="btn btn-danger mt-4">Salir</a>
+						
 
-						<a href="{{ route('order.create') }}" class="btn btn-primary mt-4">Confirmar Datos de Orden</a>
+						<button type="submit"  class="btn btn-primary mt-4">Confirmar Datos de Orden</button>
 					</div>
 				</div>			
 			</div>
-		</div>	
+		</div>
+	</form>	
 	
 
 	

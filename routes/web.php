@@ -60,7 +60,7 @@ Route::prefix('admin')->middleware('verified')->namespace('Admin')->group(functi
 	Route::get('datos', 'DashboardController@datos')->name('datos');	
 	Route::get('perfil', 'DashboardController@profile')->name('perfil');
 	Route::get('credito', 'DashboardController@credit')->name('credito');
-	Route::get('orderxx', 'DashboardController@ordenxx')->name('ordenxx');
+	
 	Route::get('tareas', 'DashboardController@tasks')->name('tareas');
 	Route::get('contactos', 'DashboardController@contacts')->name('contactos');
 	//users

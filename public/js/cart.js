@@ -1,5 +1,6 @@
 // Variables
 const carrito = document.getElementById('carrito');
+
 const anuncios = document.getElementById('lista-anuncios');
 const listaAnuncios = document.querySelector('#lista-carrito tbody');
 const vaciarCarritoBtn = document.getElementById('vaciar-carrito'); 
@@ -36,23 +37,26 @@ function actualizaMontos(e) {
 	
 	e.preventDefault();
 
+	
+
 	 // fila de item incrementado o decremento
 	 const item = e.target.parentElement.parentElement.parentElement;
-	
+	 
+	 console.log(e.target.classList);
 	if(e.target.classList.contains('incremento')){
 		//suma obtiene datos opera y actualiza parcial
 		leerDatosItem(item);
 		localStorageUpdateFromIncrement(item);
-		obtenerTotal();
-
+		
 	}else if(e.target.classList.contains('decremento')){
 		//resta obtiene datos opera y actualiza parcial
 		leerDatosItem(item);
 		localStorageUpdateFromDecrement(item);
-		obtenerTotal();
+		
 	}	
-
+	obtenerTotal();
 }
+
 function leerDatosItem(item){
 
 	const infoItem = {
@@ -66,29 +70,35 @@ function leerDatosItem(item){
 }
 
 function actualizaParcial(infoItem, item) {
-let partial;
-	partial = infoItem.qty*infoItem.precio
+let partial;	
+	partial = infoItem.qty*infoItem.precio;
 	item.querySelector('.partial').innerHTML= partial.toFixed(2);
-
 }
+
+//onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+// onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
 function localStorageUpdateFromIncrement(item) {
 		//actualizar localstorage
 		let lista_items;
 		lista_items = localStorage.getItem('anuncios');
 		lista_items = JSON.parse(lista_items);
+		
 
 		let id_sel = item.querySelector('a').getAttribute('data-id')
 		
 
-		for (var i = 0; i < lista_items.length; i++) {
+		for (var i = 0; i < lista_items.length ; i++) {
 			if(id_sel === lista_items[i].id){
-					lista_items[i].cantidad += 1;
-					break;  //exit loop since you sum
-					
+					if(lista_items[i].cantidad < 10) {
+						lista_items[i].cantidad++;
+					}	
+						break;  //exit loop since you sum
 			}
 	 }
-	 		
-	 	localStorage.setItem("anuncios", JSON.stringify(lista_items));
+	 
+		 localStorage.setItem("anuncios", JSON.stringify(lista_items));
+		
+		
 
 }
 
@@ -101,7 +111,9 @@ function localStorageUpdateFromDecrement(item) {
 		let id_sel = item.querySelector('a').getAttribute('data-id')
 		for (var i = 0; i < lista_items.length; i++) {
 			if(id_sel === lista_items[i].id){
-					lista_items[i].cantidad -= 1;
+					if(lista_items[i].cantidad > 1) {
+						lista_items[i].cantidad -= 1;
+					}
 					break;  //exit loop since you sum
 					
 			}
@@ -122,6 +134,15 @@ function obtenerTotal(){
 	document.querySelector('#total').innerHTML= total.toFixed(2);
 
 	//console.log(total);
+
+}
+
+function cargarValorOculto(){
+
+let valorLS =  localStorage.getItem('anuncios');
+// vacio null
+document.getElementById('ls').value = valorLS;
+console.log(valorLS);
 
 }
 
@@ -154,6 +175,7 @@ function leerDatosAnuncio(anuncio) {
 	if( lista.findIndex( anuncio => anuncio.id  == infoAnuncio.id ) == -1) {
 		insertarCarrito(infoAnuncio);
 		obtenerTotal();
+		cargarValorOculto();
 		
 	}
 
@@ -168,9 +190,9 @@ function insertarCarrito(anuncio) {
 			<td class="text-right price">${anuncio.precio}</td>
 			<td>		
 					<div class="d-flex justify-content-center" style="width:70px;">
-						<button  onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="m-0 p-1 decremento">-</button>
-						<input type="number" min=0 max=10 value="${anuncio.cantidad}" class="text-right form-control qty" style="width: 4em;" readonly>
-						<button  onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="m-0 p-1 incremento">+</button>
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="m-0 p-1 decremento">-</button>
+						<input type="number" min=1 max=10  value="${anuncio.cantidad}" class="text-right form-control qty" style="width: 4em;" readonly>
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="m-0 p-1 incremento">+</button>
 					</div>
 			</td>
 			<td class="text-right partial">${(anuncio.precio * anuncio.cantidad).toFixed(2)}</td>
@@ -203,6 +225,7 @@ function eliminarAnuncio(e) {
 	
 	 eliminarAnuncioLocalStorage(anuncioId);
 	 obtenerTotal();
+	 cargarValorOculto();
 }
 
 // Elimina los cursos del carrito en el DOM
@@ -217,6 +240,7 @@ function vaciarCarrito() {
 	// Vaciar Local Storage
 	vaciarLocalStorage();
 	document.querySelector('#total').innerHTML= '0.00';
+	cargarValorOculto();
 	
 
 	return false;
@@ -268,8 +292,8 @@ function leerLocalStorage() {
 				<td class="text-right price">${anuncio.precio}</td>
 				<td>		
 						<div class="d-flex justify-content-center" style="width:70px;">
-							<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="m-0 p-1 decremento">-</button>
-							<input type="number" min=0 max=10 value="${anuncio.cantidad}" class="text-right form-control qty"style="width: 4em;" readonly>
+							<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"  class="m-0 p-1 decremento">-</button>
+							<input type="number" min=1 max=10 value="${anuncio.cantidad}" class="text-right form-control qty"style="width: 4em;" readonly>
 							<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="m-0 p-1 incremento">+</button>
 						</div>
 				</td>
@@ -280,8 +304,10 @@ function leerLocalStorage() {
 		 `;
 		 listaAnuncios.appendChild(row);
 		 obtenerTotal();
+		 
 
  });
+ cargarValorOculto();
 }
 
 // Elimina el curso por el ID en Local Storage
