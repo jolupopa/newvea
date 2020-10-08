@@ -10,7 +10,7 @@ VeaInmuebles - propiedades de usuario
     <div class="container">
 
       <!--menu-user-->
-      @include('admin.componente.menu_account')
+      @include('admin.menu_user.menu')
         
       <!--listado-->
       <div class="row">

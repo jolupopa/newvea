@@ -10,7 +10,11 @@ VeaInmuebles - creditos de usuario
 	
 			<h2 class="text-center mt-5">Agrega el tipo de Anuncio deseado</h2>
 				<p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Adquiere creditos para publicar tus anuncios.</p>
-		<form action="{{ route('order.create') }}" method="GET">
+
+		@include('admin.menu_user.alerts')		
+		
+		<form action="{{ route('order.confirma') }}" method="POST">
+		@csrf
 		<div class="row" id="lista-anuncios">
 			
 			<div class="col-12 col-xl-8">
@@ -107,7 +111,7 @@ VeaInmuebles - creditos de usuario
 			<input id="ls" type="hidden" name="ls" value="aa">
 			
 		</div>
-		<div class="d-flex justify-content-end">
+		<div class="d-flex justify-content-end ">
 			<div class="card mb-3 col-12 col-xl-4">
 				<div class="card-body">
 					<a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample1"
@@ -125,10 +129,10 @@ VeaInmuebles - creditos de usuario
 						</div>
 					</div>
 					<div class="d-flex justify-content-between">
-						<a href="{{ route('credito') }}" class="btn btn-danger mt-4">Salir</a>
+						<a href="{{ route('order.index') }}" class="btn btn-danger mt-4">Salir</a>
 						
 
-						<button type="submit"  class="btn btn-primary mt-4">Confirmar Datos de Orden</button>
+						<button id="show_order" type="submit"  class="btn btn-primary mt-4">Confirmar Datos de Orden</button>
 					</div>
 				</div>			
 			</div>
@@ -141,32 +145,33 @@ VeaInmuebles - creditos de usuario
 
 			<div class="card col-12">
 				<div class="card-body">
-					<h5 class="text-primary text-center">Plazo máximo de activación 24 horas. </h5>
+					<h5 class="text-primary text-center">Activación del anuncio 24 horas despues de verificado el pago. </h5>
 				</div>
 			</div>
 			<div class="card col-12">
 				<div class="card-body">
-					<h5 class="mb-4">Medios de Pago:</h5>
-					<img class="mr-2" width="75px"
-						src="/images/pasarela/yape-234x300.png"
-						alt="Yape">
-					<img class="mr-2" width="225px"
-					src="/images/pasarela/plin.jpg"
-					alt="Plin">
+					<h5 class="mb-4">Plataformas de Pagos:</h5>
+					<div class="">
+						<img class="mr-2" width="75px"
+							src="/images/pasarela/yape.png"
+							alt="Yape">
+						<img class="mr-2" width="78px"
+						src="/images/pasarela/plin.png"
+						alt="Plin">
 
 
-					<img class="mr-2" width="75px"
-						src="/images/pasarela/visa.jpg"
-						alt="Visa">
-				
-					<img class="mr-2" width="100px"
-						src="/images/pasarela/paypal.png"
-						alt="PayPal">
-
-						<img class="mr-2" width="100px"
-						src="/images/pasarela/western-union.jpg"
-						alt="Western-Union">	
+						<img class="mr-2" width="75px"
+							src="/images/pasarela/payu.png"
+							alt="Visa">
 					
+						<img class="mr-2" width="100px"
+							src="/images/pasarela/paypal.png"
+							alt="PayPal">
+
+							<img class="mr-2" width="100px"
+							src="/images/pasarela/western-union.jpg"
+							alt="Western-Union">
+					</div>		
 				</div>
 			</div>
 			

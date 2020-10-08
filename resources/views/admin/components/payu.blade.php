@@ -1,0 +1,1 @@
+<div>Proximamente... pagos con payU</div>

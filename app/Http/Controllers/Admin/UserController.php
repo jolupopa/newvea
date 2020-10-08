@@ -21,18 +21,16 @@ class UserController extends BaseAdminController
     {
         
         $this->validate($request, [
+            
             'name' => 'required',
             'nickname' => 'required',
             'num_doc' => 'required',
             'type_doc' => 'required',
-            'address' => 'required|max:45',
-            'name_distrito' => 'required',
-             'id_distrito' => 'required',
+            'address' => 'required|max:100',
              'phone' => 'nullable|numeric',
              'movil' =>'required|numeric',
              'about_me' => 'required',
              'title' => 'required|max:45',
-             'email2' => 'nullable|email:rfc,dns'
             ]);
 
 
@@ -44,14 +42,11 @@ class UserController extends BaseAdminController
             $profile = Profile::find($user->id);
             $profile->type_doc = $request->get('type_doc');
             $profile->num_doc = $request->get('num_doc');
-            $profile->name_distrito = $request->get('name_distrito');
-            $profile->id_distrito = $request->get('id_distrito');
             $profile->address = $request->get('address');
             $profile->phone = $request->get('phone');
             $profile->movil = $request->get('movil');
             $profile->about_me = $request->get('about_me');
             $profile->title = $request->get('title');
-            $profile->email2 = $request->get('email2');
             $profile->save();
             
             $user->name = $request->get('name');

@@ -79,9 +79,12 @@ Route::prefix('admin')->middleware('verified')->namespace('Admin')->group(functi
 
 	//order
 	Route::resource('order', 'OrderController');
+	Route::post('confirma', 'OrderController@confirma')->name('order.confirma');
 
 	//add
 	Route::resource('add', 'AddController');
+
+	Route::resource('payment', 'PaymentController');
 
 
 });

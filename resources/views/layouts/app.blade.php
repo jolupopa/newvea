@@ -33,7 +33,10 @@
 
 <body>
     @include('layouts.incl-app.header')
+
+    
       @yield('content')
+    
     @include('layouts.incl-app.footer')
 
     @include('layouts.incl-app.test-responsive')

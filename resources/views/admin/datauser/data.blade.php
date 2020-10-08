@@ -9,7 +9,7 @@ VeaInmuebles - datos de usuario.
 <section id="my-account">
     <div class="container">
        <!--menu-user-->
-      @include('admin.componente.menu_account')
+      @include('admin.menu_user.menu')
       <div class="row">
         
         <div class="col-12 col-md-6">

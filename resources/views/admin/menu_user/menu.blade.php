@@ -15,7 +15,7 @@
         <a class="nav-link {{ request()->is('admin/propieda*') ? 'active' : '' }} " href="{{ route('admin.propiedad.index') }}">Propiedades</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ request()->is('admin/credito*') ? 'active' : '' }} " href="{{ route('credito') }}">Credito</a>
+        <a class="nav-link {{ request()->is('admin/order*') ? 'active' : '' }} " href="{{ route('order.index') }}">Anuncios</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Premium</a>

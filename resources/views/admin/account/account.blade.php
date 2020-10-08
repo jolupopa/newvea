@@ -9,7 +9,7 @@ VeaInmuebles - cuenta de un usuario.
 <section id="my-account">
     <div class="container">
        <!--menu-user-->
-      @include('admin.componente.menu_account')
+      @include('admin.menu_user.menu')
       <div class="row">
           <div class="col-lg-3 col-6 my-3">
             <!-- small box -->

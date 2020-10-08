@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
 use App\Product;
 use App\Profile;
 use App\User;
+use App\Order;
 
 class OrderController extends BaseAdminController
 {
@@ -19,6 +21,10 @@ class OrderController extends BaseAdminController
     public function index()
     {
         // listado de ordenes
+        $user = Auth::user();
+        $orders = Order::where('user_id', $user->id)->paginate();
+               
+        return view('admin.order.index',['orders' => $orders]);
     }
 
     /**
@@ -26,22 +32,45 @@ class OrderController extends BaseAdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(){
+
+    }
+
+    public function confirma(Request $request)
     {
-        $products = Product::all();
+       
          // obtengo el arrar del localstorage
         $locStorage = $request->get('ls');
         $anunciosLS = json_decode($locStorage);
+        if( $anunciosLS == null )
+        {
+           return back()->withErrors(['Sin datos en el carro de compras']);
+        }
+        $products = Product::all();
         // datos de usuario
         $user_id =  Auth::user()->id;
         $profile =  Profile::findOrFail($user_id);
         $total = 0;
+        $items = [];
 
-        return view('admin.order.create', [
+        foreach ($anunciosLS as $anuncio)
+        {
+            foreach ($products as $product)
+            {
+                if( $anuncio->id == $product->id )
+                {
+                    array_push($items, ['anuncio'=> $product->name, 'cantidad'=> $anuncio->cantidad,
+                    'precio'=> $product->price, 'parcial'=> $product->price*$anuncio->cantidad  ]);
+                    $total = $total + $product->price*$anuncio->cantidad;
+                }
+                
+            }           
+        }
+
+        return view('admin.order.confirm', [
                 'user' => Auth::user(),
                 'profile'=> $profile,
-                'products' => $products,
-                'anuncios' => $anunciosLS,
+                'items' => $items,
                 'total' => $total
                 
             ]);
@@ -55,7 +84,60 @@ class OrderController extends BaseAdminController
      */
     public function store(Request $request)
     {
-        //
+
+        if(  !isset($request->address) ){
+            return redirect()->route('datos')->withFlash('Actulice sus información para poder comprar');
+        }
+        if(  !isset($request->num_doc) ){
+            return redirect()->route('datos')->withFlash('Actulice sus información para poder comprar');
+        }
+        if(  !isset($request->telf) ){
+            return redirect()->route('datos')->withFlash('Actulice sus información para poder comprar');
+        }
+
+        // generar json
+        // [ [ productoi , cantidadi, precioi, parciali], ...  ]
+        $k = 0;
+        $arr = [];
+        while( $k < ($request->num_items) )
+        {
+            $product = 'product' . $k;
+            $cantidad = 'cantidad' . $k;
+            $precio = 'precio' . $k;
+            $parcial = 'parcial' . $k;
+            array_push( $arr, [
+                'producto' => $request->$product,
+                'cantidad' => $request->$cantidad,
+                'precio' => $request->$precio,
+                'parcial' => $request->$parcial
+            ]);
+            $k = $k +1;
+        }
+        
+        $order = New Order;
+        $order->tipo_doc = $request->type_doc;
+        $order->num_doc = $request->num_doc;
+        $order->fullname = $request->full_namec;
+        $order->address = $request->address;
+        $order->telf = $request->telf;
+        $order->email = $request->email;
+        $order->products = $arr;
+        $order->total = $request->total;
+        $order->user_id = Auth::user()->id;
+        $order->save();
+
+
+        return redirect()->route('payment.show', $order->id);
+
+
+       
+
+      
+      
+
+
+        
+       
     }
 
     /**
@@ -66,8 +148,13 @@ class OrderController extends BaseAdminController
      */
     public function show($id)
     {
-        //
-    }
+        $order = Order::findOrFail($id);
+        $items = $order->products;
+       
+
+       // return $items[i]['producto'];
+        return view('admin.order.show', ['order' => $order, 'items'=> $items ]);
+    }    
 
     /**
      * Show the form for editing the specified resource.
@@ -78,6 +165,7 @@ class OrderController extends BaseAdminController
     public function edit($id)
     {
         //
+        return 'desde edit' ;
     }
 
     /**
@@ -90,6 +178,7 @@ class OrderController extends BaseAdminController
     public function update(Request $request, $id)
     {
         //
+        return 'desde update' ;
     }
 
     /**
@@ -101,5 +190,10 @@ class OrderController extends BaseAdminController
     public function destroy($id)
     {
         //
+        return 'desde destroy' ;
     }
+
+    
+
+   
 }

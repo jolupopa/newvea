@@ -44,23 +44,12 @@ class DashboardController extends BaseAdminController
             "user" => $user,
             'properties' => $properties,
             'distrito' => $distrito_user,
-            'nav_menu' => 'admin.componente.menu_account'
+            'nav_menu' => 'admin.menu_user.menu'
         ]);
-    }
-
-    public function credit()
-    {
-        
-        return view('admin.credit.credits');
     }
 
    
 
-    public function ordenback()
-    {
-        $products = Product::all();
-        return view('admin.credit.orden' , [ 'products' => $products]);
-    }
 
     public function tasks()
     {

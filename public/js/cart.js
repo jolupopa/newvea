@@ -142,7 +142,7 @@ function cargarValorOculto(){
 let valorLS =  localStorage.getItem('anuncios');
 // vacio null
 document.getElementById('ls').value = valorLS;
-console.log(valorLS);
+
 
 }
 
@@ -330,7 +330,3 @@ function vaciarLocalStorage() {
  localStorage.clear();
 
 }
-
-
-
-
