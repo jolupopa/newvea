@@ -9,7 +9,7 @@ VeaInmuebles - edición de propiedades de usuario
 <section id="edit_property">
 <div class="container"> 
    <!--menu-user-->
-      @include('admin.componente.menu_account')
+      @include('admin.menu_user.menu')
     <!--galeria--->
     <div class="row">
       <div class="col-12">

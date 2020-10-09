@@ -30,8 +30,8 @@ class User extends Authenticatable implements MustVerifyEmail {
 		'in_home',
 		'url_in_home',
 		'active',
-		'num_regulars',
-		 'num_featured',
+		'num_regulars', // anuncios regulares
+		 'num_featured', // anuncios destacados
 		 'max_properties'
 	];
 
@@ -66,6 +66,17 @@ class User extends Authenticatable implements MustVerifyEmail {
 	{
 		return $this->hasOne(Profile::class);
 	}
+/**
+	 * Implementado igual de tweets.
+	 */
+	public function properties()
+    {
+        return $this->hasMany(Property::class)->latest();
+		}
+		public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 
 
 

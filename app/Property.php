@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Property extends Model {
 
+	use Likable;
+
 	protected $dates = [
 		'published_at', 'published_end'
 ];
@@ -85,6 +87,12 @@ class Property extends Model {
 	public function type_property()
 	{
 		return $this->belongsTo(TypeProperty::class);
+	}
+	
+	// de tweets
+	public function user()
+	{
+			return $this->belongsTo(User::class);
 	}
 
 

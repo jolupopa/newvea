@@ -38,7 +38,10 @@
           <div class="box-label">
             <span class="{{ $property->operation == 'venta' ? 'label-sale' : 'label-rent' }}">{{ $property->operation}}</span>
           </div>
-          <a href="#" class="favorite"> <i class="far fa-heart text-white"></i> </a>
+          {{-- favoritos --}}
+          <a href="#" class="favorite"><i class="far fa-heart"></i></a>
+
+
           @forelse( $property->photos as $foto )
             
             <img src="img/properties/{{ $foto->url}}" class="img-fluid"  width="640px" alt="Foto de inmueble">
@@ -67,10 +70,11 @@
               <span>{{ $property->bathroon }} <i class="fas fa-bath "></i></span>
               <span>{{ $property->num_cars}} <i class="fas fa-car "></i></span>
             </div>
-            <div class="pt-3 border-top d-flex justify-content-between">
+            <div class="pt-3 border-top d-flex justify-content-between bg-white">
               <a href="{{ route('properties.promotor.index', $property->seller_id)}}" class="card-link"><i class="fas fa-user-edit"></i>
                 <span class="text-muted">{{ $property->profile->user->name}}</span>
               </a>
+              <span>@livewire('like-component')</span>
               <span class=""><i class="far fa-clock mr-2"></i>{{ $property->published_at }}</span>
             </div>
           </div>

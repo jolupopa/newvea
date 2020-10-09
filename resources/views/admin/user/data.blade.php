@@ -14,18 +14,18 @@ VeaInmuebles - datos de usuario.
         
         <div class="col-12 col-md-6">
           <!--datos de usuario-->
-          @include('admin.datauser.sections.user_data')
+          @include('admin.user.sections.user_data')
                
         </div>
 
         
         <div class="col-12 col-md-6">
           <!--redes sociales upload-foto-->
-          @include('admin.datauser.sections.redes')
+          @include('admin.user.sections.redes')
           <!--imagen de perfil-->
-          @include('admin.datauser.sections.upload_foto')
+          @include('admin.user.sections.upload_foto')
            <!--cambiar password-->
-          @include('admin.datauser.sections.change_pass')
+          @include('admin.user.sections.change_pass')
      
         </div>
         

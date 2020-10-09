@@ -146,21 +146,7 @@ VeaInmuebles - propiedades de usuario
                   @enderror
                 </div>
               </div>
-              <div class="row">
-                <div class="form-group col-6">
-                  
-                  <select class="form-control form-control-lg @error('destacada') is-invalid @enderror" name="destacada">
-                  <option value="">Tipo de Anuncio</option>
-                    <option value="0">Regular</option>
-                    <option value="1">Destacado</option>
-                  </select>
-                  @error('destacada')
-                  <span class="invalid-feedback" role="alert">
-                      <strong class="text-white">{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
-              </div>
+             
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

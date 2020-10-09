@@ -6,6 +6,39 @@
     background-color: white;
 }
 
+// like-btn
+.like-btn{
+    display: inline-block;
+    Cursor: pointer;
+    width: 80px;
+    height: 80px;
+    z-index: 20;
+  }
+ 
+ .like-btn{
+    background: url('../images/heart.png') no-repeat 0% 50%;
+    background-size: 2900%;
+  }
+  
+.like-active{
+    animation-name: animate;
+    animation-duration: .8s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+ .like-active{
+    animation-timing-function: steps(28);
+  }
+  
+  @keyframes animate{
+    0%   { background-position: left;  }
+    50%  { background-position: right; }
+    100% { background-position: right; }
+  }
+  
+  // fin de like-btn
+  
+
 //+++++++++++++++++++++++++++
 // patrones de colores
 //+++++++++++++++++++++++++++
@@ -57,7 +90,7 @@ a:hover{
 }
 
  // sonbra
- .shadow-soft {
+ .shadow-soft{
     box-shadow:0 .25rem 1.875rem rgba(42,53,79,.05)!important
     }
 
@@ -591,6 +624,8 @@ div.more-options:before {
 .favorite:hover{
     color: $color-secundario;
 }
+
+
 
 #destacados .card-body{
     border-bottom: 1px solid $color-principal;

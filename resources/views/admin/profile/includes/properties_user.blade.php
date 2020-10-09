@@ -26,9 +26,9 @@
 					</div>
 					
 						<div class="location text-center mb-2">
-							<span class="text-capitalize">{{ $property->distrito->provincia->departamento->name }} </span> >
-							<span class="text-capitalize">{{ $property->distrito->provincia->name }} </span> >
-							<span class="text-capitalize">{{ $property->distrito->name }} </span> 
+							<span class="text-capitalize">departamento error</span> >
+							<span class="text-capitalize">provincia error</span> >
+							<span class="text-capitalize">distrito error</span> 
 					</div>
 
 				

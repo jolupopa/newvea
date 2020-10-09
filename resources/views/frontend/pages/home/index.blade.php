@@ -52,6 +52,8 @@ VeaInmuebles es una pagiana de gestion inmobiliaria.
 			owl.owlcarousel2_filter( filter );
 		})
 
+
+
 		var owl = $('#owl_destacados').owlCarousel({
 					    loop: false,
 					    margin:25,
@@ -82,4 +84,6 @@ VeaInmuebles es una pagiana de gestion inmobiliaria.
 
 	})();
 </script>
+
+
 @endpush

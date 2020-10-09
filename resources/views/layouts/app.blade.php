@@ -25,6 +25,7 @@
   @stack('styles')
   <!-- estilos vea -->
   <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+    @livewireStyles
 
 
 
@@ -42,7 +43,8 @@
     @include('layouts.incl-app.test-responsive')
 
     @yield('modals')
-  
+
+   
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
@@ -54,6 +56,8 @@
    @stack('scripts')
   <script src="{{ asset('js/scripts.js') }}"></script>
   @stack('load-plugin')
+     @livewireSripts
+   
 </body>
 
 </html>

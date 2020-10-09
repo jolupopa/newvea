@@ -63,7 +63,6 @@ class PropertyController extends BaseAdminController
             'title'=> 'required',
             'operation' => 'required',
             'type_property_id' => 'required',
-            'destacada' => 'required'
             ]);
         
        
@@ -73,7 +72,6 @@ class PropertyController extends BaseAdminController
             'title' => $request->get('title'),
             'operation'=> $request->get('operation'),
             'type_property_id' => $request->get('type_property_id'),
-            'destacada' => $request->get('destacada'),
             'seller_id' =>  Auth::user()->id
         ]);   
 

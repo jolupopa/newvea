@@ -90,6 +90,12 @@ VeaInmuebles - creditos de usuario
 		<div class="card-footer"> Trujillo {{NOW()}} </div>
 
 	</div>
+	@if( $order->status == 'Verificando pago')
+	<h1 class="text-center my-4">Puede pagar ahora! </h1>
+	<h2 class="text-center mb-4">Si ya pago estamos verificando...</h2>
+
+	@include('admin.components.platforms')
+	@endif
 </div>
 @endsection
 
