@@ -8,7 +8,9 @@ VeaInmuebles es una pagiana de gestion inmobiliaria.
 @section('content')
 
     @include('frontend.pages.home.sections.parallax')
-    @include('frontend.pages.home.sections.favoritos')
+		@if( $autenticaded )
+   	 @include('frontend.pages.home.sections.favoritos')
+		@endif
     @include('frontend.pages.home.sections.destacados')
     @include('frontend.pages.home.sections.servicios')
     @include('frontend.pages.home.sections.grid-prop-agent')
@@ -38,6 +40,7 @@ VeaInmuebles es una pagiana de gestion inmobiliaria.
 @push('scripts')
 <script src="vendor/owl-carousel/owl.carousel.min.js"></script>
 <script src="js/owlcarousel2-filter.min.js"></script>
+
 
 
 @endpush
@@ -84,6 +87,8 @@ VeaInmuebles es una pagiana de gestion inmobiliaria.
 
 	})();
 </script>
+
+
 
 
 @endpush

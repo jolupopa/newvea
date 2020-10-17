@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Property extends Model {
 
-	use Likable;
 
 	protected $dates = [
 		'published_at', 'published_end'
@@ -50,7 +49,10 @@ class Property extends Model {
 		'published_end',
 		'seller_id',
 		'city_id',
+		'name_departamento',
+		'name_provincia',
 		'name_distrito',
+		'departamento_id',
 		'provincia_id',
 		'distrito_id',
 		'type_property_id'
@@ -89,11 +91,7 @@ class Property extends Model {
 		return $this->belongsTo(TypeProperty::class);
 	}
 	
-	// de tweets
-	public function user()
-	{
-			return $this->belongsTo(User::class);
-	}
+
 
 
 	public function seller()
@@ -127,6 +125,12 @@ class Property extends Model {
 	public function details()
     {
         return $this->belongsToMany(Detail::class);
+	}
+
+	// likes que ha recibido una propiedad
+	public function likes(){
+		return $this->belongsToMany(User::class, 'likes_property');
+
 	}
 	
 	

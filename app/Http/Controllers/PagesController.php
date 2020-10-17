@@ -11,6 +11,7 @@ use App\Provincia;
 use App\Testimony;
 use App\TypeProperty;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 
 
@@ -26,6 +27,8 @@ class PagesController extends Controller
       $user_destacados = User::with('profile')->where('in_home', true)->get();
         $cities = Provincia::where('selection', true)
         ->orderBy('name', 'asc')->get();
+
+        $likes = 
       
 
         $sponsors = Sponsor::where('option', true)->get();
@@ -46,6 +49,17 @@ class PagesController extends Controller
        
         $testimonies = Testimony::all();
 
+        $autenticaded = Auth::check() ? True : False ;
+
+        if( $autenticaded){
+            $usuario = auth()->user();
+            
+        } else {
+            $usuario = null;
+        }
+        //obtener si al ausuario le gusta la propiedad y si esta logueado
+        $like = (auth()->user()) ?  true : false;
+
       
         
         return view('frontend.pages.home.index', [
@@ -54,7 +68,11 @@ class PagesController extends Controller
             'cities' => $cities,
             'user_destacados'=> $user_destacados,
             'sponsors'=> $sponsors,
-            'types' => $types
+            'types' => $types,
+            'autenticaded' => $autenticaded,
+            'usuario' => $usuario,
+            'like' => $like
+            
         ]);
     }
 

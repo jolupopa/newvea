@@ -10,67 +10,47 @@
         
           <!-- contenido -->
            
-          <div class="bg-contenedor">
+          <div class="container bg-dark">
             
-            <ul class="list-unstyled">
-
-                <li class="top-site-outer mx-4 my-2">
-                    <div class="border top-site-inner bg-white my-4">
+            <div class="row">
+              @forelse( $usuario->meGusta as $property)
+                <div class="col-6 col-md-2">
+                    <div class=" bg-dark my-4">
                       <a class="" href="#">
-                        <div class="tile">
-                            <div class="screenshot" style="background-image: url(img/users/1.jpg);">
-                            </div>
+                        <div class="text-center">
+                          @forelse( $property->photos as $foto)
+                            @if( $foto->featured == 1)
+                              <img src="/storage/properties/{{ $foto->url}}" class="img-fluid"  width="100px" alt="Foto de inmueble">
+                            @endif
+                            @empty
+                            <img src="/images/property_default.jpg" class="img-fluid"  width="400px" alt="Foto de inmueble">
+                          @endforelse 
                         </div>
-                        <div class="text-center bg-contenedor">
-                            <p class="h6 py-0 my-0" ><small> Departamento</small></p>
-                            <p class="h6 py-0 my-0" ><small>Trujillo</small> </p>
-                            <p class="h6 py-0 my-0"><small>En Venta</small> </p>
-                            <p class="h6 py-0 my-0"><small>$ 14,000</small> </p>
+                            
+                       
+                        <div class="text-center bg-dark text-white">
+                            <h6 class="mt-2" >{{ $property->title }} </h6>
+                            <h5 class=""> En {{ $property->operation }}</h5>
+                            <h5 class="">S/. {{ $property->precio}}</h5>
+                           
                         </div>
-                        </a>
-                            <button class="btn btn-danger btn-remove rounded-circle">X</button>
-                        
-                    </div>
-                </li>
-
-                <li class="top-site-outer mx-4 my-2">
-                  <div class="border top-site-inner bg-white my-4">
-                    <a class="" href="#">
-                      <div class="tile">
-                          <div class="screenshot" style="background-image: url(img/users/1.jpg);">
-                          </div>
-                      </div>
-                      <div class="text-center bg-contenedor">
-                          <p class="h6 py-0 my-0" ><small> Departamento</small></p>
-                          <p class="h6 py-0 my-0" ><small>Trujillo</small> </p>
-                          <p class="h6 py-0 my-0"><small>En Venta</small> </p>
-                          <p class="h6 py-0 my-0"><small>$ 14,000</small> </p>
-                      </div>
                       </a>
-                          <button class="btn btn-danger btn-remove rounded-circle">X</button>
-                      
-                  </div>
-              </li>
-
-              <li class="top-site-outer mx-4 my-2">
-                <div class="border top-site-inner bg-white my-4">
-                  <a class="" href="#">
-                    <div class="tile">
-                        <div class="screenshot" style="background-image: url(img/users/1.jpg);">
-                        </div>
+                          <div class="d-flex justify-content-around"> 
+                          <form method="POST" action="{{ route('likes.destroy', $property->id )}}">
+                          @csrf    
+                            <button type="submit" class="btn btn-danger   p-1 py-0">Eliminar</button> 
+                          <form>  
+                            <a href="{{ route('properties.show', $property->id )}}" class="btn btn-primary p-1 ">Detalle</a> 
+                          </div>   
                     </div>
-                    <div class="text-center bg-contenedor">
-                        <p class="h6 py-0 my-0" ><small> Departamento</small></p>
-                        <p class="h6 py-0 my-0" ><small>Trujillo</small> </p>
-                        <p class="h6 py-0 my-0"><small>En Venta</small> </p>
-                        <p class="h6 py-0 my-0"><small>$ 14,000</small> </p>
-                    </div>
-                    </a>
-                        <button class="btn btn-danger btn-remove rounded-circle">X</button>
-                    
                 </div>
-            </li>
-            </ul>
+               @empty
+               <div class="col-12 text-center">
+                <h1 class="text-white">Sin archivos en lista Favoritos</h1>
+               </div>
+
+              @endforelse    
+            </div>
           </div>
          
 

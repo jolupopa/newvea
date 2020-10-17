@@ -73,10 +73,13 @@ class User extends Authenticatable implements MustVerifyEmail {
     {
         return $this->hasMany(Property::class)->latest();
 		}
-		public function likes()
-    {
-        return $this->hasMany(Like::class);
-    }
+
+	//propiedadesa a las que el usuario a dado me gusta	
+	public function meGusta(){
+		return $this->belongsToMany(Property::class, 'likes_property'); 
+
+	}	
+
 
 
 

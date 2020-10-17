@@ -18,14 +18,18 @@
   <link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet">
 
   <!-- Styles-->
-  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('css/bootstrapback.min.css') }}"> --}}
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
   <!-- Font Awesome 5 -->
   <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
   
   @stack('styles')
   <!-- estilos vea -->
   <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
-    @livewireStyles
+   
 
 
 
@@ -33,10 +37,12 @@
 </head>
 
 <body>
+
     @include('layouts.incl-app.header')
 
-    
+    <div id="app">
       @yield('content')
+    </div>  
     
     @include('layouts.incl-app.footer')
 
@@ -47,17 +53,19 @@
    
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
-  <script src="{{ asset('js/popper.min.js') }}"></script>
-  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+  {{-- <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script> --}}
+  {{-- <script src="{{ asset('js/popper.min.js') }}"></script> --}}
+  {{-- <script src="{{ asset('js/bootstrap.min.js') }}"></script> --}}
+   <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('js/jquery.stickit.min.js') }}"></script>
   <script src="{{ asset('js/picturefill.min.js') }}"></script>
-
+  
+ 
    @stack('scripts')
   <script src="{{ asset('js/scripts.js') }}"></script>
   @stack('load-plugin')
-     @livewireSripts
-   
+     
+
 </body>
 
 </html>

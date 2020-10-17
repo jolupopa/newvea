@@ -12,7 +12,7 @@
 }
 
 .like-btn {
-  background: url("../images/heart.png") no-repeat 0% 50%;
+  background: url("../images/heart.png") no-repeat 3.5% 50%;
   background-size: 2900%;
 }
 
@@ -507,29 +507,27 @@ div.more-options:before {
   left: .2rem;
 }
 
-.top-site-outer {
+.xtop-site-outer {
   padding: 0 16px;
   display: inline-block;
 }
 
-.top-site-outer .top-site-inner {
+.xtop-site-outer .top-site-inner {
   position: relative;
 }
 
-.top-site-outer .top-site-inner > a {
+.xtop-site-outer .top-site-inner > a {
   color: inherit;
   display: block;
   outline: none;
 }
 
-.top-site-outer .tile {
+.xtop-site-outer .tile {
   cursor: pointer;
-  height: 96px;
   position: relative;
-  width: 96px;
 }
 
-.top-site-outer .screenshot {
+.xtop-site-outer .screenshot {
   background-position: top left;
   background-size: cover;
   height: 100%;
@@ -540,7 +538,7 @@ div.more-options:before {
   width: 100%;
 }
 
-.top-site-outer .title {
+.xtop-site-outer .title {
   background-color: White;
   color: red;
   font: message-box;
@@ -554,6 +552,14 @@ div.more-options:before {
 .btn-remove {
   position: absolute;
   top: 0;
+  left: 100%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.btn-detalle {
+  position: absolute;
+  top: 100%;
   left: 100%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -607,8 +613,8 @@ div.more-options:before {
 }
 
 .favorite {
-  left: 85%;
-  top: 40%;
+  left: 75%;
+  top: 10%;
 }
 
 .favorite:hover {

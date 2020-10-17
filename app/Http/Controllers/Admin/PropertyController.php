@@ -101,6 +101,7 @@ class PropertyController extends BaseAdminController
         $type_properties = TypeProperty::all();
         $departamentos = Departamento::all();
        
+       
         return view('admin.properties.edit',[
             'property' => $property,
             'type_properties'=> $type_properties,
@@ -119,14 +120,19 @@ class PropertyController extends BaseAdminController
     {
         $property = Property::find($id);
 
+      
+
         $this->validate($request,
          [  
-             'title'=> 'required',
+            'title'=> 'required',
             'detalle'=> 'required',
             'direccion'=> 'required',
             'precio' => 'required',
             'operation' => 'required',
             'name_distrito' => 'required',
+            'name_provincia' => 'required',
+            'name_departamento' => 'required',
+            'departamento_id' => 'required',
             'provincia_id' => 'required',
             'distrito_id' => 'required',
             'type_property_id' => 'required',
@@ -153,6 +159,8 @@ class PropertyController extends BaseAdminController
             'en_judicial' => 'nullable' 
             
         ]);
+
+        
        
         $property->title = $request->get('title');
         $property->resumen = Str::limit( $request->get('detalle'), 200, ' (...)');
@@ -161,6 +169,9 @@ class PropertyController extends BaseAdminController
         $property->precio = $request->get('precio');
         $property->operation = $request->get('operation');
         $property->name_distrito = $request->get('name_distrito');
+        $property->name_provincia = $request->get('name_provincia');
+        $property->name_departamento = $request->get('name_departamento');
+        $property->departamento_id = $request->get('departamento_id');
         $property->provincia_id = $request->get('provincia_id');
         $property->distrito_id = $request->get('distrito_id');
         $property->type_property_id = $request->get('type_property_id');

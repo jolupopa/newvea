@@ -1,5 +1,5 @@
 
-<section id="destacados" class="container pb-5 mb-5">
+<section id="destacados" class="container pb-5 my-5">
 
   <div class="row mt-0 pt-0">
     <div class="col-12 text-center">
@@ -34,51 +34,57 @@
     
         @foreach($properties as $property)
         <div class="item {{ $property->type_property->slug}}">
-        <div class="card" style="width: 100%;">
-          <div class="box-label">
-            <span class="{{ $property->operation == 'venta' ? 'label-sale' : 'label-rent' }}">{{ $property->operation}}</span>
-          </div>
-          {{-- favoritos --}}
-          <a href="#" class="favorite"><i class="far fa-heart"></i></a>
-
-
-          @forelse( $property->photos as $foto )
-            
-            <img src="img/properties/{{ $foto->url}}" class="img-fluid"  width="640px" alt="Foto de inmueble">
-
-          @empty
-            <img src="images/property_default.jpg" class="img-fluid"  width="640px" alt="Foto de inmueble">
-            
-          @endforelse  
-          <div class="card-body bg-contenedor">
-            <a href="{{ route('properties.show', $property->id )}}">
-              <h5 class="text-info">{{ $property->title }}...</h5>
-            </a> 
-
-            <h5 class="text-right py-0 my-0">  
-              <span class="badge badge-secondary">{{ $property->type_property->name}}</span>
-            </h5>
-
-            <h6>  
-              <span class=""><i class="fa fa-map-marker mr-2"></i>{{ $property->distrito->name}} - {{ $property->distrito->provincia->name}}</span>
-            </h6>
-            
-            <div class="py-3 border-top d-flex justify-content-around align-items-end">
-              <span> <span class="">S/.</span> {{ number_format($property->precio, 2 ) }}</span>
-              <span>{{ $property->area }} <span class="font-weight-bold">m2</span></span>
-              <span>{{ $property->num_cuartos }} <i class="fas fa-bed  "></i></span>
-              <span>{{ $property->bathroon }} <i class="fas fa-bath "></i></span>
-              <span>{{ $property->num_cars}} <i class="fas fa-car "></i></span>
+          <div class="card" style="width: 100%;">
+            <div class="box-label">
+              <span class="{{ $property->operation == 'venta' ? 'label-sale' : 'label-rent' }}">{{ $property->operation}}</span>
             </div>
-            <div class="pt-3 border-top d-flex justify-content-between bg-white">
-              <a href="{{ route('properties.promotor.index', $property->seller_id)}}" class="card-link"><i class="fas fa-user-edit"></i>
-                <span class="text-muted">{{ $property->profile->user->name}}</span>
-              </a>
-              <span>@livewire('like-component')</span>
-              <span class=""><i class="far fa-clock mr-2"></i>{{ $property->published_at }}</span>
+            {{-- like button --}}
+            <span class="favorite">
+             <like-button 
+                  property-id="{{ $property->id }}" 
+                  like = "{{ $like }}"
+                
+                ></like-button>
+            </span>
+
+
+            @forelse( $property->photos as $foto )
+              
+              <img src="img/properties/{{ $foto->url}}" class="img-fluid"  width="640px" alt="Foto de inmueble">
+
+            @empty
+              <img src="images/property_default.jpg" class="img-fluid"  width="640px" alt="Foto de inmueble">
+              
+            @endforelse  
+            <div class="card-body bg-contenedor">
+              <a href="{{ route('properties.show', $property->id )}}">
+                <h5 class="text-info">{{ $property->title }}...</h5>
+              </a> 
+
+              <h5 class="text-right py-0 my-0">  
+                <span class="badge badge-secondary">{{ $property->type_property->name}}</span>
+              </h5>
+
+              <h6>  
+                <span class=""><i class="fa fa-map-marker mr-2"></i>{{ $property->name_distrito }} - {{ $property->name_provincia }}</span>
+              </h6>
+              
+              <div class="py-3 border-top d-flex justify-content-around align-items-end">
+                <span> <span class="">S/.</span> {{ number_format($property->precio, 2 ) }}</span>
+                <span>{{ $property->area }} <span class="font-weight-bold">m2</span></span>
+                <span>{{ $property->num_cuartos }} <i class="fas fa-bed  "></i></span>
+                <span>{{ $property->bathroon }} <i class="fas fa-bath "></i></span>
+                <span>{{ $property->num_cars}} <i class="fas fa-car "></i></span>
+              </div>
+              <div class="pt-3 border-top d-flex justify-content-between">
+                <a href="{{ route('properties.promotor.index', $property->seller_id)}}" class="card-link"><i class="fas fa-user-edit"></i>
+                  <span class="text-muted">{{ $property->profile->user->name}}</span>
+                </a>
+              
+                <span class=""><i class="far fa-clock mr-2"></i>{{ $property->published_at }}</span>
+              </div>
             </div>
           </div>
-        </div>
         </div>
         @endforeach
 

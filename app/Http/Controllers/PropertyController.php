@@ -30,13 +30,20 @@ class PropertyController extends Controller
     // detalle de inmueble
     public function show(Property $property)
     {
+        //obtener si al ausuario le gusta la propiedad y si esta logueado
+        $like = (auth()->user()) ?  auth()->user()->meGusta->contains( $property->id) : false;
+        //obtener la cantidad de likes
+        $likes = $property->likes->count();
+
         $user = User::find( $property->seller_id);
         $properties = Property::with(['photos', 'features', 'profile'])
         ->where('id', $property->id)->get();
        
         return view('frontend.pages.properties.detail',[
             'properties' => $properties,
-            'user' => $user
+            'user' => $user,
+            'like' => $like,
+            'likes' => $likes
         ]);
     }
 

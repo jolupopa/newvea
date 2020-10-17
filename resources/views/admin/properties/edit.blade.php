@@ -55,8 +55,51 @@ VeaInmuebles - edición de propiedades de usuario
             <div class="card" style="width:100%">
                     
               <div class="card-body" style="border-top: 2px solid blue;">
+                  <!--tipo - operacion y precio de propiedad -->
+                <div class="row">
+                  <div class="form-group col-4 text-center">
+                    <label for="type_property_id">Tipo de inmueble</label>
+                    <select class="form-control select2bs4  @error('type_property_id') is-invalid @enderror" id="type_property_id" name="type_property_id" style="width: 100%;">
+                      <option value="">Selecciona un inmueble</option>
+                      @foreach($type_properties as $type_property)
+                      <option value="{{ $type_property->id }}"
+                      {{ old('type_property_id', $property->type_property_id) == $type_property->id ? 'selected' : '' }} >
+                      {{ $type_property->name }}
+                      </option>
+                      @endforeach 
+                    </select>
+                    @error('type_property_id')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-4 text-center">
+                    <label for="operation">Tipo de Operación</label>
+                    <select class="form-control select2bs4  @error('operation') is-invalid @enderror" id="operation" name="operation" style="width: 100%;">
+                      <option value="">Operación</option>
+                      <option value="venta"  {{ old('operation', $property->operation) == 'venta' ? 'selected' : '' }}
+                      >Venta</option>
+                      <option value="alquiler"  {{ old('operation', $property->operation) == 'alquiler' ? 'selected' : '' }}>Alquiler</option>
+                    </select>
+                    @error('operation')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-4 text-center">
+                    <label for="precio">Precio en S/.</label>
+                    <input type="number" class="form-control @error('precio') is-invalid @enderror"  name="precio" min="0" max="10000000" value="{{ old('precio', $property->precio) }}" placeholder="Precio ">
+                    @error('precio')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+                
                 <!--titulo-->
-               
                 <div class="form-group">
                   <label for="title">Titulo</label>
                   <input type="text" class="form-control @error('title') is-invalid @enderror"  name="title"  value="{{ old('title', $property->title) }}" placeholder="Titulo">
@@ -67,7 +110,7 @@ VeaInmuebles - edición de propiedades de usuario
                   @enderror
                 </div>
                 
-                <!--resumen--->
+               
                
                 <!---detalle--->
                 <div class="form-group">
@@ -88,16 +131,57 @@ VeaInmuebles - edición de propiedades de usuario
             <div class="card" style="width:100%">
               <div class="card-body" style="border-top: 2px solid blue;">
                 <h5>Ubicación</h5>  
-                  <!--ubigeo-->
+                  
                 <div class="row">
-                  @include('frontend.pages.includes.ubi_geo')                  
-                  <input type="hidden" id="distrito_id" name="distrito_id"  value="{{ old('distrito_id', $property->distrito_id )}}">
-                   <input type="hidden" id="provincia_id" name="provincia_id"  value="{{ old('provincia_id', $property->provincia_id) }}">
+                  <!--ubigeo-->
+                  @include('frontend.pages.includes.ubi_geo') 
 
-                  <!--direccion-->
-                  <div class="col-8">
+                  <input type="hidden" id="distrito_id" name="distrito_id"  value="{{ old('distrito_id', $property->distrito_id )}}">
+
+                  <input type="hidden" id="provincia_id" name="provincia_id"  value="{{ old('provincia_id', $property->provincia_id) }}">
+
+                  <input type="hidden" id="departamento_id" name="departamento_id"  value="{{ old('departamento_id', $property->departamento_id) }}">
+
+                   <!--departamento-->
+                  <div class="col-4">
                     <div class="form-group">
-                      <label for="direccion">Dirección</label>
+                      <label for="name_departamento">Departamento</label>
+                      <input type="text" id="name_departamento" name="name_departamento" class="form-control shadow-soft form-control-lg @error('name_departamento') is-invalid @enderror" value="{{ old('name_departamento', $property->name_departamento ) }}" readonly>
+                        @error('name_departamento')
+                          <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                          </span>
+                        @enderror
+                    </div>
+                  </div>
+                   <!--provincia-->
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="name_provincia">Provincia</label>
+                      <input type="text" id="name_provincia" name="name_provincia" class="form-control shadow-soft form-control-lg @error('name_provincia') is-invalid @enderror" value="{{ old('name_provincia', $property->name_provincia ) }}" readonly>
+                        @error('name_provincia')
+                          <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                          </span>
+                        @enderror
+                    </div>
+                  </div>
+                   <!--distrito-->
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="name_distrito">Distrito</label>
+                      <input type="text" id="name_distrito" name="name_distrito" class="form-control shadow-soft form-control-lg @error('name_distrito') is-invalid @enderror" value="{{ old('name_distrito', $property->name_distrito ) }}" readonly>
+                        @error('name_distrito')
+                          <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                          </span>
+                        @enderror
+                    </div>
+                  </div>
+                  <!--direccion-->
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="direccion">Dirección [ Pasaje,Jirón,Calle,Av; -  Urb. ó Centro Poblado ]</label>
                       <input type="text" id="direccion" name="direccion" class="form-control shadow-soft form-control-lg @error('direccion') is-invalid @enderror" value="{{ old('direccion', $property->direccion ) }}">
                         @error('direccion')
                           <span class="invalid-feedback" role="alert">
@@ -107,18 +191,6 @@ VeaInmuebles - edición de propiedades de usuario
                     </div>
                   </div>
 
-
-                  <div class="col-4">
-                    <div class="form-group">
-                      <label for="name_distrito">Distrito Seleccionado</label>
-                      <input type="text" id="name_distrito" name="name_distrito" class="form-control shadow-soft form-control-lg @error('name_distrito') is-invalid @enderror" value="{{ old('name_distrito', $property->name_distrito ) }}" readonly>
-                        @error('name_distrito')
-                          <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                          </span>
-                        @enderror
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -170,49 +242,7 @@ VeaInmuebles - edición de propiedades de usuario
             <div class="card mb-3" style="width:100%">
                     
               <div class="card-body" style="border-top: 2px solid blue;">  
-              <!--tipo - operacion y precio de propiedad -->
-                <div class="row">
-                  <div class="form-group col-4 text-center">
-                    <label for="type_property_id">Tipo de inmueble</label>
-                    <select class="form-control select2bs4  @error('type_property_id') is-invalid @enderror" id="type_property_id" name="type_property_id" style="width: 100%;">
-                      <option value="">Selecciona un inmueble</option>
-                      @foreach($type_properties as $type_property)
-                      <option value="{{ $type_property->id }}"
-                      {{ old('type_property_id', $property->type_property_id) == $type_property->id ? 'selected' : '' }} >
-                      {{ $type_property->name }}
-                      </option>
-                      @endforeach 
-                    </select>
-                    @error('type_property_id')
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                      </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-4 text-center">
-                    <label for="operation">Tipo de Operación</label>
-                    <select class="form-control select2bs4  @error('operation') is-invalid @enderror" id="operation" name="operation" style="width: 100%;">
-                      <option value="">Operación</option>
-                      <option value="venta"  {{ old('operation', $property->operation) == 'venta' ? 'selected' : '' }}
-                      >Venta</option>
-                      <option value="alquiler"  {{ old('operation', $property->operation) == 'alquiler' ? 'selected' : '' }}>Alquiler</option>
-                    </select>
-                    @error('operation')
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                      </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-4 text-center">
-                    <label for="precio">Precio en S/.</label>
-                    <input type="number" class="form-control @error('precio') is-invalid @enderror"  name="precio" min="0" max="10000000" value="{{ old('precio', $property->precio) }}" placeholder="Precio ">
-                    @error('precio')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                    @enderror
-                  </div>
-                </div>
+            
 
                 <!--cuartos - baños y medio baño -->
                 <div class="row">
