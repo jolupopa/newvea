@@ -37,7 +37,8 @@
                       </a>
                           <div class="d-flex justify-content-around"> 
                           <form method="POST" action="{{ route('likes.destroy', $property->id )}}">
-                          @csrf    
+                          @csrf  
+                          {{ method_field('DELETE') }}  
                             <button type="submit" class="btn btn-danger   p-1 py-0">Eliminar</button> 
                           <form>  
                             <a href="{{ route('properties.show', $property->id )}}" class="btn btn-primary p-1 ">Detalle</a> 

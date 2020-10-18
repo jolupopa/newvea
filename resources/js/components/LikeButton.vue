@@ -1,6 +1,7 @@
 <template>
 	<div>
 			<span class="like-btn" @click="likeProperty" :class="{ 'like-active' : isActive }"></span>
+			
 			<p> A {{ cantidadLikes}} Les gustó esta propiedad </p>
 	</div>
 </template>	

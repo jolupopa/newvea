@@ -74,7 +74,8 @@ Route::prefix('admin')->middleware('verified')->namespace('Admin')->group(functi
 	Route::resource('propiedad', 'PropertyController', ['except' => 'destroy', 'as' => 'admin']);
 	//almacena y elimina los likes a las propiedades
 	Route::post('properties/{property}', 'LikesController@update')->name('likes.update');
-	Route::post('properties/{property}', 'LikesController@destroy')->name('likes.destroy');
+	//Elimina un like
+	Route::delete('properties/{property}', 'LikesController@destroy')->name('likes.destroy');
 
 	Route::post('propiedad/{id}/photos', 'PropertyPhotoController@store')->name('admin.propiedad.photo.store');
 	Route::delete('photo-propiedad/{photo}', 'PropertyPhotoController@destroy')->name('admin.propiedad.photo.destroy');

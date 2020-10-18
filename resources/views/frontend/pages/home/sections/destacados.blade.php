@@ -40,11 +40,7 @@
             </div>
             {{-- like button --}}
             <span class="favorite">
-             <like-button 
-                  property-id="{{ $property->id }}" 
-                  like = "{{ $like }}"
-                
-                ></like-button>
+            
             </span>
 
 
