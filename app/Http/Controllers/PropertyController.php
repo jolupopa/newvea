@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Departamento;
 use App\Distrito;
 use App\Provincia;
 use App\Property;
@@ -13,8 +14,11 @@ class PropertyController extends Controller
 {
     public function by_city($id)
     {
+      
+       
         $city = Provincia::find($id);
         $types = TypeProperty::all(); 
+        $departamentos = Departamento::all();
 
         $properties = Property::with(['type_property', 'photos' => function($query){
             $query = $query->where('featured', 1);
@@ -23,7 +27,8 @@ class PropertyController extends Controller
         return view('frontend.pages.properties.by_cities',[
             'properties'=> $properties,
             'types' => $types,
-            'city' => $city->name
+            'city' => $city->name,
+            'departamentos' => $departamentos
         ]);
     }
 

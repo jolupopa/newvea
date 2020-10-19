@@ -15,4 +15,9 @@ class Provincia extends Model
    {
        return $this->hasMany(Distrito::class);
    }
+
+   public function city()
+   {
+       return $this->hasOne(City::class);
+   }
 }

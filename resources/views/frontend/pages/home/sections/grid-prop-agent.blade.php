@@ -14,9 +14,10 @@
                 @foreach($citys as $city)
                 <div class="parent card col-4 px-0 my-0">
                     <div class="child">
-                      <a href="{{ route('properties.city.index', $city->id) }}">
-                        <span class="w-100 h-100">{{ $city->name }}</span>
-                        <img class="card-img-top" src="/images/cities/{{ $city->urlFoto }}" alt=" foto de {{ $city->name }}">
+                      <a href="{{ route('properties.city.index', $city->provincia_id) }}">
+                        <span class="w-100 h-100">{{ $city->provincia->name }}</span>
+                        <img class="card-img-top" src="/images/cities/{{ $city->urlFoto }}"  alt=" foto de {{ $city->provincia->name }}">
+                        
                       </a>
                     </div>
                 </div>

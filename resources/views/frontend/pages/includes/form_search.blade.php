@@ -8,20 +8,14 @@
     </div>
     <!-- box-search -->
     <div class="box-search">
+        
+        @include('frontend.pages.includes.ubi_geo')
 
         <div class="form-row ">
-            <div class="col-6 mb-5">
-                <label for="prov" class="sr-only">Provincia</label>
-                <select class="custom-select" id="prov">
-                    <option value="0">Selecciona una Provincia</option>
-                </select>
-            </div>
-            <div class="col-6 mb-5">
-                <label for="dist" class="sr-only">Distrito</label>
-                <select class="custom-select" id="dist">
-                    <option value="0">Selecciona un Distrito</option>
-                </select>
-            </div>
+            
+           
+
+
             <div class="col-6 mb-5">
                 <label for="tipo" class="sr-only">Tipo de Inmueble</label>
                 <select class="custom-select" id="tipo" name="tipo">
@@ -34,12 +28,17 @@
             <div class="col-6 mb-5">
                 <label for="precio" class="sr-only">Precio</label>
                 <select class="custom-select" id="precio">
-                    <option value="">Precio maximo por mil en $</option>
-                    <option>100</option>
-                    <option>200</option>
-                    <option>300</option>
-                    <option>400</option>
-                    <option>+500</option>
+                    <option value="">Precio en Soles</option>
+                    <option>100,000</option>
+                    <option>200,000</option>
+                    <option>300,000</option>
+                    <option>400,000</option>
+                    <option>500,000</option>
+                    <option>600,000</option>
+                    <option>700,000</option>
+                    <option>800,000</option>
+                    <option>900,000</option>
+                    <option>1'000,000 ó mas</option>
                 </select>
             </div>
             
@@ -82,6 +81,7 @@
             
 
         </div>
+        
 
         <div class="row my-5  align-items-center">
             <div class="col-6">

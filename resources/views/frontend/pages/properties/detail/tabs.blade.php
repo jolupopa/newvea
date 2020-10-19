@@ -1,6 +1,6 @@
 <div class="col-12 col-lg-8">
         
-  <div class="card text-center my-5" style="width: 100%;">
+  <div class="card text-center my-5" style="width: 100%; height: 800px;">
     <div class="card-header">
       <ul class="nav nav-tabs d-flex justify-content-around" id="myTab" role="tablist">
         <li class="nav-item">
@@ -18,10 +18,10 @@
         </li>
       </ul>
     </div>
-    <div class="card-body">
-      <div class="tab-content" id="myTabContent">
+    <div class="card-body" >
+      <div class="tab-content" id="myTabContent" style="width: 100%;">
         
-        <div class="tab-pane fade show active overflow-auto" style="height:460px;" id="caracter" role="tabpanel" aria-labelledby="caracter-tab">
+        <div class="tab-pane  container fade show active overflow-auto" style="height:100%;" id="caracter" role="tabpanel" aria-labelledby="caracter-tab">
           <!-- Description -->
           <div>
             <h4 class="text-left text-muted">Descripción</h4>

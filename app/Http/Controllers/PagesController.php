@@ -8,6 +8,7 @@ use App\Seller;
 use App\Sponsor;
 use App\Property;
 use App\Provincia;
+use App\Departamento;
 use App\Testimony;
 use App\TypeProperty;
 use Illuminate\Http\Request;
@@ -22,44 +23,43 @@ class PagesController extends Controller
     public function home()
     {
        
-       // return Seller::with('properties', 'profile')->get();
-       // $sellers = Seller::has('properties')->get();
-      $user_destacados = User::with('profile')->where('in_home', true)->get();
-        $cities = Provincia::where('selection', true)
-        ->orderBy('name', 'asc')->get();
-
-        $likes = 
       
+      //usuarios para el grid
+      $user_destacados = User::with('profile')->where('in_home', true)->get();
 
+        // ciudades para el grid
+        $cities = City::all();
+
+        //$departamentos
+        $departamentos = Departamento::all();
+
+        // sponsors
         $sponsors = Sponsor::where('option', true)->get();
 
-        //filtra tipo inmueble destacados
+        //tipos de inmueble destacados con su cantidad
         $types = TypeProperty::withCount(['properties' => function(Builder $query){
             $query->where('destacada', true)
                     ->where('publicada', true);
         }])->get();
 
+       // propiedades destacadas 
        $properties = Property::with(['city', 'profile', 'type_property', 'photos' => function($query){
            $query = $query->where('featured', 1);
-
        }])
         ->where('destacada', true)
         ->where('publicada', true)
         ->get();
-       
+
+       //testimonios
         $testimonies = Testimony::all();
 
+        // para mostrar favoritos de usuario autenticado
         $autenticaded = Auth::check() ? True : False ;
-
         if( $autenticaded){
             $usuario = auth()->user();
-            
         } else {
             $usuario = null;
         }
-        //obtener si al ausuario le gusta la propiedad y si esta logueado
-        $like = (auth()->user()) ?  true : false;
-
       
         
         return view('frontend.pages.home.index', [
@@ -71,7 +71,7 @@ class PagesController extends Controller
             'types' => $types,
             'autenticaded' => $autenticaded,
             'usuario' => $usuario,
-            'like' => $like
+            'departamentos' => $departamentos
             
         ]);
     }

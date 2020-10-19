@@ -34,7 +34,9 @@ Route::get('etiquetas/{tag}', 'BlogController@tags')->name('tags.show');
 
 // propiedades
 Route::get('typeproperty/{id}', 'PropertyController@by_type')->name('properties.type');
-Route::get('ciudad/{city}', 'PropertyController@by_city')->name('properties.city.index');
+
+Route::get('ciudad/{ciudad}', 'PropertyController@by_city')->name('properties.city.index');
+
 Route::get('inmueble/{property}', 'PropertyController@show')->name('properties.show');
 Route::get('promotor/{promotor}', 'PropertyController@by_promotor')->name('properties.promotor.index');
 

@@ -38,12 +38,7 @@
             <div class="box-label">
               <span class="{{ $property->operation == 'venta' ? 'label-sale' : 'label-rent' }}">{{ $property->operation}}</span>
             </div>
-            {{-- like button --}}
-            <span class="favorite">
-            
-            </span>
-
-
+          
             @forelse( $property->photos as $foto )
               
               <img src="img/properties/{{ $foto->url}}" class="img-fluid"  width="640px" alt="Foto de inmueble">

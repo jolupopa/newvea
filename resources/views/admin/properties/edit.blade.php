@@ -134,8 +134,9 @@ VeaInmuebles - edición de propiedades de usuario
                   
                 <div class="row">
                   <!--ubigeo-->
-                  @include('frontend.pages.includes.ubi_geo') 
-
+                  <div class="ml-3">
+                    @include('frontend.pages.includes.ubi_geo') 
+                  </div>
                   <input type="hidden" id="distrito_id" name="distrito_id"  value="{{ old('distrito_id', $property->distrito_id )}}">
 
                   <input type="hidden" id="provincia_id" name="provincia_id"  value="{{ old('provincia_id', $property->provincia_id) }}">

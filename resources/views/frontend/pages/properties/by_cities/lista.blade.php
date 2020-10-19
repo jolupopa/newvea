@@ -45,7 +45,7 @@
             <span class="font-weight-bolder"> Cod= {{ $property->codigo }} </span>
             <span class="badge badge-dark ml-auto">{{ $property->type_property->name}}</span>
             </h6>
-            <div class="text-left font-weight-bolder"><i class="fa fa-map-marker mr-2"></i> {{ $property->distrito->name }} - {{ $property->distrito->provincia->name }}</div>
+            <div class="text-left font-weight-bolder"><i class="fa fa-map-marker mr-2"></i> {{ $property->name_distrito }} - {{ $property->name_provincia }}</div>
           </div>
 
         

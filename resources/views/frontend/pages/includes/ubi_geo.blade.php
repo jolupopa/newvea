@@ -1,8 +1,8 @@
 
-<div class="form-row ml-3 text-center">
+<div class="form-row text-center">
     <div class="form-group col-4">
         <label for="depa">Departamentos</label>
-        <select name="depa" id="depa" class="form-control form-control-lg @error('depa') is-invalid @enderror">
+        <select name="depa" id="depa" class="custom-select @error('depa') is-invalid @enderror">
             <option value="0">Seleccione</option>
             @foreach($departamentos as $depa)
             <option value="{{ $depa->id}}">{{ $depa->name }}</option>
@@ -16,7 +16,7 @@
     </div>
     <div class="form-group col-4">
         <label for="prov">Provincias</label>
-        <select name="prov" id="prov" class="form-control form-control-lg @error('prov') is-invalid @enderror">
+        <select name="prov" id="prov" class="custom-select @error('prov') is-invalid @enderror">
         <option value="0">Seleccione</option>
         </select>
             @error('prov')
@@ -27,7 +27,7 @@
     </div>
     <div class="form-group col-4">
         <label for="dist">Distritos</label>
-        <select name="dist" id="dist" class="form-control form-control-lg @error('dist') is-invalid @enderror">
+        <select name="dist" id="dist" class="custom-select @error('dist') is-invalid @enderror">
             <option value="0">Seleccione</option>
         </select>
             @error('dist')
