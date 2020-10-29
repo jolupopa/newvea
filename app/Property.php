@@ -49,12 +49,15 @@ class Property extends Model {
 		'published_end',
 		'seller_id',
 		'city_id',
+		'name_zona',
+		'zona_id',
 		'name_departamento',
 		'name_provincia',
 		'name_distrito',
 		'departamento_id',
 		'provincia_id',
 		'distrito_id',
+		'search_filter',
 		'type_property_id'
 		
 	];

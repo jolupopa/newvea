@@ -294,8 +294,23 @@ $( document ).ready(function() {
 		e.preventDefault();
 	});
 
+		/*----------------------------------------------------*/
+    /*  Muestra la opcion de buscar
+		/*----------------------------------------------------*/
+		$('#radios1').on('click', function(e){
+		//	console.log('opcion1');
+			$('#option1').show();
+			$('#option2').hide();
+		});
 
-	/*----------------------------------------------------*/
+		$('#radios2').on('click', function(e){
+		//	console.log('opcion2');
+			$('#option2').show();
+			$('#option1').hide();
+		});
+
+
+		/*----------------------------------------------------*/
     /*  Searh Form More Options
     /*----------------------------------------------------*/
     $('.more-less-trigger').on('click', function(e){

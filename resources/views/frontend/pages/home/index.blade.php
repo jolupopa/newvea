@@ -34,12 +34,39 @@ VeaInmuebles es una pagiana de gestion inmobiliaria.
 @push('styles')
 <!-- owl-carousel -->
   <link rel="stylesheet" href="vendor/owl-carousel/assets/owl.carousel.min.css">
-  <link rel="stylesheet" href="vendor/owl-carousel/assets/owl.theme.default.min.css">
+	<link rel="stylesheet" href="vendor/owl-carousel/assets/owl.theme.default.min.css">
+	<link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
+
+
 @endpush
 
 @push('scripts')
 <script src="vendor/owl-carousel/owl.carousel.min.js"></script>
 <script src="js/owlcarousel2-filter.min.js"></script>
+<script src="{{ asset('js/jquery-ui.min.js ') }}"></script>
+
+<script>
+	$('#search_text').autocomplete({
+		source : function(request, response){
+			$.ajax({
+				url: "{{ route('search.ubicacion') }}",
+				dataType: "json",
+				data: {
+					term: request.term
+				},
+				success: function(data) {
+					
+						response(data);
+						console.log(data[0]['distrito_id']);
+						$('#_distrito_id').val(data[0]['distrito_id']);
+						$('#_zona').val(data[0]['zona']);
+
+				}
+
+			});
+		}
+	});
+</script>
 
 
 

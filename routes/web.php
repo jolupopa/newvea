@@ -46,6 +46,12 @@ Route::get('provincias/{id}', 'UbigeoController@getProvincias')->name('provincia
 Route::get('distritos/{id}', 'UbigeoController@getDistritos')->name('distritos');
 Route::get('zonas/{id}', 'UbigeoController@getZonas')->name('zonas');
 
+// resultado de busqueda
+Route::get('filtro', 'SearchController@index')->name('search.index');
+// autocomplete text ubigeo 
+Route::get('search/ubicacion', 'SearchController@ubicacion')->name('search.ubicacion');
+
+
 
 Auth::routes(['verify' => true]);
 // Authentication Routes...

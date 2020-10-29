@@ -180,11 +180,23 @@ VeaInmuebles - edición de propiedades de usuario
                     </div>
                   </div>
                   <!--direccion-->
-                  <div class="col-12">
+                  <div class="col-8">
                     <div class="form-group">
-                      <label for="direccion">Dirección [ Pasaje,Jirón,Calle,Av; -  Urb. ó Centro Poblado ]</label>
+                      <label for="direccion">Dirección [ Pasaje,Jirón,Calle o Av. ]</label>
                       <input type="text" id="direccion" name="direccion" class="form-control shadow-soft form-control-lg @error('direccion') is-invalid @enderror" value="{{ old('direccion', $property->direccion ) }}">
                         @error('direccion')
+                          <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                          </span>
+                        @enderror
+                    </div>
+                  </div>
+                   <!--zona-->
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="name_zona">Nombre de Zona ó Urb</label>
+                      <input type="text" id="name_zona" name="name_zona" class="form-control shadow-soft form-control-lg @error('name_zona') is-invalid @enderror" value="{{ old('name_zona', $property->name_zona ) }}">
+                        @error('name_zona')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                           </span>

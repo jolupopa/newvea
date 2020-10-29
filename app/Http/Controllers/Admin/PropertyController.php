@@ -129,6 +129,7 @@ class PropertyController extends BaseAdminController
             'direccion'=> 'required',
             'precio' => 'required',
             'operation' => 'required',
+            'name_zona'=> 'required',
             'name_distrito' => 'required',
             'name_provincia' => 'required',
             'name_departamento' => 'required',
@@ -168,6 +169,7 @@ class PropertyController extends BaseAdminController
         $property->direccion = $request->get('direccion');
         $property->precio = $request->get('precio');
         $property->operation = $request->get('operation');
+        $property->name_zona = $request->get('name_zona');
         $property->name_distrito = $request->get('name_distrito');
         $property->name_provincia = $request->get('name_provincia');
         $property->name_departamento = $request->get('name_departamento');
@@ -175,7 +177,7 @@ class PropertyController extends BaseAdminController
         $property->provincia_id = $request->get('provincia_id');
         $property->distrito_id = $request->get('distrito_id');
         $property->type_property_id = $request->get('type_property_id');
-       
+        $property->search_filter = $request->get('name_zona') . ', ' . $request->get('name_distrito') . ', ' . $request->get('name_provincia') . ', ' .  $request->get('name_departamento');
         $property->num_cuartos = $request->get('num_cuartos');
         $property->bathroon = $request->get('bathroon');
         $property->midle_bathroon = $request->get('midle_bathroon');

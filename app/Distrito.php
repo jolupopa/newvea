@@ -10,4 +10,11 @@ class Distrito extends Model
     {
         return $this->belongsTo(Provincia::class);
     }
+
+    public function zonas()
+    {
+        return $this->hasMany(Zona::class);
+    }
 }
+
+
