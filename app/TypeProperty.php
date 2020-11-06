@@ -8,7 +8,13 @@ class TypeProperty extends Model
 {
     protected $fillable = [
 		'name','slug'
-	];
+    ];
+    
+    // leer las rutas por slug
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
 	public function properties()
     {

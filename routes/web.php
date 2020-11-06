@@ -23,6 +23,9 @@ Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallba
  // inicio
 Route::get('/', 'PagesController@home')->name('home');
 
+//Full Mapa
+Route::get('/mapa', 'PagesController@mapa')->name('mapa');
+
 
 // Blog
 Route::get('/blog', 'BlogController@blog')->name('blog');

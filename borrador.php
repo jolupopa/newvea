@@ -90,18 +90,21 @@ $('#uploadfiles').click(function(){
         }
     }
  </script>
- // datos de oreden
- id
- user-Id
- shopping_cart_id
- direccion
- ciudad
- email
- fone
- estatus - creado
- num-de -guia 
- total 
- 
+
+ // crear componente
+ <template>
+	<p>componente full-map</p>
+</template>
+
+<script>
+	export default {
+			mounted() {
+					console.log("Funciona");
+			}
+	}
+</script>
+
+-8.112718,-79.0474042
 
 
 

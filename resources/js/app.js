@@ -17,10 +17,19 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+
+ //const files = require.context('./', true, /\.vue$/i)
+ //files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
 
 Vue.component('like-button', require('./components/LikeButton.vue').default);
+Vue.component('full-map', require('./components/FullMap.vue').default);
+Vue.component('menu-tipo', require('./components/MenuTipo.vue').default);
+
+
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -32,7 +41,4 @@ const app = new Vue({
     el: '#app',
 });
 
-$('.like-btn').on('click', function() {
-    $(this).toggleClass('like-active');
- });
 

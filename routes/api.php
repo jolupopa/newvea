@@ -13,6 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+/** Listado de API */
+// todas los inmuebles destacados
+Route::get('/destacadas', 'APIController@index')->name('destacados.index');
+
+//todos los tipos de inmuebles
+Route::get('/types', 'APIController@types')->name('types');
+//listar un tipo de inmueble
+Route::get('/types/{type_property}', 'APIController@type')->name('type_property');

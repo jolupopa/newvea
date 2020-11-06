@@ -76,6 +76,11 @@ class PagesController extends Controller
         ]);
     }
 
+    public function mapa()
+    {
+        return view('frontend.pages.mapa.index');
+    }
+
    
     
  
