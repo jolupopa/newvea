@@ -15,3 +15,8 @@ Un Blog donde puedes obtener articulos relacionados con las operaciones de compr
     @include('frontend.pages.blog.sections.articulos')
 
 @endsection
+
+@section('modals')
+ 	@include('frontend.pages.home.modals.contacto')
+    @include('frontend.pages.home.modals.services')
+@endsection

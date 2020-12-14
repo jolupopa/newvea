@@ -1,15 +1,27 @@
 <template>
 	<div>
-		<div class="d-flex container justify-content-between">
-			<span 
-			v-for="destacada in destacadas"
-			v-bind:key="destacada.id"
-			class="text-white py-3 mx-2 btn"
-			@click="$emit('filtro', destacada.slug)"
-			>
-				{{ destacada.name }} 
-			</span>
-		</div>
+		<nav class="d-flex container justify-content-end">
+			<li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle text-white mb-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          FILTRAR POR TIPO DE INMUEBLE
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a
+					class="dropdown-item text-white item"
+					@click="$emit('listartodos')"
+					>
+						Todos
+					</a>
+          <a class="dropdown-item text-white item" href="#"
+					v-for="destacada in destacadas"
+					v-bind:key="destacada.id"
+					@click="$emit('filtro', destacada.slug)"
+					>
+						{{ destacada.name }} 
+					</a>
+        </div>
+      </li>
+		</nav>
 	</div>
 </template>
 <script>
@@ -32,23 +44,15 @@ export default {
 	methods: {
 		seleccionarTipo(destacada) {
 			this.destacada = destacada.slug;
-			//console.log(C);
-			// this.destacada = destacada.slug;
-			//this.tipo = destacada.slug
-			//this.window.location.href = producturl
-		
-
 			}
 		}
-
 }
-	
-
 </script>
 <style scoped>
-div {
-  background-color: #6272d4;
-}
-
-
+	div {
+		background-color: #6272d4;
+	}
+	li a.item:hover {
+		color: #6272d4 !important;
+	}
 </style>

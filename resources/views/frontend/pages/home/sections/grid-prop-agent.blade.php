@@ -1,4 +1,4 @@
-<section id="grid-prop-agent" class="container my-5">
+<section id="grid-prop-agent" class="container my-5" >
     <h2 class=" h1 text-center py-4 mb-4 text-muted">PRINCIPALES</h2>
     <div class="row">
       <div class="col-md-6">

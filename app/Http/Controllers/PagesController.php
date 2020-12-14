@@ -81,6 +81,16 @@ class PagesController extends Controller
         return view('frontend.pages.mapa.index');
     }
 
+    public function nosotros()
+    {
+        return view('frontend.pages.nosotros.index');
+    }
+
+    public function agentes()
+    {
+        return view('frontend.pages.agentes.index');
+    }
+
    
     
  

@@ -23,9 +23,7 @@ VeaInmuebles es una pagiana de gestion inmobiliaria.
 
 
 @section('modals')
-
-  {{-- modals --}}
-    
+  {{-- modals --}}  
     @include('frontend.pages.home.modals.contacto')
     @include('frontend.pages.home.modals.services')
 @endsection

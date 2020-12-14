@@ -2,14 +2,11 @@
 
 @section('meta-title', 'VeaInmuebles')
 @section('meta-description')
-VeaInmuebles mapa.
+VeaInmuebles es una pagiana de gestion inmobiliaria.
 @endsection
 
 @section('content')
-
-	<full-map></full-map>
-
-
+nosotros
 @endsection
 
 
@@ -26,3 +23,5 @@ VeaInmuebles mapa.
 
 @push('load-plugin')
 @endpush
+
+ 

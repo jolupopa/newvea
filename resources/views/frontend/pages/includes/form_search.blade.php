@@ -110,7 +110,7 @@
         </div>
         
 
-        <div class="row my-5  align-items-center">
+        <div class="row my-2  align-items-center">
             <div class="col-6">
                 <a href="#" class="more-less-trigger" data-open-title="Mas opciones" data-close-title="Cerrar"></a>
             </div>

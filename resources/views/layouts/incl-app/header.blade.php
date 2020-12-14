@@ -65,11 +65,11 @@
         <div class="collapse navbar-collapse" id="menu-main">
             <ul class="navbar-nav mt-4 mt-md-0">
                 <li class="nav-item mb-1 mb-md-0 mr-md-1"><a href="{{route('home')}}" class="nav-link {{ request()->is('/') ? 'active' : '' }}">Inicio</a></li>
-                <li class="nav-item mb-1 mb-md-0 mr-md-1"><a href="{{ route('mapa')}}" class="nav-link {{ request()->is('mapa') ? 'active' : '' }}">Mapa-Destacados</a></li>
-                <li class="nav-item mb-1 mb-md-0 mr-md-1"><a href="#" class="nav-link">Agentes</a></li>
-                <li class="nav-item mb-1 mb-md-0 mr-md-1"><a href="#" class="nav-link">Nosotros</a></li>
+                <li class="nav-item mb-1 mb-md-0 mr-md-1"><a href="{{ route('mapa')}}" class="nav-link {{ request()->is('mapa') ? 'active' : '' }}">Mapa</a></li>
+                <li class="nav-item mb-1 mb-md-0 mr-md-1"><a href="{{ route('agentes')}}" class="nav-link {{ request()->is('agentes') ? 'active' : '' }}">Agentes</a></li>
+                <li class="nav-item mb-1 mb-md-0 mr-md-1"><a href="{{ route('nosotros')}}" class="nav-link {{ request()->is('nosotros') ? 'active' : '' }}">Nosotros</a></li>
                 <li class="nav-item mb-1 mb-md-0 mr-md-1"><a href="{{ route('blog')}}" class="nav-link {{ request()->is('blog') ? 'active' : '' }}">Blog</a></li>
-                <li class="nav-item mb-1 mb-md-0 mr-md-0"><a href="#" class="nav-link">Contactar</a></li>
+                <li class="nav-item mb-1 mb-md-0 mr-md-0"><a href="#" data-toggle="modal" data-target="#modalContacto" class="nav-link ">Contactar</a></li>
             </ul>
         </div>
     </div>

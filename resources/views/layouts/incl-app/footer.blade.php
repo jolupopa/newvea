@@ -25,9 +25,14 @@
 
         <div class="col-12 col-md-6 col-xl-7 py-2 text-center text-md-right small">
           <ul class="enlaces-secundario list-unstyled d-inline-flex text-uppercase ">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Nosotros</a></li>
-            <li><a href="#">Políticas de Privacidad</a></li>
+            <li><a href="#" class="text-primary">Terminos y Condiciones de Uso</a></li>
+            <li><a href="#" class="text-primary">Políticas de Privacidad</a></li>
+            <li><a href="#" class="text-primary">Libro de Reclamos</a></li>
+          </ul>
+          <br>
+           <ul class="enlaces-secundario list-unstyled d-inline-flex text-uppercase ">
+            <li><a href="#" class="text-primary">Ayuda y Soporte</a></li>
+            <li><a href="#" class="text-primary">Empleo</a></li>
           </ul>
           <p>©2020. Todos los derechos reservados.</p>
         </div>

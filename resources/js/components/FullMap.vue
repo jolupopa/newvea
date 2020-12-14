@@ -1,11 +1,14 @@
 <template>
 	<div class="mapa">
-		<menu-tipo v-on:filtro="listatipoInmueble($event)"></menu-tipo>
+		<menu-tipo 
+		v-on:filtro="listatipoInmueble($event)"
+		v-on:listartodos="todosDestacados($event)"
+		>
+		</menu-tipo>
 		<l-map
 			:zoom="zoom"
 			:center="center" 
 			:options="mapOptions"
-		
 		>
 			<l-tile-layer 
 				:url="url" 
@@ -16,6 +19,7 @@
 			v-bind:key="property.id"
 			:lat-lng="obtenerCoordenadas(property)"
 			:icon="obtenerIcon(property)"
+			@click="redireccionar(property.id)"
 			>
 				<l-tooltip>
 					<div>
@@ -55,8 +59,7 @@ import { LMap, LTileLayer, LMarker, LTooltip, LIcon } from 'vue2-leaflet';
 						zoomSnap: 0.5
 					},
 					showMap: true,
-					properties: [],
-					desta: ''
+					properties: []
 				};
 			},
 			created() {
@@ -89,6 +92,19 @@ import { LMap, LTileLayer, LMarker, LTooltip, LIcon } from 'vue2-leaflet';
 						//console.log(respuesta.data);
 					})
 					.catch( e => console.log(e))
+				},
+				todosDestacados() {
+					axios.get('api/destacadas')
+					.then( respuesta => {
+						this.properties = respuesta.data
+						//console.log(respuesta.data);
+					})
+					.catch( e => console.log(e))
+				},
+				redireccionar(id) {
+				  let urlbase = window.location.origin
+					console.log(urlbase);
+					window.location.href = `/inmueble/${id}` ;
 				}
 			}
 			

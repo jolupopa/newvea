@@ -1,7 +1,7 @@
 <section id="parallax" class="parallax-efect">
 
-  <div id="search" class="container">
-    <div class="row justify-content-center">
+  <div id="search" class="container mt-5">
+    <div class="row justify-content-center mt-3">
       <div class="col-12 text-center">
         <h1 class="text-white font-weight-light">Encuentra la <span class="font-weight-bold">Vivienda</span> de tus
           sueños.

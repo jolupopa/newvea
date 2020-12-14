@@ -25,6 +25,8 @@ Route::get('/', 'PagesController@home')->name('home');
 
 //Full Mapa
 Route::get('/mapa', 'PagesController@mapa')->name('mapa');
+Route::get('/nosotros', 'PagesController@nosotros')->name('nosotros');
+Route::get('/agentes', 'PagesController@agentes')->name('agentes');
 
 
 // Blog

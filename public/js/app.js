@@ -1942,6 +1942,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -1967,8 +1971,7 @@ __webpack_require__.r(__webpack_exports__);
         zoomSnap: 0.5
       },
       showMap: true,
-      properties: [],
-      desta: ''
+      properties: []
     };
   },
   created: function created() {
@@ -2003,6 +2006,20 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (e) {
         return console.log(e);
       });
+    },
+    todosDestacados: function todosDestacados() {
+      var _this3 = this;
+
+      axios.get('api/destacadas').then(function (respuesta) {
+        _this3.properties = respuesta.data; //console.log(respuesta.data);
+      })["catch"](function (e) {
+        return console.log(e);
+      });
+    },
+    redireccionar: function redireccionar(id) {
+      var urlbase = window.location.origin;
+      console.log(urlbase);
+      window.location.href = "/inmueble/".concat(id);
     }
   }
 });
@@ -2097,6 +2114,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'menu-tipo',
   data: function data() {
@@ -2116,10 +2145,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     seleccionarTipo: function seleccionarTipo(destacada) {
-      this.destacada = destacada.slug; //console.log(C);
-      // this.destacada = destacada.slug;
-      //this.tipo = destacada.slug
-      //this.window.location.href = producturl
+      this.destacada = destacada.slug;
     }
   }
 });
@@ -6597,7 +6623,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ndiv[data-v-6796591e] {\r\n  background-color: #6272d4;\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\ndiv[data-v-6796591e] {\n\tbackground-color: #6272d4;\n}\nli a.item[data-v-6796591e]:hover {\n\tcolor: #6272d4 !important;\n}\n", ""]);
 
 // exports
 
@@ -52592,6 +52618,9 @@ var render = function() {
         on: {
           filtro: function($event) {
             return _vm.listatipoInmueble($event)
+          },
+          listartodos: function($event) {
+            return _vm.todosDestacados($event)
           }
         }
       }),
@@ -52614,6 +52643,11 @@ var render = function() {
                 attrs: {
                   "lat-lng": _vm.obtenerCoordenadas(property),
                   icon: _vm.obtenerIcon(property)
+                },
+                on: {
+                  click: function($event) {
+                    return _vm.redireccionar(property.id)
+                  }
                 }
               },
               [
@@ -52696,26 +52730,69 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "div",
-      { staticClass: "d-flex container justify-content-between" },
-      _vm._l(_vm.destacadas, function(destacada) {
-        return _c(
-          "span",
+    _c("nav", { staticClass: "d-flex container justify-content-end" }, [
+      _c("li", { staticClass: "nav-item dropdown " }, [
+        _c(
+          "a",
           {
-            key: destacada.id,
-            staticClass: "text-white py-3 mx-2 btn",
-            on: {
-              click: function($event) {
-                return _vm.$emit("filtro", destacada.slug)
-              }
+            staticClass: "nav-link dropdown-toggle text-white mb-3",
+            attrs: {
+              href: "#",
+              id: "navbarDropdown",
+              role: "button",
+              "data-toggle": "dropdown",
+              "aria-haspopup": "true",
+              "aria-expanded": "false"
             }
           },
-          [_vm._v("\n\t\t\t" + _vm._s(destacada.name) + " \n\t\t")]
+          [_vm._v("\n          FILTRAR POR TIPO DE INMUEBLE\n        ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "dropdown-menu",
+            attrs: { "aria-labelledby": "navbarDropdown" }
+          },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item text-white item",
+                on: {
+                  click: function($event) {
+                    return _vm.$emit("listartodos")
+                  }
+                }
+              },
+              [_vm._v("\n\t\t\t\t\t\tTodos\n\t\t\t\t\t")]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.destacadas, function(destacada) {
+              return _c(
+                "a",
+                {
+                  key: destacada.id,
+                  staticClass: "dropdown-item text-white item",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.$emit("filtro", destacada.slug)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n\t\t\t\t\t\t" + _vm._s(destacada.name) + " \n\t\t\t\t\t"
+                  )
+                ]
+              )
+            })
+          ],
+          2
         )
-      }),
-      0
-    )
+      ])
+    ])
   ])
 }
 var staticRenderFns = []

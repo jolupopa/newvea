@@ -11,6 +11,37 @@
                 </p>
             </a>
         </li>
+                @can('view', new App\Post)    
+            <li class="nav-item has-treeview {{ request()->is('backend/posts*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link {{ request()->is('backend/posts*') ? 'active' : '' }}">
+                    <i class="nav-icon far fa-newspaper mr-3"></i>
+                    <p>
+                    Front del Web
+                    <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    @can('view', new App\Post)
+                    <li class="nav-item">
+                    <a href="{{ route('backend.posts.index')}}" class="nav-link {{ request()->is('backend/posts') ? 'active' : '' }}">
+                        <i class="fas fa-list-ol nav-icon"></i>
+                        <p>Destacados</p>
+                    </a>
+                    </li>
+                    @endcan
+                    @can('create', new App\Post)
+                    <li class="nav-item">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#createPostModal">
+                        <i class="fas fa-plus-circle nav-icon"></i>
+                        <p>Crear Ciudades en Grid</p>
+                    </a>
+                    </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
+
+        
         <li class="nav-item">
             <a href="{{ route('backend.users.index')}}" class="nav-link {{ request()->is('backend/users') ? 'active' : '' }}">
                 <i class="nav.icon fas fa-users mr-3"></i>

@@ -12,7 +12,7 @@
    <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="favicons/favicon.ico" type="image/ico">
 
   <!-- google-fonts -->
   <link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet">
